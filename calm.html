@@ -76,4 +76,234 @@
 
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
-        .track-container { position: relative; padding-left: 30px; border
+        .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(100, 181, 246, 0.3); }
+        .track-item { position: relative; margin-bottom: 40px; }
+        .track-item::before { content: ''; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: var(--bg-darker); border: 2px solid var(--theme-color); border-radius: 50%; box-shadow: 0 0 10px var(--theme-color); }
+        .track-level { font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
+        .track-ingredients { font-size: 1.1em; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px; font-weight: 300;}
+        .track-effect { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; font-weight: 300; letter-spacing: 1px;}
+
+        .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
+        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
+        .safety-warning { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #90CAF9;}
+
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        .footer-links a:hover { color: var(--gold-accent); }
+        .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
+    </style>
+</head>
+<body>
+
+<nav id="smart-nav" class="smart-nav">
+    <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
+    <div class="nav-links">
+        <a href="state.html">四種狀態</a>
+        <a href="philosophy.html">品牌哲學</a>
+        <a href="#" class="cta-btn">🛒 購物車</a>
+    </div>
+</nav>
+
+<section class="product-hero fade-in-element">
+    <div class="product-visual">
+        <div id="product-drop-zone" class="drop-zone">放入<br>靜域之心<br>視覺圖</div>
+        <img id="product-img" class="product-img" alt="靜域之心">
+        <input type="file" id="product-input" accept="image/*" style="display: none;">
+    </div>
+
+    <div class="product-info">
+        <div class="axis-badge">適合需要：放鬆 ‧ 穩定情緒 ‧ 冥想</div>
+        <h1 class="product-title">🜁 靜域之心</h1>
+        <div class="core-quote">
+            「靜域之心不是讓世界變安靜。<br>而是在喧囂之中，建立一個屬於自己的安靜空間。」
+        </div>
+
+        <div class="diagnosis-box">
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p><strong>當下狀態：</strong>焦躁、情緒起伏大、容易被外界的聲音或他人的情緒干擾。<br>
+               <strong>內在需求：</strong>渴望一個沒有雜訊、安全且獨立的心理邊界。</p>
+            <p>➔ 陪伴目標：協助內在重新平衡，穩固心神與頻率。</p>
+        </div>
+
+        <div class="variant-group">
+            <div class="variant-title">選擇專屬配方版本：</div>
+            <div class="variants">
+                <button class="variant-btn active" onclick="changeVariant('standard')">標準穩心版 (無寵物)</button>
+                <button class="variant-btn" onclick="changeVariant('pet')">毛孩安心版 (有寵物)</button>
+                <button class="variant-btn" onclick="changeVariant('baby')">寶寶安睡版</button>
+                <button class="variant-btn" onclick="changeVariant('pregnant')">孕媽咪支撐版</button>
+            </div>
+            <p id="dynamic-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px;">
+                【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。
+            </p>
+        </div>
+
+        <div class="price-action">
+            <div class="price">NT$ 1,680</div>
+            <button class="add-to-cart">選擇此香氣</button>
+        </div>
+    </div>
+</section>
+
+<section class="story-section fade-in-element">
+    <h3 class="story-title">✦ 氣味場景 ✦</h3>
+    <p class="story-text">
+        當你閉上眼睛，世界的一切喧囂瞬間被隔絕在外。<br>
+        這裡像是一座深海裡的純白房間，<br>
+        沒有雜訊，沒有他人情緒的拉扯，只有你穩定的心跳聲。<br><br>
+        你不必再過度共感，不必再承接外界的重量。<br>
+        在這個絕對真空的靜域裡，你終於可以把心安放下來，<br>
+        聽見自己最真實的聲音。
+    </p>
+</section>
+
+<div id="dynamic-content">
+    <section class="resonance-section fade-in-element">
+        <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
+        <div class="track-container" id="dynamic-tracks">
+            <div class="track-item">
+                <div class="track-level">Top / 前調</div>
+                <div class="track-ingredients">佛手柑、苦橙葉</div>
+                <div class="track-effect">【思緒梳理】瞬間切斷外界雜訊干擾，讓過載的思緒冷卻，帶來第一層的清晰與淨化感。</div>
+            </div>
+            <div class="track-item">
+                <div class="track-level">Middle / 中調</div>
+                <div class="track-ingredients">高地薰衣草、花梨木</div>
+                <div class="track-effect">【溫柔支撐】針對太容易共感而疲憊的內在，給予溫柔而堅定的支撐，收攏渙散的思緒。</div>
+            </div>
+            <div class="track-item">
+                <div class="track-level">Base / 後調</div>
+                <div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div>
+                <div class="track-effect">【大地定錨】打造安定的空間感。透過深沉的木質與根系氣味，將意識重新定錨回自己的中心。</div>
+            </div>
+        </div>
+
+        <div class="spec-box fade-in-element">
+            <div class="spec-note safety-warning" id="dynamic-safety">
+                ✦ 溫和配方：本配方能量平穩收斂，適合日常靜心與空間淨化使用。
+            </div>
+            <div class="spec-note">
+                ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="site-footer fade-in-element">
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
+    <div class="footer-links">
+        <a href="philosophy.html">Philosophy</a>
+        <a href="state.html">States</a>
+        <a href="about.html">About</a>
+        <a href="#">Instagram</a>
+    </div>
+    <div class="footer-copyright">
+        &copy; 2026 Soul Traveler. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    /* 拖曳功能 */
+    const zone = document.getElementById('product-drop-zone');
+    const input = document.getElementById('product-input');
+    const img = document.getElementById('product-img');
+    zone.addEventListener('click', () => input.click());
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.style.background = "rgba(100, 181, 246, 0.1)"; });
+    zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.style.background = "transparent"; });
+    const handleFile = (file) => {
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (event) => { img.src = event.target.result; img.style.display = 'block'; zone.style.display = 'none'; };
+            reader.readAsDataURL(file);
+        }
+    };
+    zone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
+    input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
+
+    /* 動態資料庫：包含 4 個版本的 敘述、前中後調、安全標示 */
+    const variantsData = {
+        standard: {
+            desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
+            safety: "✦ 溫和配方：本配方能量平穩收斂，適合日常靜心與空間淨化使用。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【思緒梳理】瞬間切斷外界雜訊干擾，讓過載的思緒冷卻，帶來第一層的清晰與淨化感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【溫柔支撐】針對太容易共感而疲憊的內在，給予溫柔而堅定的支撐，收攏渙散的思緒。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div><div class="track-effect">【大地定錨】打造安定的空間感。透過深沉的木質與根系氣味，將意識重新定錨回自己的中心。</div></div>
+            `
+        },
+        pet: {
+            desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
+            safety: "✦ 寵物友善：剔除對貓狗代謝有負擔之精油，全面選用溫和安撫成分，讓您與毛孩安心共處。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">苦橙葉、甜橙</div><div class="track-effect">【溫和降噪】移除刺激性高的柑橘類，以最溫和的果香過濾空間裡的浮躁氣息。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">羅馬洋甘菊、高地薰衣草</div><div class="track-effect">【毛孩安撫】蘋果般的蜜糖甜香，能有效撫平容易驚嚇、焦慮的敏銳感知，帶來純真無邪的安心感。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、花梨木</div><div class="track-effect">【純淨守護】移除過重的木質與根系負擔，留下最輕盈的定靜能量，打造柔軟的安全結界。</div></div>
+            `
+        },
+        baby: {
+            desc: "【過濾雜訊】以極致溫和的頻率過濾環境雜訊，溫柔包覆夜間敏銳的感知。",
+            safety: "✦ 寶寶安睡：極低濃度與無刺激性配方，專為敏銳感知設計，溫柔包覆夜晚的不安。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">羅馬洋甘菊</div><div class="track-effect">【天使光環】去除了所有強烈的氣味，僅以極致溫和的蜜糖香，給予純真無邪的安心感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草</div><div class="track-effect">【輕柔包覆】針對夜間容易浮動的情緒，給予宛如母親懷抱般的溫暖支撐，收攏不安。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香</div><div class="track-effect">【安穩搖籃】單純且輕盈的定靜底蘊，像安全的搖籃般穩固，不帶給空間任何沉重負擔。</div></div>
+            `
+        },
+        pregnant: {
+            desc: "【大地支撐】提供穩定厚實的大地能量，穩固孕期容易起伏的情緒。",
+            safety: "✦ 孕期支撐：嚴格剔除通經與子宮收縮疑慮之精油（如快樂鼠尾草等），以最安全的木質給予力量。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【清冷梳理】以清透高雅的茶香感，化解孕期容易浮動的煩悶感，帶來深呼吸的空間。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木、高地薰衣草</div><div class="track-effect">【溫潤支撐】無刺激性的安全陪伴，溫柔接住各種疲憊，給予情緒穩定的力量。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、波旁岩蘭草</div><div class="track-effect">【大地安放】以安全劑量的低調木質與根系，穩穩承接所有的起伏，打造堅實的內在靠山。</div></div>
+            `
+        }
+    };
+
+    /* 動態切換函數 */
+    function changeVariant(variant) {
+        // 更新按鈕狀態
+        document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // 取得動態區塊
+        const dynamicContent = document.getElementById('dynamic-content');
+        
+        // 淡出
+        dynamicContent.style.opacity = 0;
+        
+        setTimeout(() => {
+            // 更新文字描述
+            document.getElementById('dynamic-desc').innerText = variantsData[variant].desc;
+            // 更新香氣軌跡
+            document.getElementById('dynamic-tracks').innerHTML = variantsData[variant].tracks;
+            // 更新安全標示
+            document.getElementById('dynamic-safety').innerHTML = variantsData[variant].safety;
+            
+            // 淡入
+            dynamicContent.style.opacity = 1;
+        }, 300);
+    }
+
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('smart-nav');
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (Math.abs(lastScrollTop - currentScroll) <= 5) return;
+        if (currentScroll > lastScrollTop && currentScroll > 70) { navbar.classList.add('nav-up'); } else { navbar.classList.remove('nav-up'); }
+        lastScrollTop = currentScroll;
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.15 }); 
+        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
+    });
+</script>
+
+</body>
+</html>
