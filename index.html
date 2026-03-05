@@ -6,7 +6,6 @@
     <title>靈魂旅人 Soul Traveler - 為不同生命狀態設計的香氣</title>
     <style>
         :root {
-            /* 主題色彩 */
             --bg-color: #0A1428; 
             --bg-darker: #050A14;
             --text-main: #EAEAEA;
@@ -14,11 +13,9 @@
             --gold-accent: #DCA750; 
             --gold-hover: #F9DB78;
             --border-color: rgba(220, 167, 80, 0.15); 
-            --card-bg: rgba(10, 20, 40, 0.4);
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
             
-            /* 四軸專屬色 */
             --color-fire: #E57373;  
             --color-wood: #81C784;  
             --color-wind: #64B5F6;  
@@ -50,9 +47,7 @@
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
-        /* =========================================
-           ① 第一屏 Hero (星盤不跑位版)
-           ========================================= */
+        /* 第一屏 Hero */
         .hero-section { width: 100vw; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 100px 20px 40px 20px; box-sizing: border-box; }
         
         .hero-astrolabe-box { height: 45vh; width: 100%; display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 5vh; }
@@ -99,7 +94,7 @@
         @keyframes slowSpinReverseLayer { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
         @keyframes spinImg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* 1️⃣ Hero 首頁最新排版 */
+        /* 首頁文案 */
         .poetic-text-box { text-align: center; display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px;}
         .pt-hero-title { color: var(--gold-accent); font-size: 1.8em; letter-spacing: 8px; font-weight: 300; margin-bottom: 10px;}
         .pt-core { color: var(--text-main); font-size: 1.15em; letter-spacing: 3px; line-height: 1.8; font-weight: 300; margin-bottom: 5px;}
@@ -109,15 +104,13 @@
         .btn-elegant-single { display: inline-block; padding: 12px 45px; border: 1px solid var(--gold-accent); border-radius: 30px; color: var(--gold-accent); font-size: 1em; letter-spacing: 3px; text-decoration: none; transition: all 0.5s ease; font-weight: 300; background: rgba(220,167,80,0.05);}
         .btn-elegant-single:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 0 25px rgba(220,167,80,0.4); transform: translateY(-2px);}
 
-        /* =========================================
-           內容區共用
-           ========================================= */
+        /* 內容區共用 */
         .container-main { max-width: 1000px; margin: 0 auto; padding: 80px 20px; position: relative; z-index: 1; }
         .section-header { text-align: center; margin-bottom: 80px; }
         .section-header h2 { font-size: 1.6em; color: var(--gold-accent); letter-spacing: 6px; font-weight: 300; margin:0 0 15px 0;}
         .section-header p { font-size: 1.1em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; opacity: 0.8; margin:0;}
 
-        /* ② 四種狀態大展演區 */
+        /* 四大狀態大展演區 */
         .product-showcase { display: flex; flex-direction: column; gap: 120px; margin-bottom: 80px;}
         .showcase-item { display: flex; align-items: center; gap: 60px; }
         .showcase-item:nth-child(even) { flex-direction: row-reverse; }
@@ -127,29 +120,28 @@
         .sc-img-box:hover { border-color: rgba(220, 167, 80, 0.6); background: rgba(220, 167, 80, 0.03); }
         .sc-placeholder { color: var(--gold-accent); font-size: 1em; letter-spacing: 2px; text-align: center; opacity: 0.6; line-height: 1.8;}
 
-        .sc-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        .sc-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; text-align: left; align-items: flex-start;}
         @media (max-width: 768px) { .sc-info { text-align: center; align-items: center;} }
         
         .sc-title { font-size: 1.8em; color: var(--gold-accent); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 4px;}
         .sc-text { font-size: 1.15em; color: var(--text-main); line-height: 2; font-weight: 300; letter-spacing: 2px; opacity: 0.9; margin-bottom: 25px;}
 
-        /* 狀態標籤 (適合需要) */
-        .sc-tags-box { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px;}
+        .sc-tags-box { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; margin-bottom: 30px;}
         @media (max-width: 768px) { .sc-tags-box { justify-content: center;} }
         .sc-tag-label { font-size: 0.9em; color: var(--text-muted); letter-spacing: 2px; margin-right: 5px; font-weight: 300;}
         .sc-tag { font-size: 0.85em; color: var(--gold-accent); border: 1px solid rgba(220,167,80,0.3); padding: 4px 12px; border-radius: 20px; letter-spacing: 2px; background: rgba(220,167,80,0.05); font-weight: 300;}
 
-        /* ③ 哲學入口區 */
+        /* 哲學入口區 */
         .brand-philosophy-entrance { text-align: center; padding: 120px 20px 80px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px;}
         .brand-philosophy-entrance h2 { font-size: 1.6em; color: var(--gold-accent); letter-spacing: 5px; font-weight: 300; margin-bottom: 30px;}
         .brand-philosophy-entrance p { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; margin: 10px 0;}
         .spacer { height: 40px; }
 
-        /* ④ 品牌收尾一句話 */
+        /* 品牌收尾一句話 */
         .ending-section { text-align: center; padding: 40px 20px 100px 20px;}
         .ending-section p { font-size: 1.25em; color: var(--text-main); line-height: 2.2; letter-spacing: 4px; font-weight: 300; margin: 10px 0;}
 
-        /* ⑤ Footer 國際品牌規格 */
+        /* Footer */
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508;}
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
@@ -161,10 +153,11 @@
 <body>
 
 <nav id="smart-nav" class="smart-nav">
-    <a href="#" class="brand-logo">SOUL TRAVELER</a>
+    <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="#showcase">狀態展演</a>
+        <a href="state.html">四種狀態</a>
         <a href="philosophy.html">品牌哲學</a>
+        <a href="about.html">關於品牌</a>
     </div>
 </nav>
 
@@ -180,10 +173,10 @@
             </div>
             <div class="layer layer-1"></div>
             
-            <a href="#product-earth" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>當價值感動搖</p></div></a>
-            <a href="#product-fire" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>當火熄了</p></div></a>
-            <a href="#product-wood" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>當腦袋停不下來</p></div></a>
-            <a href="#product-wind" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>當情緒難以落地</p></div></a>
+            <a href="wealth.html" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>當價值感動搖</p></div></a>
+            <a href="fire.html" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>當火熄了</p></div></a>
+            <a href="forest.html" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>當腦袋停不下來</p></div></a>
+            <a href="calm.html" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>當情緒難以落地</p></div></a>
 
             <div class="layer layer-core">
                 <div class="core-logo-box">
@@ -231,6 +224,7 @@
                         <span class="sc-tag">規劃</span>
                         <span class="sc-tag">行動</span>
                     </div>
+                    <a href="wealth.html" class="btn-elegant-single" style="padding: 10px 35px; font-size: 0.9em;">探索此狀態</a>
                 </div>
             </div>
 
@@ -247,6 +241,7 @@
                         <span class="sc-tag">穩定情緒</span>
                         <span class="sc-tag">冥想</span>
                     </div>
+                    <a href="calm.html" class="btn-elegant-single" style="padding: 10px 35px; font-size: 0.9em;">探索此狀態</a>
                 </div>
             </div>
 
@@ -263,6 +258,7 @@
                         <span class="sc-tag">提振精神</span>
                         <span class="sc-tag">重啟動能</span>
                     </div>
+                    <a href="fire.html" class="btn-elegant-single" style="padding: 10px 35px; font-size: 0.9em;">探索此狀態</a>
                 </div>
             </div>
 
@@ -279,6 +275,7 @@
                         <span class="sc-tag">休息</span>
                         <span class="sc-tag">夜晚修復</span>
                     </div>
+                    <a href="forest.html" class="btn-elegant-single" style="padding: 10px 35px; font-size: 0.9em;">探索此狀態</a>
                 </div>
             </div>
 
@@ -305,11 +302,11 @@
 </div>
 
 <footer class="site-footer fade-in-element">
-    <a href="#" class="footer-logo">SOUL TRAVELER</a>
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
         <a href="philosophy.html">Philosophy</a>
-        <a href="#showcase">States</a>
-        <a href="#">About</a>
+        <a href="state.html">States</a>
+        <a href="about.html">About</a>
         <a href="#">Instagram</a>
     </div>
     <div class="footer-copyright">
