@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈魂旅人 Soul Traveler - 能量結構重建系統</title>
+    <title>靈魂旅人 Soul Traveler - 內在狀態校準練習</title>
     <style>
         :root {
             /* 主題色彩 */
@@ -51,7 +51,7 @@
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================
-           ① 第一屏 Hero (修復版星盤)
+           ① 第一屏 Hero (修復版立體星盤)
            ========================================= */
         .hero-section { width: 100vw; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 100px 20px 40px 20px; box-sizing: border-box; }
         
@@ -59,17 +59,18 @@
         .system-container { width: 45vh; height: 45vh; position: relative; border-radius: 50%; }
         .layer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; display: flex; justify-content: center; align-items: center; opacity: 0; }
         
-        .layer-3 { width: 85%; height: 85%; border: 1px solid transparent; border-top-color: rgba(220, 167, 80, 0.15); border-bottom-color: rgba(220, 167, 80, 0.15); animation: layerEntry 1s ease-out 0.5s forwards, slowSpinReverse 120s linear infinite; }
+        /* 動畫修復：加入 translate(-50%, -50%) 確保不跑位 */
+        .layer-3 { width: 85%; height: 85%; border: 1px solid transparent; border-top-color: rgba(220, 167, 80, 0.15); border-bottom-color: rgba(220, 167, 80, 0.15); animation: layerEntry 1s ease-out 0.5s forwards, slowSpinReverseLayer 120s linear infinite; }
         .layer-3::before, .layer-3::after { content: "ENERGY STRUCTURE"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); color: rgba(220, 167, 80, 0.3); font-size: 0.7em; letter-spacing: 4px; text-transform: uppercase; }
         .layer-3::after { content: "RITUAL SYSTEM"; top: auto; bottom: -12px; }
 
-        .layer-2 { width: 65%; height: 65%; border: 0.5px solid rgba(220, 167, 80, 0.3); animation: layerEntry 1s ease-out 0.8s forwards, slowSpin 90s linear infinite; }
+        .layer-2 { width: 65%; height: 65%; border: 0.5px solid rgba(220, 167, 80, 0.3); animation: layerEntry 1s ease-out 0.8s forwards, slowSpinLayer 90s linear infinite; }
         .ritual-text { position: absolute; width: 100%; height: 100%; text-align: center; color: rgba(220, 167, 80, 0.6); font-size: 0.75em; letter-spacing: 3px; }
         .r-1 { transform: rotate(0deg); } .r-2 { transform: rotate(90deg); } .r-3 { transform: rotate(180deg); } .r-4 { transform: rotate(270deg); }
 
         .layer-1 { width: 40%; height: 40%; border: 1px dashed rgba(220, 167, 80, 0.15); animation: layerEntry 1s ease-out 1.1s forwards; }
         
-        /* 修復光點與資訊卡 */
+        /* 修復光點與資訊卡 (微調文案降低神祕感) */
         .node { position: absolute; width: 12px; height: 12px; background: var(--bg-darker); border: 2px solid var(--gold-accent); border-radius: 50%; z-index: 10; opacity: 0; animation: nodeEntry 0.6s ease-out 1.3s forwards; text-decoration: none; cursor: pointer;}
         .node-45 { top: 35.86%; left: 64.14%; transform: translate(-50%, -50%); border-color: var(--color-earth); box-shadow: 0 0 10px var(--color-earth);}
         .node-135 { top: 64.14%; left: 64.14%; transform: translate(-50%, -50%); border-color: var(--color-fire); box-shadow: 0 0 10px var(--color-fire);}
@@ -90,21 +91,20 @@
         .node-225 .node-info { border-color: var(--color-wood); } .node-225 h4 { color: var(--color-wood); }
         .node-315 .node-info { border-color: var(--color-wind); } .node-315 h4 { color: var(--color-wind); }
 
-        /* 中心 LOGO 區 (修復旋轉Bug) */
+        /* 中心 LOGO 區 (自動抓取 logo.png，獨立動畫解決跑位) */
         .layer-core { width: 25%; height: 25%; animation: layerEntry 0.8s ease-out 1.5s forwards; z-index: 5;}
         .core-logo-box { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
-        /* 只有放進去的圖片才會旋轉，虛線框不旋轉 */
-        .core-img { max-width: 140%; max-height: 140%; display: none; filter: drop-shadow(0 0 15px rgba(220,167,80,0.5)); animation: slowSpin 40s linear infinite; }
-        .drop-placeholder { border: 1px dashed var(--gold-accent); color: var(--gold-accent); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.8em; background: rgba(220, 167, 80, 0.05); transition: all 0.3s ease; width: 100%; height: 100%;}
-        .drop-placeholder:hover { background: rgba(220, 167, 80, 0.2); }
+        .core-img { max-width: 140%; max-height: 140%; display: block; filter: drop-shadow(0 0 15px rgba(220,167,80,0.5)); animation: spinImg 40s linear infinite; }
         
+        /* 鎖死座標的動畫修復 */
         @keyframes layerEntry { from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
         @keyframes nodeEntry { from { opacity: 0; transform: translate(-50%, -50%) scale(0); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-        @keyframes slowSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes slowSpinReverse { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
+        @keyframes slowSpinLayer { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes slowSpinReverseLayer { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
+        @keyframes spinImg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* 詩意排版文字區 */
-        .poetic-text-box { text-align: center; display: flex; flex-direction: column; gap: 20px; margin-bottom: 50px;}
+        .poetic-text-box { text-align: center; display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px;}
         .pt-title { color: var(--gold-accent); font-size: 1.4em; letter-spacing: 4px; font-weight: 300; }
         .pt-sub { color: var(--text-main); font-size: 1.1em; letter-spacing: 2px; line-height: 2; font-weight: 300; opacity: 0.9;}
         .pt-core { color: var(--text-muted); font-size: 1.05em; letter-spacing: 2px; line-height: 2; font-weight: 300;}
@@ -130,38 +130,42 @@
         .state-outro { text-align: center; margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); }
         .state-outro p { font-size: 1.2em; color: var(--text-muted); line-height: 2; letter-spacing: 3px; font-weight: 300; margin: 5px 0;}
 
-        /* ③ 第三區｜品牌核心 */
-        .brand-core-section { text-align: center; padding: 120px 20px; }
+        /* ③ 第三區｜什麼是法器 & 品牌核心 */
+        .brand-core-section { text-align: center; padding: 80px 20px; }
         .brand-core-section p { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; margin: 15px 0;}
         .highlight-text { color: var(--gold-hover); }
         .spacer { height: 40px; }
 
-        /* ④ 第四區｜大敘事交錯展演 (回歸優雅的留白框) */
+        /* ④ 第四區｜產品展演區與提醒標籤 */
         .product-showcase { display: flex; flex-direction: column; gap: 120px; margin-bottom: 120px; padding-top: 40px;}
         .showcase-item { display: flex; align-items: center; gap: 60px; }
         .showcase-item:nth-child(even) { flex-direction: row-reverse; }
         @media (max-width: 768px) { .showcase-item, .showcase-item:nth-child(even) { flex-direction: column; gap: 40px; text-align: center;} }
 
-        /* 左圖區 (優雅的虛線展覽框) */
         .sc-img-box { flex: 1; height: 450px; width: 100%; border: 1px dashed rgba(220, 167, 80, 0.3); border-radius: 16px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.01); transition: all 0.5s ease;}
         .sc-img-box:hover { border-color: rgba(220, 167, 80, 0.6); background: rgba(220, 167, 80, 0.03); }
         .sc-placeholder { color: var(--gold-accent); font-size: 1em; letter-spacing: 2px; text-align: center; opacity: 0.6; line-height: 1.8;}
 
-        /* 右文區 */
-        .sc-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
-        .sc-title { font-size: 1.6em; color: var(--gold-accent); margin: 0 0 25px 0; font-weight: 300; letter-spacing: 3px;}
+        .sc-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        @media (max-width: 768px) { .sc-info { text-align: center; } }
+        .sc-title { font-size: 1.6em; color: var(--gold-accent); margin: 0 0 5px 0; font-weight: 300; letter-spacing: 3px;}
+        .sc-subtitle { color: var(--text-main); font-size: 1em; letter-spacing: 2px; margin-bottom: 20px; font-weight: 300; opacity: 0.8;}
         .sc-text { font-size: 1.05em; color: var(--text-main); line-height: 2.2; margin-bottom: 10px; font-weight: 300; letter-spacing: 2px;}
+        
+        /* 使用提醒框 CSS */
+        .usage-reminder { margin-top: 25px; padding: 20px; border-left: 2px solid rgba(220,167,80,0.5); background: rgba(220, 167, 80, 0.05); font-size: 0.95em; color: var(--text-muted); line-height: 1.8; letter-spacing: 1px;}
+        .usage-reminder strong { color: var(--gold-accent); font-weight: 400; letter-spacing: 2px;}
 
-        /* ⑤ 第五區｜法器不是商品 (儀式感) */
+        /* ⑤ 第五區｜使用方式 */
         .ritual-section { text-align: center; padding: 100px 20px; background: radial-gradient(circle at center, rgba(220, 167, 80, 0.03) 0%, transparent 70%); border-radius: 20px;}
-        .ritual-title { font-size: 1.4em; color: var(--text-main); letter-spacing: 5px; font-weight: 300; margin-bottom: 10px;}
-        .ritual-sub { font-size: 1.4em; color: var(--gold-accent); letter-spacing: 5px; font-weight: 300; margin-bottom: 60px;}
+        .ritual-title { font-size: 1.5em; color: var(--gold-accent); letter-spacing: 5px; font-weight: 300; margin-bottom: 10px;}
+        .ritual-sub { font-size: 1.1em; color: var(--text-muted); letter-spacing: 2px; font-weight: 300; margin-bottom: 60px;}
         
         .ritual-steps { display: flex; justify-content: center; gap: 80px; margin-bottom: 60px; flex-wrap: wrap;}
         .r-step { font-size: 1.2em; color: var(--text-main); letter-spacing: 4px; font-weight: 300; display: flex; flex-direction: column; align-items: center; gap: 15px;}
         .r-dot { width: 6px; height: 6px; background: var(--gold-accent); border-radius: 50%; box-shadow: 0 0 10px var(--gold-accent);}
         
-        .ritual-outro { font-size: 1.1em; color: var(--text-muted); letter-spacing: 3px; font-weight: 300; margin-bottom: 50px;}
+        .ritual-outro { font-size: 1.1em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; margin-bottom: 50px;}
 
         /* 收尾 */
         .ending-section { text-align: center; padding: 120px 20px 80px 20px;}
@@ -178,7 +182,7 @@
     <div class="nav-links">
         <a href="#state">狀態共鳴</a>
         <a href="#showcase">法器展演</a>
-        <a href="#ritual">能量儀式</a>
+        <a href="#ritual">使用方式</a>
     </div>
 </nav>
 
@@ -190,18 +194,18 @@
             <div class="layer layer-3"></div>
             <div class="layer layer-2">
                 <div class="ritual-text r-1">啟動</div><div class="ritual-text r-2">修復</div>
-                <div class="ritual-text r-3">顯化</div><div class="ritual-text r-4">淨化</div>
+                <div class="ritual-text r-3">覺察</div><div class="ritual-text r-4">淨化</div>
             </div>
             <div class="layer layer-1"></div>
             
-            <a href="#product-earth" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>顯化 ‧ 重建價值</p></div></a>
-            <a href="#product-fire" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>動能 ‧ 喚醒生命</p></div></a>
-            <a href="#product-wood" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>修復 ‧ 神經重建</p></div></a>
+            <a href="#product-earth" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>覺察 ‧ 重建價值</p></div></a>
+            <a href="#product-fire" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>動能 ‧ 喚醒內在</p></div></a>
+            <a href="#product-wood" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>沉澱 ‧ 狀態落地</p></div></a>
             <a href="#product-wind" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>穩定 ‧ 穩固邊界</p></div></a>
 
             <div class="layer layer-core">
                 <div class="core-logo-box">
-                    <img class="core-img" src="logo.png" alt="Soul Traveler LOGO" style="display: block;">
+                    <img class="core-img" src="logo.png" alt="Soul Traveler LOGO">
                 </div>
             </div>
         </div>
@@ -209,6 +213,7 @@
 
     <div class="poetic-text-box fade-in-element">
         <div class="pt-title">每個靈魂，都是在宇宙間穿梭的旅人。</div>
+        <div class="pt-core" style="color: var(--gold-accent); margin-bottom: 10px;">—— 以香氛為媒介的內在狀態校準練習</div>
         <div class="pt-sub">
             有些時候，我們迷路。<br>
             有些時候，我們只是忘了自己在哪裡。
@@ -254,21 +259,39 @@
         </div>
     </section>
 
-    <section id="core" class="brand-core-section fade-in-element">
+    <section class="brand-core-section fade-in-element" style="padding-bottom: 40px;">
+        <header class="section-header">
+            <h2>什麼是法器？</h2>
+        </header>
+        <p>在靈魂旅人，</p>
+        <p>「法器」並不是替你完成願望的工具。</p>
+        <p class="highlight-text">它是一個提醒。</p>
+        
+        <div class="spacer" style="height: 20px;"></div>
+        
+        <p>讓人暫停片刻，重新回到自己的狀態。</p>
+        <p>香氣只是媒介。</p>
+        <p>真正改變現實的，始終是人的選擇與行動。</p>
+        
+        <div class="spacer" style="height: 20px;"></div>
+        
+        <p>法器存在的目的，</p>
+        <p class="highlight-text">只是幫助你更清楚地看見自己。</p>
+    </section>
+
+    <section id="core" class="brand-core-section fade-in-element" style="padding-top: 40px;">
         <header class="section-header">
             <h2>靈魂旅人相信——</h2>
         </header>
+        <p>我們不提供捷徑。</p>
+        <p class="highlight-text">只提供一個讓人重新對齊自己的媒介。</p>
+        
+        <div class="spacer" style="height: 20px;"></div>
+        
         <p>狀態，決定你與世界互動的方式。</p>
         <p>氣味只是媒介。</p>
         <p>真正改變的，是你願意停下來，</p>
         <p class="highlight-text">看見自己的那一刻。</p>
-        
-        <div class="spacer"></div>
-        
-        <p>每一支法器，</p>
-        <p>都對應一種心理結構。</p>
-        <p>不是為了讓你更忙。</p>
-        <p class="highlight-text">而是讓你更穩。</p>
     </section>
 
     <section id="showcase" class="fade-in-element">
@@ -277,40 +300,60 @@
             <div class="showcase-item fade-in-element" id="product-fire">
                 <div class="sc-img-box">
                     <div class="sc-placeholder">放入<br>回火之心<br>視覺圖</div>
-                    </div>
+                </div>
                 <div class="sc-info">
                     <h4 class="sc-title">《回火之心》</h4>
+                    <p class="sc-subtitle">重新點燃行動動能的香氛法器</p>
                     <p class="sc-text">當失去動力與熱度時，為你重新點燃深層的慾望與行動力。這不是單純的刺激，而是喚醒你內在休眠的生命力。</p>
+                    <div class="usage-reminder">
+                        <strong>[ 使用提醒 ]</strong><br>
+                        回火之心並不是動力來源。<br>它只是提醒你停下來，看見自己真正想前進的方向。<br>行動仍然來自於你。
+                    </div>
                 </div>
             </div>
 
             <div class="showcase-item fade-in-element" id="product-wood">
                 <div class="sc-img-box">
                     <div class="sc-placeholder">放入<br>靜息之森<br>視覺圖</div>
-                    </div>
+                </div>
                 <div class="sc-info">
                     <h4 class="sc-title">《靜息之森》</h4>
+                    <p class="sc-subtitle">讓思緒落地的香氛法器</p>
                     <p class="sc-text">當神經疲勞、過度思考時，為你建立一層「被接住」的絕對安全感。這不是短暫的放鬆，而是深度的神經迴路重建。</p>
+                    <div class="usage-reminder">
+                        <strong>[ 使用提醒 ]</strong><br>
+                        靜息之森無法替你消除煩惱。<br>它只是為你騰出一個真空的片刻，讓過載的神經得以喘息。<br>平靜，來自於你允許自己休息。
+                    </div>
                 </div>
             </div>
 
             <div class="showcase-item fade-in-element" id="product-wind">
                 <div class="sc-img-box">
                     <div class="sc-placeholder">放入<br>靜域之心<br>視覺圖</div>
-                    </div>
+                </div>
                 <div class="sc-info">
                     <h4 class="sc-title">《靜域之心》</h4>
+                    <p class="sc-subtitle">穩固心理邊界的香氛法器</p>
                     <p class="sc-text">當情緒太快、太滿、太混亂時，為太容易共感的你，建立堅實的心理空間與邊界。這不是安撫，而是穩固神經系統。</p>
+                    <div class="usage-reminder">
+                        <strong>[ 使用提醒 ]</strong><br>
+                        靜域之心不會幫你隔絕世界。<br>它是協助你辨識「什麼是我的，什麼是別人的」。<br>建立界線的決定權，依然在你手中。
+                    </div>
                 </div>
             </div>
 
             <div class="showcase-item fade-in-element" id="product-earth">
                 <div class="sc-img-box">
                     <div class="sc-placeholder">放入<br>聚財之眼<br>視覺圖</div>
-                    </div>
+                </div>
                 <div class="sc-info">
                     <h4 class="sc-title">《聚財之眼》</h4>
+                    <p class="sc-subtitle">重建內在價值感的香氛法器</p>
                     <p class="sc-text">當你想建立穩定能量場，卻感到卡關時。我們深入潛意識的匱乏，為你建立「值得擁有」的內在結構。這不是吸金，是重建價值感。</p>
+                    <div class="usage-reminder">
+                        <strong>[ 使用提醒 ]</strong><br>
+                        聚財之眼並非憑空吸金的魔法。<br>它是帶你穿越內在匱乏，看見自己「值得擁有」的豐盛本質。<br>創造價值的，是你自身的行動。
+                    </div>
                 </div>
             </div>
 
@@ -318,17 +361,17 @@
     </section>
 
     <section id="ritual" class="ritual-section fade-in-element">
-        <div class="ritual-title">這不是香水。</div>
-        <div class="ritual-sub">是儀式。</div>
+        <div class="ritual-title">使用方式</div>
+        <div class="ritual-sub">這不是儀式。是一個讓自己回到當下的練習。</div>
         
         <div class="ritual-steps fade-in-element">
-            <div class="r-step"><div class="r-dot"></div>噴灑。</div>
-            <div class="r-step"><div class="r-dot"></div>呼吸。</div>
-            <div class="r-step"><div class="r-dot"></div>提問。</div>
+            <div class="r-step"><div class="r-dot"></div>1. 噴灑香氣</div>
+            <div class="r-step"><div class="r-dot"></div>2. 閉眼呼吸</div>
+            <div class="r-step"><div class="r-dot"></div>3. 覺察當下狀態</div>
         </div>
 
         <div class="ritual-outro fade-in-element">
-            然後，讓答案慢慢浮現。
+            讓答案慢慢浮現。
         </div>
     </section>
 
@@ -339,13 +382,8 @@
         
         <div class="spacer"></div>
         
-        <p>你只是需要一個，</p>
-        <p>重新對齊自己的時刻。</p>
-        
-        <div class="spacer"></div>
-        
-        <p style="color: var(--gold-accent);">當你準備好了，</p>
-        <p style="color: var(--gold-accent);">我們就在這裡。</p>
+        <p style="color: var(--gold-accent); font-size: 1.3em;">靈魂旅人不提供奇蹟。</p>
+        <p style="color: var(--gold-accent); font-size: 1.3em;">只提供一個讓人回到自己的入口。</p>
     </section>
 
     <div class="spec-note fade-in-element">
@@ -354,7 +392,6 @@
 </div>
 
 <script>
-
     /* 導覽列滑動隱藏邏輯 */
     let lastScrollTop = 0;
     const navbar = document.getElementById('smart-nav');
@@ -382,5 +419,4 @@
 </script>
 
 </body>
-
 </html>
