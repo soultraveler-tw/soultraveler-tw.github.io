@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈魂旅人 Soul Traveler - 內在狀態校準練習</title>
+    <title>靈魂旅人 Soul Traveler - 為不同生命狀態設計的香氣</title>
     <style>
         :root {
             /* 主題色彩 */
@@ -51,7 +51,7 @@
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================
-           ① 第一屏 Hero (星盤保留)
+           ① 第一屏 Hero (星盤不跑位版)
            ========================================= */
         .hero-section { width: 100vw; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 100px 20px 40px 20px; box-sizing: border-box; }
         
@@ -99,11 +99,12 @@
         @keyframes slowSpinReverseLayer { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
         @keyframes spinImg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* 1️⃣ 首頁最高度文案更新 (全新排版) */
+        /* 1️⃣ Hero 首頁最新排版 */
         .poetic-text-box { text-align: center; display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px;}
-        .pt-title { color: var(--gold-accent); font-size: 1.4em; letter-spacing: 4px; font-weight: 300; }
-        .pt-core { color: var(--text-main); font-size: 1.15em; letter-spacing: 3px; line-height: 1.8; font-weight: 300; margin: 10px 0;}
+        .pt-hero-title { color: var(--gold-accent); font-size: 1.8em; letter-spacing: 8px; font-weight: 300; margin-bottom: 10px;}
+        .pt-core { color: var(--text-main); font-size: 1.15em; letter-spacing: 3px; line-height: 1.8; font-weight: 300; margin-bottom: 5px;}
         .pt-sub { color: var(--text-muted); font-size: 1.05em; letter-spacing: 2px; line-height: 2; font-weight: 300;}
+        .pt-manifesto { color: var(--gold-accent); font-size: 1.15em; letter-spacing: 3px; line-height: 2; font-weight: 300; margin-top: 15px;}
         
         .btn-elegant-single { display: inline-block; padding: 12px 45px; border: 1px solid var(--gold-accent); border-radius: 30px; color: var(--gold-accent); font-size: 1em; letter-spacing: 3px; text-decoration: none; transition: all 0.5s ease; font-weight: 300; background: rgba(220,167,80,0.05);}
         .btn-elegant-single:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 0 25px rgba(220,167,80,0.4); transform: translateY(-2px);}
@@ -112,21 +113,11 @@
            內容區共用
            ========================================= */
         .container-main { max-width: 1000px; margin: 0 auto; padding: 80px 20px; position: relative; z-index: 1; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 1.5em; color: var(--gold-accent); letter-spacing: 5px; font-weight: 300; margin:0;}
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 1.6em; color: var(--gold-accent); letter-spacing: 6px; font-weight: 300; margin:0 0 15px 0;}
+        .section-header p { font-size: 1.1em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; opacity: 0.8; margin:0;}
 
-        /* ② 狀態網格 (極簡化文案) */
-        .state-intro { text-align: center; font-size: 1.2em; color: var(--text-main); letter-spacing: 3px; margin-bottom: 50px; font-weight: 300;}
-        .poetic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 80px; max-width: 800px; margin-left: auto; margin-right: auto;}
-        @media (max-width: 768px) { .poetic-grid { grid-template-columns: 1fr; gap: 20px;} }
-        .poetic-card { padding: 40px 30px; text-align: center; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); border-radius: 16px; transition: all 0.5s ease; text-decoration: none; display: flex; flex-direction: column; justify-content: center; align-items: center;}
-        .poetic-card:hover { border-color: rgba(220,167,80,0.3); background: rgba(220,167,80,0.02); transform: translateY(-5px);}
-        
-        .pc-quote { font-size: 1.25em; color: var(--text-main); font-weight: 300; letter-spacing: 3px; line-height: 1.8; margin-bottom: 15px;}
-        .pc-product { font-size: 0.95em; color: var(--gold-hover); letter-spacing: 3px; font-weight: 300; margin-bottom: 20px;}
-        .pc-desc { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; letter-spacing: 1.5px; font-weight: 300; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; width: 90%;}
-
-        /* ③ 大敘事交錯展演 (去除功能描述，純狀態語錄) */
+        /* ② 四種狀態大展演區 */
         .product-showcase { display: flex; flex-direction: column; gap: 120px; margin-bottom: 80px;}
         .showcase-item { display: flex; align-items: center; gap: 60px; }
         .showcase-item:nth-child(even) { flex-direction: row-reverse; }
@@ -137,25 +128,42 @@
         .sc-placeholder { color: var(--gold-accent); font-size: 1em; letter-spacing: 2px; text-align: center; opacity: 0.6; line-height: 1.8;}
 
         .sc-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        @media (max-width: 768px) { .sc-info { text-align: center; } }
-        .sc-title { font-size: 1.6em; color: var(--gold-accent); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 3px;}
-        .sc-text { font-size: 1.15em; color: var(--text-main); line-height: 2; font-weight: 300; letter-spacing: 2px; opacity: 0.9;}
+        @media (max-width: 768px) { .sc-info { text-align: center; align-items: center;} }
+        
+        .sc-title { font-size: 1.8em; color: var(--gold-accent); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 4px;}
+        .sc-text { font-size: 1.15em; color: var(--text-main); line-height: 2; font-weight: 300; letter-spacing: 2px; opacity: 0.9; margin-bottom: 25px;}
 
-        /* ④ 哲學入口區 (全新設計) */
-        .brand-philosophy-entrance { text-align: center; padding: 100px 20px 80px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px;}
+        /* 狀態標籤 (適合需要) */
+        .sc-tags-box { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px;}
+        @media (max-width: 768px) { .sc-tags-box { justify-content: center;} }
+        .sc-tag-label { font-size: 0.9em; color: var(--text-muted); letter-spacing: 2px; margin-right: 5px; font-weight: 300;}
+        .sc-tag { font-size: 0.85em; color: var(--gold-accent); border: 1px solid rgba(220,167,80,0.3); padding: 4px 12px; border-radius: 20px; letter-spacing: 2px; background: rgba(220,167,80,0.05); font-weight: 300;}
+
+        /* ③ 哲學入口區 */
+        .brand-philosophy-entrance { text-align: center; padding: 120px 20px 80px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px;}
+        .brand-philosophy-entrance h2 { font-size: 1.6em; color: var(--gold-accent); letter-spacing: 5px; font-weight: 300; margin-bottom: 30px;}
         .brand-philosophy-entrance p { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; margin: 10px 0;}
         .spacer { height: 40px; }
 
-        /* ⑤ Footer 工藝宣告 */
-        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; margin-top: 60px; letter-spacing: 2px; border-top: 1px solid rgba(220,167,80,0.1);}
+        /* ④ 品牌收尾一句話 */
+        .ending-section { text-align: center; padding: 40px 20px 100px 20px;}
+        .ending-section p { font-size: 1.25em; color: var(--text-main); line-height: 2.2; letter-spacing: 4px; font-weight: 300; margin: 10px 0;}
+
+        /* ⑤ Footer 國際品牌規格 */
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508;}
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        .footer-links a:hover { color: var(--gold-accent); }
+        .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
     </style>
 </head>
 <body>
 
 <nav id="smart-nav" class="smart-nav">
-    <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
+    <a href="#" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="#state">狀態展演</a>
+        <a href="#showcase">狀態展演</a>
         <a href="philosophy.html">品牌哲學</a>
     </div>
 </nav>
@@ -186,68 +194,43 @@
     </div>
 
     <div class="poetic-text-box fade-in-element">
-        <div class="pt-title">每個人，都是在世界中行走的旅人。</div>
-        <div class="pt-core">
-            Soul Traveler<br>
-            <span style="font-size: 0.9em; opacity: 0.8;">為不同生命狀態設計的香氣。</span>
-        </div>
-        <div class="pt-sub">
-            我們不販售命運，只創造讓人回到自己的氣味。
+        <div class="pt-hero-title">SOUL TRAVELER</div>
+        <div class="pt-core">每個人，都是在世界中行走的旅人。</div>
+        <div class="pt-sub">為不同生命狀態設計的香氣。</div>
+        <div class="pt-manifesto">
+            我們不販售命運。<br>
+            我們只創造讓人回到自己的氣味。
         </div>
     </div>
 
     <div class="fade-in-element">
-        <a href="#state" class="btn-elegant-single">走進旅程</a>
+        <a href="#showcase" class="btn-elegant-single">走進旅程</a>
     </div>
 </section>
 
 <div class="container-main">
     
-    <section id="state" class="fade-in-element">
-        <div class="poetic-grid">
-            <a href="#product-fire" style="text-decoration:none;" class="poetic-card fade-in-element">
-                <div class="pc-quote">當火熄了</div>
-                <div class="pc-product">— 回火之心</div>
-                <div class="pc-desc">有些火並沒有熄滅，只是暫時沉睡。</div>
-            </a>
-            <a href="#product-wood" style="text-decoration:none;" class="poetic-card fade-in-element">
-                <div class="pc-quote">當腦袋停不下來</div>
-                <div class="pc-product">— 靜息之森</div>
-                <div class="pc-desc">有時候，身體只需要一片森林。</div>
-            </a>
-            <a href="#product-wind" style="text-decoration:none;" class="poetic-card fade-in-element">
-                <div class="pc-quote">當情緒難以落地</div>
-                <div class="pc-product">— 靜域之心</div>
-                <div class="pc-desc">在喧囂之中，建立一個屬於自己的安靜空間。</div>
-            </a>
-            <a href="#product-earth" style="text-decoration:none;" class="poetic-card fade-in-element">
-                <div class="pc-quote">當價值感動搖</div>
-                <div class="pc-product">— 聚財之眼</div>
-                <div class="pc-desc">當思緒清晰，資源自然開始流動。</div>
-            </a>
-        </div>
-    </section>
-
     <section id="showcase" class="fade-in-element">
+        <header class="section-header fade-in-element">
+            <h2>四種狀態</h2>
+            <p>四種回到自己的方式</p>
+        </header>
+
         <div class="product-showcase">
             
-            <div class="showcase-item fade-in-element" id="product-fire">
+            <div class="showcase-item fade-in-element" id="product-earth">
                 <div class="sc-img-box">
-                    <div class="sc-placeholder">放入<br>回火之心<br>視覺圖</div>
+                    <div class="sc-placeholder">放入<br>聚財之眼<br>視覺圖</div>
                 </div>
                 <div class="sc-info">
-                    <h4 class="sc-title">《回火之心》</h4>
-                    <p class="sc-text">有些火並沒有熄滅，只是暫時沉睡。</p>
-                </div>
-            </div>
-
-            <div class="showcase-item fade-in-element" id="product-wood">
-                <div class="sc-img-box">
-                    <div class="sc-placeholder">放入<br>靜息之森<br>視覺圖</div>
-                </div>
-                <div class="sc-info">
-                    <h4 class="sc-title">《靜息之森》</h4>
-                    <p class="sc-text">有時候，身體只需要一片森林。</p>
+                    <h4 class="sc-title">🐯 聚財之眼</h4>
+                    <p class="sc-text">當思緒清晰，<br>資源自然開始流動。</p>
+                    <div class="sc-tags-box">
+                        <span class="sc-tag-label">適合需要：</span>
+                        <span class="sc-tag">專注</span>
+                        <span class="sc-tag">規劃</span>
+                        <span class="sc-tag">行動</span>
+                    </div>
                 </div>
             </div>
 
@@ -256,18 +239,46 @@
                     <div class="sc-placeholder">放入<br>靜域之心<br>視覺圖</div>
                 </div>
                 <div class="sc-info">
-                    <h4 class="sc-title">《靜域之心》</h4>
-                    <p class="sc-text">在喧囂之中，建立一個屬於自己的安靜空間。</p>
+                    <h4 class="sc-title">🜁 靜域之心</h4>
+                    <p class="sc-text">在喧囂之中，<br>建立一個屬於自己的安靜空間。</p>
+                    <div class="sc-tags-box">
+                        <span class="sc-tag-label">適合需要：</span>
+                        <span class="sc-tag">放鬆</span>
+                        <span class="sc-tag">穩定情緒</span>
+                        <span class="sc-tag">冥想</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="showcase-item fade-in-element" id="product-earth">
+            <div class="showcase-item fade-in-element" id="product-fire">
                 <div class="sc-img-box">
-                    <div class="sc-placeholder">放入<br>聚財之眼<br>視覺圖</div>
+                    <div class="sc-placeholder">放入<br>回火之心<br>視覺圖</div>
                 </div>
                 <div class="sc-info">
-                    <h4 class="sc-title">《聚財之眼》</h4>
-                    <p class="sc-text">當思緒清晰，資源自然開始流動。</p>
+                    <h4 class="sc-title">🔥 回火之心</h4>
+                    <p class="sc-text">有些火並沒有熄滅，<br>只是暫時沉睡。</p>
+                    <div class="sc-tags-box">
+                        <span class="sc-tag-label">適合需要：</span>
+                        <span class="sc-tag">找回熱度</span>
+                        <span class="sc-tag">提振精神</span>
+                        <span class="sc-tag">重啟動能</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-item fade-in-element" id="product-wood">
+                <div class="sc-img-box">
+                    <div class="sc-placeholder">放入<br>靜息之森<br>視覺圖</div>
+                </div>
+                <div class="sc-info">
+                    <h4 class="sc-title">🌲 靜息之森</h4>
+                    <p class="sc-text">有時候，<br>身體只需要一片森林。</p>
+                    <div class="sc-tags-box">
+                        <span class="sc-tag-label">適合需要：</span>
+                        <span class="sc-tag">放鬆</span>
+                        <span class="sc-tag">休息</span>
+                        <span class="sc-tag">夜晚修復</span>
+                    </div>
                 </div>
             </div>
 
@@ -275,21 +286,36 @@
     </section>
 
     <section id="philosophy-entrance" class="brand-philosophy-entrance fade-in-element">
-        <header class="section-header">
-            <h2 style="font-size: 1.6em; letter-spacing: 5px;">為什麼是 Soul Traveler</h2>
-        </header>
+        <h2>為什麼是 Soul Traveler</h2>
         <p>我們不相信任何物件能替人完成生命。</p>
-        <p>香氣只是提醒人回到自己的狀態。</p>
+        <p>香氣的存在，只是一種提醒。</p>
+        <p>提醒人在混亂時停下來，<br>提醒人在疲憊時重新呼吸。</p>
+        <div class="spacer" style="height: 20px;"></div>
+        <p>當人回到自己的節奏，<br>世界自然會開始重新排列。</p>
         
         <div class="spacer"></div>
         
         <a href="philosophy.html" class="btn-elegant-single" style="padding: 15px 50px;">閱讀品牌哲學</a>
     </section>
 
-    <div class="spec-note fade-in-element">
-        ✦ 工藝堅持：堅持採用 <strong>95% 頂級植萃酒精</strong> 作為香氣基底，承載最精準的狀態。
-    </div>
+    <section class="ending-section fade-in-element">
+        <p>旅程仍然是你的。</p>
+        <p style="color: var(--gold-accent);">氣味只是陪你走一段。</p>
+    </section>
 </div>
+
+<footer class="site-footer fade-in-element">
+    <a href="#" class="footer-logo">SOUL TRAVELER</a>
+    <div class="footer-links">
+        <a href="philosophy.html">Philosophy</a>
+        <a href="#showcase">States</a>
+        <a href="#">About</a>
+        <a href="#">Instagram</a>
+    </div>
+    <div class="footer-copyright">
+        &copy; 2026 Soul Traveler. All rights reserved.
+    </div>
+</footer>
 
 <script>
     let lastScrollTop = 0;
@@ -312,7 +338,7 @@
                 if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
             });
         }, { threshold: 0.15 }); 
-        document.querySelectorAll('.container-main .fade-in-element').forEach(el => { observer.observe(el); });
+        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
     });
 </script>
 
