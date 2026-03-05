@@ -35,6 +35,10 @@
         .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
         .cta-btn:hover { background: rgba(220, 167, 80, 0.15); }
 
+        /* 滾動淡入動畫 */
+        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
+        .fade-in-element.visible { opacity: 1; transform: translateY(0); }
+
         /* =========================================
            單品首屏：雙欄沉浸式展示
            ========================================= */
@@ -68,7 +72,7 @@
         .diagnosis-box p { margin: 0 0 15px 0; font-size: 0.95em; color: #d0d0d0; line-height: 1.8; letter-spacing: 1px;}
         .diagnosis-box p:last-child { margin: 0; color: var(--text-main); opacity: 0.9;}
 
-        /* 多維度版本切換器 (Variant Switcher) */
+        /* 多維度版本切換器 */
         .variant-group { margin-bottom: 40px; }
         .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
         .variants { display: flex; gap: 15px; flex-wrap: wrap; }
@@ -81,6 +85,15 @@
         .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
         .add-to-cart:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 0 20px rgba(220, 167, 80, 0.4); transform: translateY(-2px); }
         @media (max-width: 900px) { .price-action { flex-direction: column; gap: 20px; } .add-to-cart { width: 100%; } }
+
+        /* =========================================
+           氣味場景 (靈魂故事)
+           ========================================= */
+        .story-section { max-width: 700px; margin: 100px auto 80px auto; text-align: center; padding: 0 20px; position: relative; }
+        .story-section::before, .story-section::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(129, 199, 132, 0.3); margin: 0 auto 30px auto; }
+        .story-section::after { margin: 30px auto 0 auto; }
+        .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
+        .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
 
         /* =========================================
            香氣軌跡 (Resonance Track)
@@ -100,10 +113,19 @@
         .track-effect { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; font-weight: 300; letter-spacing: 1px;}
 
         /* Footer 宣告與安全標示 */
-        .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 40px auto; }
+        .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
         .safety-warning { border-color: rgba(229, 115, 115, 0.2); background: rgba(229, 115, 115, 0.02); }
         .safety-warning strong { color: #E57373; font-weight: 300;}
+
+        /* 網站共用 Footer */
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        .footer-links a:hover { color: var(--gold-accent); }
+        .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
+
     </style>
 </head>
 <body>
@@ -111,13 +133,13 @@
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="index.html#showcase">狀態展演</a>
+        <a href="state.html">四種狀態</a>
         <a href="philosophy.html">品牌哲學</a>
         <a href="#" class="cta-btn">🛒 購物車</a>
     </div>
 </nav>
 
-<section class="product-hero">
+<section class="product-hero fade-in-element">
     <div class="product-visual">
         <div id="product-drop-zone" class="drop-zone">放入<br>靜息之森<br>視覺圖</div>
         <img id="product-img" class="product-img" alt="靜息之森">
@@ -157,7 +179,18 @@
     </div>
 </section>
 
-<section id="resonance" class="resonance-section">
+<section class="story-section fade-in-element">
+    <h3 class="story-title">✦ 氣味場景 ✦</h3>
+    <p class="story-text">
+        當你閉上眼睛，這是一片沒有人會催促你的古老松林。<br>
+        陽光微弱地穿透巨冷杉的枝葉縫隙，<br>
+        腳下是柔軟、濕潤的泥土與黑雲杉交錯的根系。<br><br>
+        在這裡，你不必扮演任何角色，不必準備戰鬥。<br>
+        森林只是安靜地存在，然後穩穩地接住你所有的疲憊。
+    </p>
+</section>
+
+<section id="resonance" class="resonance-section fade-in-element">
     <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
     <div class="track-container">
         <div class="track-item">
@@ -177,7 +210,7 @@
         </div>
     </div>
 
-    <div class="spec-box">
+    <div class="spec-box fade-in-element">
         <div class="spec-note">
             ✦ 迷霧儀式：輕晃瓶身，喚醒能量。朝空間高處噴灑，讓香氣如微雨般落下，隨後深呼吸 3 次，感受氣味接住你的重量。
         </div>
@@ -189,6 +222,19 @@
         </div>
     </div>
 </section>
+
+<footer class="site-footer fade-in-element">
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
+    <div class="footer-links">
+        <a href="philosophy.html">Philosophy</a>
+        <a href="state.html">States</a>
+        <a href="about.html">About</a>
+        <a href="#">Instagram</a>
+    </div>
+    <div class="footer-copyright">
+        &copy; 2026 Soul Traveler. All rights reserved.
+    </div>
+</footer>
 
 <script>
     /* 拖曳功能 */
@@ -214,7 +260,7 @@
     zone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
     input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
 
-    /* 版本切換邏輯 (結合 Excel 裡的精準文案) */
+    /* 版本切換邏輯 */
     const descriptions = {
         classic: "【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。",
         morning: "【溫和甦醒】穿透葉隙的第一道光。不強迫振作，而是讓光慢慢進來。",
@@ -232,7 +278,7 @@
         }, 200);
     }
 
-    /* 導覽列隱藏邏輯 */
+    /* 導覽列與淡入動畫邏輯 */
     let lastScrollTop = 0;
     const navbar = document.getElementById('smart-nav');
     window.addEventListener('scroll', function() {
@@ -244,6 +290,16 @@
             navbar.classList.remove('nav-up');
         }
         lastScrollTop = currentScroll;
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.15 }); 
+        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
     });
 </script>
 
