@@ -53,10 +53,8 @@
            1｜Hero 區 (深藍星空)
            ===================================== */
         .sec-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; background-image: radial-gradient(circle at 50% 30%, #162a52 0%, #050A14 80%); position: relative; }
-        /* 漂浮宇宙塵 */
         .sec-hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(1.5px 1.5px at 20px 30px, rgba(220,167,80,0.5), rgba(0,0,0,0)), radial-gradient(1px 1px at 80px 70px, rgba(255,255,255,0.4), rgba(0,0,0,0)); background-size: 200px 200px; opacity: 0.5; pointer-events: none;}
         
-        /* 淡淡星盤線條與 LOGO */
         .hero-astrolabe { position: relative; width: 250px; height: 250px; display: flex; justify-content: center; align-items: center; margin-bottom: 50px;}
         .hero-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(220,167,80,0.2); animation: spinSlow 60s linear infinite;}
         .hr-1 { width: 100%; height: 100%; }
@@ -75,7 +73,6 @@
            3｜旅人哲學 (深色極簡)
            ===================================== */
         .sec-philosophy { padding: 150px 20px; background-color: #030508; text-align: center; position: relative; overflow: hidden;}
-        /* 底部微弱的道路光暈 */
         .sec-philosophy::after { content:''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 300px; height: 150px; background: radial-gradient(ellipse at bottom, rgba(220,167,80,0.15) 0%, transparent 70%); pointer-events: none;}
         .big-quote { font-size: 2.2em; color: var(--gold-accent); font-weight: 300; letter-spacing: 5px; line-height: 1.8; margin-bottom: 60px;}
 
@@ -84,7 +81,6 @@
            ===================================== */
         .sec-fragrance { padding: 120px 10%; background: linear-gradient(to bottom, #EBEBEB 0%, #D4D4D4 100%); display: flex; align-items: center; gap: 80px; flex-direction: row-reverse;}
         @media (max-width: 768px) { .sec-fragrance { flex-direction: column; text-align: center; gap: 40px;} }
-        /* 淺色區專屬文字顏色 */
         .sec-fragrance .phil-title { color: #5A4A32; }
         .sec-fragrance .phil-text { color: #333333; font-weight: 400;}
         .sec-fragrance .img-box { border-color: rgba(90, 74, 50, 0.2); background: radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, transparent 70%); color: rgba(90, 74, 50, 0.6);}
@@ -94,13 +90,12 @@
            ===================================== */
         .sec-states { padding: 150px 20px; background: #050A14; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;}
         
-        /* 星盤容器 (直接挪用完美鎖死版) */
         .system-container { width: 400px; height: 400px; position: relative; margin: 80px 0; }
         .layer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
         .layer-3 { width: 100%; height: 100%; border: 1px dashed rgba(220, 167, 80, 0.2); animation: spinCircleReverse 120s linear infinite; }
         .layer-2 { width: 70%; height: 70%; border: 0.5px solid rgba(220, 167, 80, 0.1); animation: spinCircle 90s linear infinite; }
         
-        /* 星盤互動節點 */
+        /* 連結至各專屬單品頁 */
         .node { position: absolute; width: 14px; height: 14px; background: var(--bg-darker); border: 2px solid var(--gold-accent); border-radius: 50%; z-index: 10; text-decoration: none; cursor: pointer; transition: all 0.3s;}
         .node-45 { top: 15%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-earth); box-shadow: 0 0 10px var(--color-earth);}
         .node-135 { top: 85%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-fire); box-shadow: 0 0 10px var(--color-fire);}
@@ -132,11 +127,19 @@
         /* =====================================
            6｜結尾 (森林與星空)
            ===================================== */
-        .sec-closing { padding: 150px 20px 100px 20px; background: linear-gradient(to top, #0A1C14 0%, #050A14 100%); text-align: center;}
+        .sec-closing { padding: 150px 20px 80px 20px; background: linear-gradient(to top, #0A1C14 0%, #050A14 100%); text-align: center;}
         
         .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 60px;}
         .btn-state { padding: 12px 30px; border: 1px solid rgba(220,167,80,0.5); border-radius: 30px; color: var(--text-main); font-size: 1em; letter-spacing: 3px; text-decoration: none; transition: all 0.4s ease; background: rgba(0,0,0,0.2); font-weight: 300;}
         .btn-state:hover { background: var(--gold-accent); color: #000; box-shadow: 0 5px 20px rgba(220,167,80,0.4); transform: translateY(-3px);}
+
+        /* ⑤ Footer 國際品牌規格 */
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508;}
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        .footer-links a:hover { color: var(--gold-accent); }
+        .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
 
     </style>
 </head>
@@ -145,9 +148,9 @@
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="index.html">首頁</a>
-        <a href="index.html#showcase">狀態展演</a>
-        <a href="#" class="active">品牌哲學</a>
+        <a href="state.html">四種狀態</a>
+        <a href="philosophy.html" class="active">品牌哲學</a>
+        <a href="about.html">關於品牌</a>
     </div>
 </nav>
 
@@ -218,10 +221,10 @@
         <div class="layer layer-3"></div>
         <div class="layer layer-2"></div>
         
-        <a href="index.html#product-earth" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>資源流動</p></div></a>
-        <a href="index.html#product-fire" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>生命復燃</p></div></a>
-        <a href="index.html#product-wood" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>深度休息</p></div></a>
-        <a href="index.html#product-wind" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>心之安定</p></div></a>
+        <a href="wealth.html" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>資源流動</p></div></a>
+        <a href="fire.html" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>生命復燃</p></div></a>
+        <a href="forest.html" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>深度休息</p></div></a>
+        <a href="calm.html" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>心之安定</p></div></a>
 
         <div class="layer layer-core">
             <div class="core-text">SOUL<br>TRAVELER</div>
@@ -243,12 +246,25 @@
     <p class="phil-subtitle fade-in-element">探索四種狀態</p>
     
     <div class="btn-group fade-in-element">
-        <a href="index.html#product-earth" class="btn-state">聚財之眼</a>
-        <a href="index.html#product-wind" class="btn-state">靜域之心</a>
-        <a href="index.html#product-fire" class="btn-state">回火之心</a>
-        <a href="index.html#product-wood" class="btn-state">靜息之森</a>
+        <a href="wealth.html" class="btn-state">聚財之眼</a>
+        <a href="calm.html" class="btn-state">靜域之心</a>
+        <a href="fire.html" class="btn-state">回火之心</a>
+        <a href="forest.html" class="btn-state">靜息之森</a>
     </div>
 </section>
+
+<footer class="site-footer fade-in-element">
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
+    <div class="footer-links">
+        <a href="philosophy.html">Philosophy</a>
+        <a href="state.html">States</a>
+        <a href="about.html">About</a>
+        <a href="#">Instagram</a>
+    </div>
+    <div class="footer-copyright">
+        &copy; 2026 Soul Traveler. All rights reserved.
+    </div>
+</footer>
 
 <script>
     /* 導覽列滑動邏輯 */
