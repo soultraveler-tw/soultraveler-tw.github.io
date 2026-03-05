@@ -6,7 +6,6 @@
     <title>品牌哲學 Philosophy｜靈魂旅人 Soul Traveler</title>
     <style>
         :root {
-            /* 主題色彩延續品牌視覺 */
             --bg-color: #0A1428; 
             --bg-darker: #050A14;
             --text-main: #EAEAEA;
@@ -15,6 +14,11 @@
             --gold-hover: #F9DB78;
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+            
+            --color-fire: #E57373;  
+            --color-wood: #81C784;  
+            --color-wind: #64B5F6;  
+            --color-earth: #DCA750; 
         }
 
         html { scroll-behavior: smooth; }
@@ -22,8 +26,6 @@
             background-color: var(--bg-darker); color: var(--text-main);
             font-family: "PingFang TC", "Helvetica Neue", sans-serif;
             margin: 0; padding: 0; overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #162a52 0%, #050A14 80%);
-            background-attachment: fixed;
         }
 
         /* 導覽列 */
@@ -36,49 +38,106 @@
         .smart-nav .nav-links a.active { color: var(--gold-accent); border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; }
         @media (max-width: 768px) { .smart-nav .nav-links a { display: none; } }
 
-        /* 宇宙塵背景 */
-        .cosmic-dust { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; background-image: radial-gradient(1.5px 1.5px at 20px 30px, rgba(220,167,80,0.5), rgba(0,0,0,0)), radial-gradient(1px 1px at 80px 70px, rgba(255,255,255,0.4), rgba(0,0,0,0)), radial-gradient(2px 2px at 150px 160px, rgba(220,167,80,0.3), rgba(0,0,0,0)), radial-gradient(1px 1px at 290px 40px, rgba(255,255,255,0.5), rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 330px 120px, rgba(220,167,80,0.4), rgba(0,0,0,0)); background-repeat: repeat; background-size: 400px 400px; animation: driftDust 80s linear infinite; opacity: 0.6; }
-        @keyframes driftDust { from { transform: translateY(0); } to { transform: translateY(-400px); } }
-
         /* 滾動淡入動畫 */
-        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.5s var(--ease-out-cubic), transform 1.5s var(--ease-out-cubic); }
+        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
-        /* 哲學頁面專屬排版 (如詩般的閱讀體驗) */
-        .philosophy-container { max-width: 720px; margin: 0 auto; padding: 150px 20px 100px 20px; position: relative; z-index: 1; }
-        
-        .phil-section { text-align: center; margin-bottom: 120px; }
-        
-        .phil-subtitle { font-size: 0.85em; color: var(--gold-accent); letter-spacing: 4px; font-weight: 300; margin-bottom: 15px; text-transform: uppercase; opacity: 0.8;}
-        .phil-title { font-size: 1.6em; color: var(--text-main); letter-spacing: 5px; font-weight: 300; margin-bottom: 40px; position: relative; display: inline-block; padding-bottom: 15px;}
-        .phil-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 30px; height: 1px; background-color: rgba(220, 167, 80, 0.4); }
-        
-        .phil-text { font-size: 1.1em; color: var(--text-main); line-height: 2.6; letter-spacing: 2px; font-weight: 300; margin: 10px 0; opacity: 0.9;}
-        .phil-text-muted { color: var(--text-muted); opacity: 0.8;}
-        .phil-highlight { color: var(--gold-hover); opacity: 1;}
-        
-        .spacer-lg { height: 60px; }
+        /* 共用文字樣式 */
+        .phil-title { font-size: 2.2em; color: var(--gold-accent); letter-spacing: 6px; font-weight: 300; margin-bottom: 20px;}
+        .phil-subtitle { font-size: 1.2em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; line-height: 1.8; margin-bottom: 30px;}
+        .phil-text { font-size: 1.1em; line-height: 2.4; letter-spacing: 2px; font-weight: 300; margin: 10px 0; opacity: 0.9;}
         .spacer-md { height: 30px; }
+        .spacer-lg { height: 60px; }
 
-        /* 狀態列表小標籤 */
-        .state-tag-container { display: flex; flex-direction: column; gap: 12px; margin: 40px 0; align-items: center;}
-        .state-tag { font-size: 1.05em; color: var(--text-muted); letter-spacing: 4px; font-weight: 300; padding: 10px 0;}
-
-        /* 四大產品入口卡片網格 */
-        .product-entry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
-        @media (max-width: 600px) { .product-entry-grid { grid-template-columns: 1fr; } }
+        /* =====================================
+           1｜Hero 區 (深藍星空)
+           ===================================== */
+        .sec-hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; background-image: radial-gradient(circle at 50% 30%, #162a52 0%, #050A14 80%); position: relative; }
+        /* 漂浮宇宙塵 */
+        .sec-hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(1.5px 1.5px at 20px 30px, rgba(220,167,80,0.5), rgba(0,0,0,0)), radial-gradient(1px 1px at 80px 70px, rgba(255,255,255,0.4), rgba(0,0,0,0)); background-size: 200px 200px; opacity: 0.5; pointer-events: none;}
         
-        .product-card { padding: 40px 20px; text-align: center; background: rgba(255,255,255,0.01); border: 1px solid rgba(220,167,80,0.15); border-radius: 12px; transition: all 0.5s ease; text-decoration: none; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden;}
-        .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(220,167,80,0.05) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease;}
-        .product-card:hover { border-color: rgba(220,167,80,0.5); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
-        .product-card:hover::before { opacity: 1; }
-        
-        .pc-icon { font-size: 1.8em; margin-bottom: 20px; opacity: 0.8; filter: drop-shadow(0 0 10px rgba(220,167,80,0.2));}
-        .pc-name { font-size: 1.2em; color: var(--gold-accent); font-weight: 300; letter-spacing: 4px; margin-bottom: 12px;}
-        .pc-desc { font-size: 0.9em; color: var(--text-muted); letter-spacing: 2px; font-weight: 300; line-height: 1.6;}
+        /* 淡淡星盤線條與 LOGO */
+        .hero-astrolabe { position: relative; width: 250px; height: 250px; display: flex; justify-content: center; align-items: center; margin-bottom: 50px;}
+        .hero-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(220,167,80,0.2); animation: spinSlow 60s linear infinite;}
+        .hr-1 { width: 100%; height: 100%; }
+        .hr-2 { width: 60%; height: 60%; border-style: solid; border-color: rgba(220,167,80,0.1); animation-direction: reverse;}
+        .hero-logo { width: 80px; filter: drop-shadow(0 0 15px rgba(220,167,80,0.4)); z-index: 2;}
 
-        /* 頁尾 */
-        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; margin-top: 60px; letter-spacing: 2px; border-top: 1px solid rgba(220,167,80,0.1);}
+        /* =====================================
+           2｜世界觀 (星空過渡到海洋)
+           ===================================== */
+        .sec-worldview { padding: 120px 10%; background: linear-gradient(to bottom, #050A14 0%, #081B26 100%); display: flex; align-items: center; gap: 80px;}
+        @media (max-width: 768px) { .sec-worldview { flex-direction: column; text-align: center; gap: 40px;} }
+        .text-box { flex: 1; }
+        .img-box { flex: 1; height: 400px; width: 100%; border-radius: 12px; border: 1px solid rgba(100, 181, 246, 0.2); background: radial-gradient(circle at top, rgba(100, 181, 246, 0.1) 0%, transparent 70%); display: flex; justify-content: center; align-items: center; color: rgba(100, 181, 246, 0.5); font-weight: 300; letter-spacing: 2px;}
+
+        /* =====================================
+           3｜旅人哲學 (深色極簡)
+           ===================================== */
+        .sec-philosophy { padding: 150px 20px; background-color: #030508; text-align: center; position: relative; overflow: hidden;}
+        /* 底部微弱的道路光暈 */
+        .sec-philosophy::after { content:''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 300px; height: 150px; background: radial-gradient(ellipse at bottom, rgba(220,167,80,0.15) 0%, transparent 70%); pointer-events: none;}
+        .big-quote { font-size: 2.2em; color: var(--gold-accent); font-weight: 300; letter-spacing: 5px; line-height: 1.8; margin-bottom: 60px;}
+
+        /* =====================================
+           4｜為什麼是香氣 (淺色霧白)
+           ===================================== */
+        .sec-fragrance { padding: 120px 10%; background: linear-gradient(to bottom, #EBEBEB 0%, #D4D4D4 100%); display: flex; align-items: center; gap: 80px; flex-direction: row-reverse;}
+        @media (max-width: 768px) { .sec-fragrance { flex-direction: column; text-align: center; gap: 40px;} }
+        /* 淺色區專屬文字顏色 */
+        .sec-fragrance .phil-title { color: #5A4A32; }
+        .sec-fragrance .phil-text { color: #333333; font-weight: 400;}
+        .sec-fragrance .img-box { border-color: rgba(90, 74, 50, 0.2); background: radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, transparent 70%); color: rgba(90, 74, 50, 0.6);}
+
+        /* =====================================
+           5｜四種生命狀態 (宇宙星盤)
+           ===================================== */
+        .sec-states { padding: 150px 20px; background: #050A14; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;}
+        
+        /* 星盤容器 (直接挪用完美鎖死版) */
+        .system-container { width: 400px; height: 400px; position: relative; margin: 80px 0; }
+        .layer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        .layer-3 { width: 100%; height: 100%; border: 1px dashed rgba(220, 167, 80, 0.2); animation: spinCircleReverse 120s linear infinite; }
+        .layer-2 { width: 70%; height: 70%; border: 0.5px solid rgba(220, 167, 80, 0.1); animation: spinCircle 90s linear infinite; }
+        
+        /* 星盤互動節點 */
+        .node { position: absolute; width: 14px; height: 14px; background: var(--bg-darker); border: 2px solid var(--gold-accent); border-radius: 50%; z-index: 10; text-decoration: none; cursor: pointer; transition: all 0.3s;}
+        .node-45 { top: 15%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-earth); box-shadow: 0 0 10px var(--color-earth);}
+        .node-135 { top: 85%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-fire); box-shadow: 0 0 10px var(--color-fire);}
+        .node-225 { top: 85%; left: 15%; transform: translate(-50%, -50%); border-color: var(--color-wood); box-shadow: 0 0 10px var(--color-wood);}
+        .node-315 { top: 15%; left: 15%; transform: translate(-50%, -50%); border-color: var(--color-wind); box-shadow: 0 0 10px var(--color-wind);}
+
+        .node:hover { transform: translate(-50%, -50%) scale(1.5); }
+        .node-45:hover { box-shadow: 0 0 25px var(--color-earth); }
+        .node-135:hover { box-shadow: 0 0 25px var(--color-fire); }
+        .node-225:hover { box-shadow: 0 0 25px var(--color-wood); }
+        .node-315:hover { box-shadow: 0 0 25px var(--color-wind); }
+
+        .node-info { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); background: rgba(5, 10, 20, 0.95); border: 1px solid; padding: 8px 15px; border-radius: 6px; white-space: nowrap; text-align: center; pointer-events: none; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .node:hover .node-info { opacity: 1; visibility: visible; top: -75px; }
+        .node-info h4 { margin: 0 0 5px 0; font-size: 1.1em; letter-spacing: 2px; color: var(--text-main); font-weight: 300;}
+        .node-info p { margin: 0; font-size: 0.85em; color: var(--text-muted); letter-spacing: 1px;}
+        .node-45 .node-info { border-color: var(--color-earth); } .node-45 h4 { color: var(--color-earth); }
+        .node-135 .node-info { border-color: var(--color-fire); } .node-135 h4 { color: var(--color-fire); }
+        .node-225 .node-info { border-color: var(--color-wood); } .node-225 h4 { color: var(--color-wood); }
+        .node-315 .node-info { border-color: var(--color-wind); } .node-315 h4 { color: var(--color-wind); }
+
+        .layer-core { width: 30%; height: 30%; z-index: 5;}
+        .core-text { color: var(--gold-accent); font-size: 1em; letter-spacing: 3px; text-align: center; line-height: 1.5; font-weight: 300;}
+
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinCircle { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes spinCircleReverse { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
+
+        /* =====================================
+           6｜結尾 (森林與星空)
+           ===================================== */
+        .sec-closing { padding: 150px 20px 100px 20px; background: linear-gradient(to top, #0A1C14 0%, #050A14 100%); text-align: center;}
+        
+        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 60px;}
+        .btn-state { padding: 12px 30px; border: 1px solid rgba(220,167,80,0.5); border-radius: 30px; color: var(--text-main); font-size: 1em; letter-spacing: 3px; text-decoration: none; transition: all 0.4s ease; background: rgba(0,0,0,0.2); font-weight: 300;}
+        .btn-state:hover { background: var(--gold-accent); color: #000; box-shadow: 0 5px 20px rgba(220,167,80,0.4); transform: translateY(-3px);}
+
     </style>
 </head>
 <body>
@@ -88,181 +147,111 @@
     <div class="nav-links">
         <a href="index.html">首頁</a>
         <a href="index.html#showcase">狀態展演</a>
-        <a href="philosophy.html" class="active">品牌哲學</a>
+        <a href="#" class="active">品牌哲學</a>
     </div>
 </nav>
 
-<div class="cosmic-dust"></div>
+<section class="sec-hero">
+    <div class="hero-astrolabe fade-in-element">
+        <div class="hero-ring hr-1"></div>
+        <div class="hero-ring hr-2"></div>
+        <img class="hero-logo" src="logo.png" alt="Soul Traveler LOGO">
+    </div>
+    <div class="fade-in-element">
+        <h1 class="phil-title" style="font-size: 2.5em; margin-bottom: 30px;">品牌哲學</h1>
+        <p class="phil-subtitle" style="color: var(--gold-accent);">我們不販售命運。<br>我們只創造讓人回到自己的氣味。</p>
+    </div>
+</section>
 
-<div class="philosophy-container">
-    
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">1｜Worldview</div>
-        <div class="phil-title" style="border:none; padding:0; margin-bottom: 40px;">世界觀</div>
-        
+<section class="sec-worldview">
+    <div class="text-box fade-in-element">
+        <h2 class="phil-title">世界觀</h2>
         <p class="phil-text">人並不是為了追逐某個結果而存在。</p>
         <p class="phil-text">我們更像是旅人。</p>
-        
         <div class="spacer-md"></div>
-        
         <p class="phil-text">在時間之中移動，在經驗之中成長，<br>在不同的狀態之間來回。</p>
-        
         <div class="spacer-md"></div>
-        
-        <p class="phil-text phil-text-muted">有時清晰。</p>
-        <p class="phil-text phil-text-muted">有時迷失。</p>
-        <p class="phil-text phil-text-muted">有時燃燒。</p>
-        <p class="phil-text phil-text-muted">有時需要停下來休息。</p>
-        
+        <p class="phil-text" style="color: var(--text-muted);">有時清晰。有時迷失。</p>
+        <p class="phil-text" style="color: var(--text-muted);">有時燃燒。有時需要停下來休息。</p>
         <div class="spacer-md"></div>
-        
         <p class="phil-text">這些狀態，本來就是生命的一部分。</p>
-        <p class="phil-text">Soul Traveler 的存在，不是為了改變命運，</p>
-        <p class="phil-text phil-highlight">而是為了讓人在不同時刻，重新回到自己的位置。</p>
+        <p class="phil-text" style="color: var(--gold-accent);">Soul Traveler 的存在，不是為了改變命運，<br>而是為了讓人在不同時刻，重新回到自己的位置。</p>
     </div>
+    <div class="img-box fade-in-element">
+        [ 預留圖框：建議放星空海面或遠方旅人 ]
+    </div>
+</section>
 
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">2｜Traveler Philosophy</div>
-        <div class="phil-title">旅人哲學</div>
-        
-        <p class="phil-text phil-highlight">我們不相信任何物件能替人完成生命。</p>
-        
-        <div class="spacer-md"></div>
-        
-        <p class="phil-text">沒有一種香氣可以直接帶來財富，</p>
-        <p class="phil-text">也沒有一個儀式可以取代行動。</p>
+<section class="sec-philosophy">
+    <div class="fade-in-element">
+        <div class="big-quote">我們不相信任何物件<br>能替人完成生命。</div>
         <p class="phil-text">真正改變生命的，永遠是人本身。</p>
-        
-        <div class="spacer-md"></div>
-        
         <p class="phil-text">我們創造的，只是一種提醒。</p>
-        <p class="phil-text phil-text-muted">提醒人在混亂時停下來。</p>
-        <p class="phil-text phil-text-muted">提醒人在疲憊時重新呼吸。</p>
-        <p class="phil-text phil-text-muted">提醒人在迷失時再次感覺自己。</p>
-        
         <div class="spacer-md"></div>
-        
-        <p class="phil-text">當人回到自己的節奏，</p>
-        <p class="phil-text">世界自然會開始重新排列。</p>
+        <p class="phil-text" style="color: var(--text-muted);">提醒人在混亂時停下來。</p>
+        <p class="phil-text" style="color: var(--text-muted);">提醒人在疲憊時重新呼吸。</p>
+        <p class="phil-text" style="color: var(--text-muted);">提醒人在迷失時再次感覺自己。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text" style="color: var(--gold-accent);">當人回到自己的節奏，<br>世界自然會開始重新排列。</p>
     </div>
+</section>
 
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">3｜Why Fragrance</div>
-        <div class="phil-title">為什麼是香氣</div>
-        
-        <p class="phil-text">氣味是最原始的感知之一。</p>
-        <p class="phil-text">它不需要語言，也不需要思考，</p>
+<section class="sec-fragrance">
+    <div class="text-box fade-in-element">
+        <h2 class="phil-title">為什麼是香氣</h2>
+        <p class="phil-text">香氣是最原始的感知之一。</p>
+        <p class="phil-text">它不需要語言，也不需要思考。</p>
         <p class="phil-text">就能直接進入記憶與情緒。</p>
-        
         <div class="spacer-md"></div>
-        
-        <p class="phil-text phil-text-muted">一個氣味可以讓人放鬆，也可以讓人清醒。</p>
-        <p class="phil-text phil-text-muted">可以讓人想起某個地方，也可以讓人重新感覺自己。</p>
-        
-        <div class="spacer-md"></div>
-        
         <p class="phil-text">因此我們選擇香氣，</p>
         <p class="phil-text">作為狀態轉換的載體。</p>
-        <p class="phil-text phil-highlight">不是為了改變世界，</p>
-        <p class="phil-text phil-highlight">而是為了讓人重新感知自己的狀態。</p>
     </div>
+    <div class="img-box fade-in-element">
+        [ 預留圖框：建議放香氣霧氣或植物線條 ]
+    </div>
+</section>
 
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">4｜Four States</div>
-        <div class="phil-title">四種生命狀態</div>
+<section class="sec-states">
+    <h2 class="phil-title fade-in-element">四種生命狀態</h2>
+    
+    <div class="system-container fade-in-element">
+        <div class="layer layer-3"></div>
+        <div class="layer layer-2"></div>
         
-        <p class="phil-text">人的生命其實並不需要太多方向。</p>
-        <p class="phil-text">大多時候，我們只是在幾種狀態之間循環。</p>
-        
-        <div class="spacer-md"></div>
-        
-        <p class="phil-text phil-text-muted">有時需要清晰與行動。</p>
-        <p class="phil-text phil-text-muted">有時需要安靜與穩定。</p>
-        <p class="phil-text phil-text-muted">有時需要重新點燃熱度。</p>
-        <p class="phil-text phil-text-muted">有時需要深層休息。</p>
-        
-        <div class="spacer-md"></div>
-        
-        <p class="phil-text">因此 Soul Traveler 只專注於四種狀態：</p>
-        
-        <div class="state-tag-container fade-in-element">
-            <div class="state-tag">聚焦與流動</div>
-            <div class="state-tag">安定與沉靜</div>
-            <div class="state-tag">覺醒與復燃</div>
-            <div class="state-tag">休息與修復</div>
+        <a href="index.html#product-earth" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>資源流動</p></div></a>
+        <a href="index.html#product-fire" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>生命復燃</p></div></a>
+        <a href="index.html#product-wood" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>深度休息</p></div></a>
+        <a href="index.html#product-wind" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>心之安定</p></div></a>
+
+        <div class="layer layer-core">
+            <div class="core-text">SOUL<br>TRAVELER</div>
         </div>
-        
-        <p class="phil-text phil-highlight">每一款香氣，都是為了某一種狀態而存在。</p>
     </div>
+</section>
 
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">5｜Ritual</div>
-        <div class="phil-title">關於儀式</div>
-        
-        <p class="phil-text">我們稱它為「儀式」，而不是「力量」。</p>
-        
-        <div class="spacer-md"></div>
-        
-        <p class="phil-text">儀式並不神秘。</p>
-        <p class="phil-text">它只是讓人在日常之中，</p>
-        <p class="phil-text">留下一個短暫停下來的空間。</p>
-        
-        <div class="spacer-md"></div>
-        
-        <p class="phil-text phil-highlight">當人願意停下來幾秒鐘，狀態就開始改變。</p>
-        <p class="phil-text">香氣只是陪伴這個過程。</p>
-    </div>
-
-    <div class="phil-section fade-in-element">
-        <div class="phil-subtitle">6｜Closing</div>
-        <div class="phil-title">最後</div>
-        
-        <p class="phil-text phil-highlight" style="font-size: 1.3em;">Soul Traveler 不販售命運。</p>
-        
-        <div class="spacer-md"></div>
-        
+<section class="sec-closing">
+    <div class="fade-in-element">
+        <p class="phil-text" style="font-size: 1.4em; color: var(--gold-accent); margin-bottom: 30px;">Soul Traveler 不販售命運。</p>
         <p class="phil-text">我們只創造一些簡單的物件，</p>
-        <p class="phil-text">讓人在需要的時候，重新回到自己。</p>
-        
+        <p class="phil-text">讓人在需要的時候</p>
+        <p class="phil-text">重新回到自己。</p>
         <div class="spacer-md"></div>
-        
-        <p class="phil-text">旅程仍然是你的。</p>
-        <p class="phil-text">只是有時候，氣味可以陪你走一段。</p>
-        
-        <div class="spacer-lg"></div>
-        
-        <div class="product-entry-grid fade-in-element">
-            <a href="index.html#product-earth" class="product-card">
-                <div class="pc-icon">🐯</div>
-                <div class="pc-name">聚財之眼</div>
-                <div class="pc-desc">資源流動與行動清晰</div>
-            </a>
-            <a href="index.html#product-wind" class="product-card">
-                <div class="pc-icon">🜁</div>
-                <div class="pc-name">靜域之心</div>
-                <div class="pc-desc">內在安定與思緒沉靜</div>
-            </a>
-            <a href="index.html#product-fire" class="product-card">
-                <div class="pc-icon">🔥</div>
-                <div class="pc-name">回火之心</div>
-                <div class="pc-desc">生命能量與熱度復燃</div>
-            </a>
-            <a href="index.html#product-wood" class="product-card">
-                <div class="pc-icon">🌲</div>
-                <div class="pc-name">靜息之森</div>
-                <div class="pc-desc">深度放鬆與身體修復</div>
-            </a>
-        </div>
+        <p class="phil-text" style="letter-spacing: 5px;">旅程仍然是你的。</p>
     </div>
-
-    <div class="spec-note fade-in-element">
-        ✦ 靈魂旅人 Soul Traveler ｜ 內在狀態校準練習 ✦
+    
+    <div class="spacer-lg"></div>
+    <p class="phil-subtitle fade-in-element">探索四種狀態</p>
+    
+    <div class="btn-group fade-in-element">
+        <a href="index.html#product-earth" class="btn-state">聚財之眼</a>
+        <a href="index.html#product-wind" class="btn-state">靜域之心</a>
+        <a href="index.html#product-fire" class="btn-state">回火之心</a>
+        <a href="index.html#product-wood" class="btn-state">靜息之森</a>
     </div>
-
-</div>
+</section>
 
 <script>
-    /* 導覽列滑動隱藏邏輯 */
+    /* 導覽列滑動邏輯 */
     let lastScrollTop = 0;
     const navbar = document.getElementById('smart-nav');
     window.addEventListener('scroll', function() {
@@ -276,9 +265,9 @@
         lastScrollTop = currentScroll;
     });
 
-    /* 滑動平滑減速 (Scroll Reveal) */
+    /* 滑動淡入動畫 */
     document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+        setTimeout(() => { document.querySelectorAll('.sec-hero .fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
