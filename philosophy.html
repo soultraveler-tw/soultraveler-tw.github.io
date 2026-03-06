@@ -77,6 +77,12 @@
         .big-quote { font-size: 2.2em; color: var(--gold-accent); font-weight: 300; letter-spacing: 5px; line-height: 1.8; margin-bottom: 60px;}
 
         /* =====================================
+           ✦ 新增：靈魂旅人的定義 (Definition) ✦
+           ===================================== */
+        .sec-definition { padding: 120px 20px; background: #050A14; text-align: center; border-top: 1px dashed rgba(220,167,80,0.15); border-bottom: 1px dashed rgba(220,167,80,0.15); position: relative;}
+        .sec-definition::before { content: 'SOUL TRAVELER'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em; font-weight: 900; color: rgba(255,255,255,0.02); pointer-events: none; letter-spacing: 20px; white-space: nowrap;}
+
+        /* =====================================
            4｜為什麼是香氣 (淺色霧白)
            ===================================== */
         .sec-fragrance { padding: 120px 10%; background: linear-gradient(to bottom, #EBEBEB 0%, #D4D4D4 100%); display: flex; align-items: center; gap: 80px; flex-direction: row-reverse;}
@@ -126,8 +132,21 @@
         /* =====================================
            6｜關於儀式 (微光靜心區塊)
            ===================================== */
-        .sec-ritual { padding: 120px 20px; background: #050A14; text-align: center; position: relative; }
+        .sec-ritual { padding: 120px 20px; background: #080D1A; text-align: center; position: relative; }
         .sec-ritual::before { content:''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(220,167,80,0.05) 0%, transparent 70%); pointer-events: none;}
+
+        /* =====================================
+           ✦ 新增：宇宙能量結構 (Energy Structure) ✦
+           ===================================== */
+        .sec-structure { padding: 150px 20px; background: #050A14; text-align: center; }
+        .energy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1000px; margin: 60px auto 0 auto; }
+        @media (max-width: 768px) { .energy-grid { grid-template-columns: 1fr; gap: 20px;} }
+        
+        .energy-card { background: rgba(255,255,255,0.01); border: 1px solid rgba(220,167,80,0.15); padding: 50px 30px; border-radius: 12px; transition: all 0.4s ease; position: relative; overflow: hidden;}
+        .energy-card:hover { border-color: rgba(220,167,80,0.4); transform: translateY(-5px); background: rgba(220,167,80,0.02);}
+        .energy-layer-tag { font-size: 0.8em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase;}
+        .energy-title { font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; font-weight: 300; margin: 0 0 15px 0;}
+        .energy-items { font-size: 1.1em; color: var(--text-main); letter-spacing: 2px; font-weight: 300;}
 
         /* =====================================
            7｜結尾 (森林與星空)
@@ -189,6 +208,19 @@
     <div class="img-box fade-in-element">
         [ 預留圖框：建議放星空海面或遠方旅人 ]
     </div>
+</section>
+
+<section class="sec-definition fade-in-element">
+    <div class="phil-subtitle" style="color: var(--text-muted); font-size: 1em;">Soul Traveler</div>
+    <h2 class="phil-title" style="margin-bottom: 40px;">靈魂旅人</h2>
+    <p class="phil-text">每個人都在宇宙中旅行。</p>
+    <p class="phil-text">有時迷路，有時找到方向。</p>
+    <div class="spacer-md"></div>
+    <p class="phil-text">我們創造的不是商品，</p>
+    <p class="phil-text" style="color: var(--gold-accent); font-size: 1.3em;">而是陪伴靈魂前行的法器。</p>
+    <div class="spacer-md"></div>
+    <p class="phil-text">當氣味被喚醒，</p>
+    <p class="phil-text">內在的羅盤也會重新轉動。</p>
 </section>
 
 <section class="sec-philosophy">
@@ -264,6 +296,31 @@
         <div class="spacer-md"></div>
         <p class="phil-text" style="color: var(--gold-accent);">當人願意停下來幾秒鐘，狀態就開始改變。</p>
         <p class="phil-text">香氣只是陪伴這個過程。</p>
+    </div>
+</section>
+
+<section class="sec-structure">
+    <div class="fade-in-element">
+        <h2 class="phil-title">宇宙能量三層</h2>
+        <p class="phil-subtitle">Cosmic Energy Structure</p>
+    </div>
+    
+    <div class="energy-grid fade-in-element">
+        <div class="energy-card">
+            <div class="energy-layer-tag">Layer 01</div>
+            <h3 class="energy-title">守護 Guardian</h3>
+            <p class="energy-items">狻猊 ‧ 貔貅</p>
+        </div>
+        <div class="energy-card">
+            <div class="energy-layer-tag">Layer 02</div>
+            <h3 class="energy-title">轉化 Transformation</h3>
+            <p class="energy-items">回火之心</p>
+        </div>
+        <div class="energy-card">
+            <div class="energy-layer-tag">Layer 03</div>
+            <h3 class="energy-title">回歸 Return</h3>
+            <p class="energy-items">靜息之森</p>
+        </div>
     </div>
 </section>
 
