@@ -14,18 +14,12 @@
             --border-color: #2A2010; 
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --theme-color: #DCA750; /* 聚財之眼的專屬流動金光暈 */
+            --theme-color: #DCA750;
         }
 
         html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-color); color: var(--text-main);
-            font-family: "PingFang TC", "Helvetica Neue", sans-serif;
-            margin: 0; padding: 0; overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #1a140a 0%, #050A14 70%);
-        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #1a140a 0%, #050A14 70%); }
 
-        /* 導覽列 */
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
         .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
@@ -35,60 +29,47 @@
         .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
         .cta-btn:hover { background: rgba(220, 167, 80, 0.15); }
 
-        /* 滾動淡入動畫 */
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
-        /* =========================================
-           單品首屏
-           ========================================= */
         .product-hero { display: flex; min-height: 100vh; padding: 100px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: center; }
         @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px;} }
 
-        /* 左側：視覺 */
         .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(220, 167, 80, 0.2); box-shadow: 0 0 40px rgba(220, 167, 80, 0.05); }
         .drop-zone { border: 1px dashed var(--theme-color); color: var(--theme-color); border-radius: 50%; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.85em; letter-spacing: 1px; line-height: 1.8;}
         .product-img { max-width: 90%; max-height: 90%; display: none; filter: drop-shadow(0 0 20px rgba(220, 167, 80, 0.3)); animation: float 6s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        /* 右側：資訊 */
         .product-info { flex: 1; }
         .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
         .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
         .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 30px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
         
-        /* 狀態覺察區塊 */
         .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
         .diagnosis-box h5 { margin: 0 0 12px 0; color: var(--theme-color); font-size: 0.9em; letter-spacing: 2px; font-weight: 300;}
         .diagnosis-box p { margin: 0 0 15px 0; font-size: 0.95em; color: #d0d0d0; line-height: 1.8; letter-spacing: 1px;}
         .diagnosis-box p:last-child { margin: 0; color: var(--text-main); opacity: 0.9;}
 
-        /* 版本切換器 */
         .variant-group { margin-bottom: 40px; }
         .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
         .variants { display: flex; gap: 15px; flex-wrap: wrap; }
         .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.9em; letter-spacing: 1px;}
         .variant-btn.active { border-color: var(--theme-color); color: var(--bg-darker); background: var(--theme-color); box-shadow: 0 0 15px rgba(220, 167, 80, 0.3); font-weight: bold;}
-        @media (max-width: 900px) { .variants { justify-content: center; } }
 
         .price-action { display: flex; align-items: center; gap: 30px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
         .price { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 1px; }
         .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
         .add-to-cart:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 0 20px rgba(220, 167, 80, 0.4); transform: translateY(-2px); }
-        @media (max-width: 900px) { .price-action { flex-direction: column; gap: 20px; } .add-to-cart { width: 100%; } }
 
-        /* =========================================
-           氣味場景 (靈魂故事)
-           ========================================= */
-        .story-section { max-width: 700px; margin: 100px auto 80px auto; text-align: center; padding: 0 20px; position: relative; }
-        .story-section::before, .story-section::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(220, 167, 80, 0.3); margin: 0 auto 30px auto; }
-        .story-section::after { margin: 30px auto 0 auto; }
+        /* 神獸象徵區塊 */
+        .mythical-section { text-align: center; padding: 60px 20px; border-top: 1px dashed rgba(220, 167, 80, 0.2); border-bottom: 1px dashed rgba(220, 167, 80, 0.2); margin: 80px auto; max-width: 700px; position: relative; background: rgba(255,255,255,0.01);}
+        .mythical-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; font-weight: 300; margin-bottom: 25px; }
+        .mythical-text { font-size: 1.1em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+
+        .story-section { max-width: 700px; margin: 80px auto; text-align: center; padding: 0 20px; position: relative; }
         .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
         .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
 
-        /* =========================================
-           香氣軌跡
-           ========================================= */
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
         .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(220, 167, 80, 0.3); }
@@ -98,19 +79,15 @@
         .track-ingredients { font-size: 1.1em; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px; font-weight: 300;}
         .track-effect { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; font-weight: 300; letter-spacing: 1px;}
 
-        /* Footer 宣告與安全標示 */
         .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
         .safety-warning { border-color: rgba(229, 115, 115, 0.2); background: rgba(229, 115, 115, 0.02); }
         .safety-warning strong { color: #E57373; font-weight: 300;}
 
-        /* 網站共用 Footer */
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
-        .footer-links a:hover { color: var(--gold-accent); }
-        .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
     </style>
 </head>
 <body>
@@ -157,10 +134,20 @@
         </div>
 
         <div class="price-action">
-            <div class="price">NT$ 1,680</div>
+            <div class="price">NT$ 9,999</div>
             <button class="add-to-cart">選擇此香氣</button>
         </div>
     </div>
+</section>
+
+<section class="mythical-section fade-in-element">
+    <h3 class="mythical-title">✦ 神獸象徵｜貔貅 ✦</h3>
+    <p class="mythical-text">
+        貔貅是古代守財神獸。<br>
+        只進不出，守護財氣。<br><br>
+        在能量世界中，<br>
+        貔貅也象徵吸引機會、守住資源、穩定氣場。
+    </p>
 </section>
 
 <section class="story-section fade-in-element">
@@ -211,10 +198,6 @@
         <a href="philosophy.html">Philosophy</a>
         <a href="state.html">States</a>
         <a href="about.html">About</a>
-        <a href="#">Instagram</a>
-    </div>
-    <div class="footer-copyright">
-        &copy; 2026 Soul Traveler. All rights reserved.
     </div>
 </footer>
 
@@ -223,8 +206,6 @@
     const input = document.getElementById('product-input');
     const img = document.getElementById('product-img');
     zone.addEventListener('click', () => input.click());
-    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.style.background = "rgba(220, 167, 80, 0.1)"; });
-    zone.addEventListener('dragleave', (e) => { e.preventDefault(); zone.style.background = "transparent"; });
     const handleFile = (file) => {
         if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
@@ -232,7 +213,6 @@
             reader.readAsDataURL(file);
         }
     };
-    zone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
     input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
 
     const descriptions = {
@@ -247,14 +227,6 @@
         setTimeout(() => { descElement.innerText = descriptions[variant]; descElement.style.opacity = 1; }, 200);
     }
 
-    let lastScrollTop = 0;
-    const navbar = document.getElementById('smart-nav');
-    window.addEventListener('scroll', function() {
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        if (Math.abs(lastScrollTop - currentScroll) <= 5) return;
-        if (currentScroll > lastScrollTop && currentScroll > 70) { navbar.classList.add('nav-up'); } else { navbar.classList.remove('nav-up'); }
-        lastScrollTop = currentScroll;
-    });
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
         const observer = new IntersectionObserver((entries) => {
