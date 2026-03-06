@@ -221,7 +221,7 @@
     zone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
     input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
 
-    /* 動態資料庫：完全對齊成分.csv的精準配方 */
+    /* 動態資料庫：更新寵物版為【50%母液+30%薰衣草+20%洋甘菊】無柑橘安全配方 */
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
@@ -234,11 +234,11 @@
         },
         pet: {
             desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
-            safety: "✦ 寵物友善：全面選用溫和安撫成分，針對神經質與分離焦慮的毛孩，打造安心的安全結界。",
+            safety: "✦ 寵物友善：嚴格剔除對貓咪有代謝風險的柑橘類精油，選用最高安全級別的安撫成分，讓您與毛孩安心共處。",
             tracks: `
-                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">羅馬洋甘菊、快樂鼠尾草</div><div class="track-effect">【天使光環】以蘋果般的蜜糖甜香與草本幸福感，撫平容易驚嚇、焦慮的敏銳感知。</div></div>
-                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【核心包覆】安全的溫柔基底，平衡厚重的泥土氣息，提供如懷抱般的深層放鬆。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、雙重岩蘭草</div><div class="track-effect">【純淨守護】雷聲與鞭炮恐懼救星。強大的鎮定效果，提供溫暖且極具安全感的靈魂之錨。</div></div>
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">羅馬洋甘菊 (20%)</div><div class="track-effect">【安撫甜心】剔除柑橘類，改以蘋果般的蜜糖甜香，溫柔撫平毛孩容易驚嚇、焦慮的敏銳感知。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草 (30%)</div><div class="track-effect">【平衡大師】芳療中最萬用且極度安全的安撫劑，能有效放鬆毛孩與主人的緊繃神經。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">靜域之心・核心母液 (50%)</div><div class="track-effect">【定靜基調】保留原配方中最精華的岩蘭草與乳香，以低濃度提供深層放鬆的空間安全感。</div></div>
             `
         },
         baby: {
@@ -261,7 +261,6 @@
         }
     };
 
-    /* 動態切換函數 */
     function changeVariant(variant) {
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
