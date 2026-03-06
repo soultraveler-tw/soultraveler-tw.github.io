@@ -95,7 +95,6 @@
         .layer-3 { width: 100%; height: 100%; border: 1px dashed rgba(220, 167, 80, 0.2); animation: spinCircleReverse 120s linear infinite; }
         .layer-2 { width: 70%; height: 70%; border: 0.5px solid rgba(220, 167, 80, 0.1); animation: spinCircle 90s linear infinite; }
         
-        /* 連結至各專屬單品頁 */
         .node { position: absolute; width: 14px; height: 14px; background: var(--bg-darker); border: 2px solid var(--gold-accent); border-radius: 50%; z-index: 10; text-decoration: none; cursor: pointer; transition: all 0.3s;}
         .node-45 { top: 15%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-earth); box-shadow: 0 0 10px var(--color-earth);}
         .node-135 { top: 85%; left: 85%; transform: translate(-50%, -50%); border-color: var(--color-fire); box-shadow: 0 0 10px var(--color-fire);}
@@ -125,15 +124,24 @@
         @keyframes spinCircleReverse { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
 
         /* =====================================
-           6｜結尾 (森林與星空)
+           6｜關於儀式 (微光靜心區塊)
            ===================================== */
-        .sec-closing { padding: 150px 20px 80px 20px; background: linear-gradient(to top, #0A1C14 0%, #050A14 100%); text-align: center;}
+        .sec-ritual { padding: 120px 20px; background: #050A14; text-align: center; position: relative; }
+        .sec-ritual::before { content:''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(220,167,80,0.05) 0%, transparent 70%); pointer-events: none;}
+
+        /* =====================================
+           7｜結尾 (森林與星空)
+           ===================================== */
+        .sec-closing { padding: 100px 20px 80px 20px; background: linear-gradient(to top, #0A1C14 0%, #050A14 100%); text-align: center;}
         
         .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 60px;}
         .btn-state { padding: 12px 30px; border: 1px solid rgba(220,167,80,0.5); border-radius: 30px; color: var(--text-main); font-size: 1em; letter-spacing: 3px; text-decoration: none; transition: all 0.4s ease; background: rgba(0,0,0,0.2); font-weight: 300;}
         .btn-state:hover { background: var(--gold-accent); color: #000; box-shadow: 0 5px 20px rgba(220,167,80,0.4); transform: translateY(-3px);}
 
-        /* ⑤ Footer 國際品牌規格 */
+        /* ⑤ Footer 與工藝宣告 */
+        .spec-box { padding: 0 20px; text-align: center; background: #0A1C14;}
+        .spec-note { display: inline-block; text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px 40px; border-radius: 8px; margin: 20px auto 60px auto; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); }
+        
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508;}
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
@@ -169,16 +177,14 @@
 <section class="sec-worldview">
     <div class="text-box fade-in-element">
         <h2 class="phil-title">世界觀</h2>
-        <p class="phil-text">人並不是為了追逐某個結果而存在。</p>
-        <p class="phil-text">我們更像是旅人。</p>
+        <p class="phil-text">每個人，都是在世界中行走的旅人。</p>
+        <p class="phil-text">生命並不是一條筆直的道路，<br>而是在不同狀態之間來回流動。</p>
         <div class="spacer-md"></div>
-        <p class="phil-text">在時間之中移動，在經驗之中成長，<br>在不同的狀態之間來回。</p>
-        <div class="spacer-md"></div>
-        <p class="phil-text" style="color: var(--text-muted);">有時清晰。有時迷失。</p>
-        <p class="phil-text" style="color: var(--text-muted);">有時燃燒。有時需要停下來休息。</p>
+        <p class="phil-text" style="color: var(--text-muted);">有時清晰，有時迷失，</p>
+        <p class="phil-text" style="color: var(--text-muted);">有時燃燒，有時需要停下來休息。</p>
         <div class="spacer-md"></div>
         <p class="phil-text">這些狀態，本來就是生命的一部分。</p>
-        <p class="phil-text" style="color: var(--gold-accent);">Soul Traveler 的存在，不是為了改變命運，<br>而是為了讓人在不同時刻，重新回到自己的位置。</p>
+        <p class="phil-text" style="color: var(--gold-accent);">Soul Traveler 的存在，不是為了改變命運，<br>而是為了讓人在不同時刻，重新回到自己。</p>
     </div>
     <div class="img-box fade-in-element">
         [ 預留圖框：建議放星空海面或遠方旅人 ]
@@ -188,11 +194,13 @@
 <section class="sec-philosophy">
     <div class="fade-in-element">
         <div class="big-quote">我們不相信任何物件<br>能替人完成生命。</div>
+        <p class="phil-text">沒有一種香氣可以直接帶來財富，</p>
+        <p class="phil-text">也沒有一個儀式可以取代行動。</p>
         <p class="phil-text">真正改變生命的，永遠是人本身。</p>
-        <p class="phil-text">我們創造的，只是一種提醒。</p>
         <div class="spacer-md"></div>
-        <p class="phil-text" style="color: var(--text-muted);">提醒人在混亂時停下來。</p>
-        <p class="phil-text" style="color: var(--text-muted);">提醒人在疲憊時重新呼吸。</p>
+        <p class="phil-text" style="color: var(--text-muted);">我們創造的，只是一種提醒。</p>
+        <p class="phil-text" style="color: var(--text-muted);">提醒人在混亂時停下來，</p>
+        <p class="phil-text" style="color: var(--text-muted);">提醒人在疲憊時重新呼吸，</p>
         <p class="phil-text" style="color: var(--text-muted);">提醒人在迷失時再次感覺自己。</p>
         <div class="spacer-md"></div>
         <p class="phil-text" style="color: var(--gold-accent);">當人回到自己的節奏，<br>世界自然會開始重新排列。</p>
@@ -202,12 +210,14 @@
 <section class="sec-fragrance">
     <div class="text-box fade-in-element">
         <h2 class="phil-title">為什麼是香氣</h2>
-        <p class="phil-text">香氣是最原始的感知之一。</p>
+        <p class="phil-text">氣味是最原始的感知之一。</p>
         <p class="phil-text">它不需要語言，也不需要思考。</p>
-        <p class="phil-text">就能直接進入記憶與情緒。</p>
         <div class="spacer-md"></div>
-        <p class="phil-text">因此我們選擇香氣，</p>
-        <p class="phil-text">作為狀態轉換的載體。</p>
+        <p class="phil-text">一個氣味可以讓人放鬆，也可以讓人清醒。</p>
+        <p class="phil-text">可以讓人想起某個地方，也可以讓人重新感覺自己。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text" style="color: var(--gold-accent);">因此我們選擇香氣，作為狀態轉換的載體。</p>
+        <p class="phil-text" style="color: var(--gold-accent);">不是為了改變世界，而是為了讓人重新感知自己的狀態。</p>
     </div>
     <div class="img-box fade-in-element">
         [ 預留圖框：建議放香氣霧氣或植物線條 ]
@@ -217,18 +227,43 @@
 <section class="sec-states">
     <h2 class="phil-title fade-in-element">四種生命狀態</h2>
     
+    <div class="fade-in-element" style="margin-bottom: 40px;">
+        <p class="phil-text">人的生命其實不需要太多方向。</p>
+        <p class="phil-text">大多時候，我們只是在幾種狀態之間循環。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text" style="color: var(--text-muted);">有時需要清晰與行動。有時需要安靜與穩定。</p>
+        <p class="phil-text" style="color: var(--text-muted);">有時需要重新點燃熱度。有時需要深層休息。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text">因此 Soul Traveler 只專注於四種狀態：</p>
+    </div>
+
     <div class="system-container fade-in-element">
         <div class="layer layer-3"></div>
         <div class="layer layer-2"></div>
         
-        <a href="wealth.html" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>資源流動</p></div></a>
-        <a href="fire.html" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>生命復燃</p></div></a>
-        <a href="forest.html" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>深度休息</p></div></a>
-        <a href="calm.html" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>心之安定</p></div></a>
+        <a href="wealth.html" class="node node-45"><div class="node-info"><h4>聚財之眼</h4><p>資源流動與行動清晰</p></div></a>
+        <a href="fire.html" class="node node-135"><div class="node-info"><h4>回火之心</h4><p>生命能量與熱度復燃</p></div></a>
+        <a href="forest.html" class="node node-225"><div class="node-info"><h4>靜息之森</h4><p>深度放鬆與身體修復</p></div></a>
+        <a href="calm.html" class="node node-315"><div class="node-info"><h4>靜域之心</h4><p>內在安定與思緒沉靜</p></div></a>
 
         <div class="layer layer-core">
             <div class="core-text">SOUL<br>TRAVELER</div>
         </div>
+    </div>
+    
+    <p class="phil-text fade-in-element" style="color: var(--gold-accent); margin-top: 40px;">每一款香氣，都是為了某一種狀態而存在。</p>
+</section>
+
+<section class="sec-ritual">
+    <div class="fade-in-element">
+        <h2 class="phil-title">關於儀式</h2>
+        <p class="phil-text">我們稱它為「儀式」，而不是「力量」。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text">儀式並不神秘。</p>
+        <p class="phil-text">它只是讓人在日常之中，留下一個短暫停下來的空間。</p>
+        <div class="spacer-md"></div>
+        <p class="phil-text" style="color: var(--gold-accent);">當人願意停下來幾秒鐘，狀態就開始改變。</p>
+        <p class="phil-text">香氣只是陪伴這個過程。</p>
     </div>
 </section>
 
@@ -236,10 +271,10 @@
     <div class="fade-in-element">
         <p class="phil-text" style="font-size: 1.4em; color: var(--gold-accent); margin-bottom: 30px;">Soul Traveler 不販售命運。</p>
         <p class="phil-text">我們只創造一些簡單的物件，</p>
-        <p class="phil-text">讓人在需要的時候</p>
-        <p class="phil-text">重新回到自己。</p>
+        <p class="phil-text">讓人在需要的時候，重新回到自己。</p>
         <div class="spacer-md"></div>
-        <p class="phil-text" style="letter-spacing: 5px;">旅程仍然是你的。</p>
+        <p class="phil-text">旅程仍然是你的。</p>
+        <p class="phil-text" style="letter-spacing: 5px; color: var(--gold-accent);">氣味只是陪你走一段。</p>
     </div>
     
     <div class="spacer-lg"></div>
@@ -252,6 +287,12 @@
         <a href="forest.html" class="btn-state">靜息之森</a>
     </div>
 </section>
+
+<div class="spec-box">
+    <div class="spec-note fade-in-element">
+        ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+    </div>
+</div>
 
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
