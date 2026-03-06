@@ -175,14 +175,14 @@
             </div>
             <div class="track-item">
                 <div class="track-level">Base / 後調</div>
-                <div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div>
-                <div class="track-effect">【大地定錨】打造安定的空間感。透過深沉的木質與根系氣味，將意識重新定錨回自己的中心。</div>
+                <div class="track-ingredients">乳香、雙重岩蘭草 (波旁與海地)</div>
+                <div class="track-effect">【大地定錨】打造神聖的定心空間。透過深沉的絲滑煙燻與泥土氣味，將意識重新定錨回自己的中心。</div>
             </div>
         </div>
 
         <div class="spec-box fade-in-element">
             <div class="spec-note safety-warning" id="dynamic-safety">
-                ✦ 溫和配方：本配方能量平穩收斂，適合日常靜心與空間淨化使用。
+                ✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。
             </div>
             <div class="spec-note">
                 ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
@@ -205,7 +205,6 @@
 </footer>
 
 <script>
-    /* 拖曳功能 */
     const zone = document.getElementById('product-drop-zone');
     const input = document.getElementById('product-input');
     const img = document.getElementById('product-img');
@@ -222,67 +221,58 @@
     zone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
     input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
 
-    /* 動態資料庫：包含 4 個版本的 敘述、前中後調、安全標示 */
+    /* 動態資料庫：完全對齊成分.csv的精準配方 */
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
-            safety: "✦ 溫和配方：本配方能量平穩收斂，適合日常靜心與空間淨化使用。",
+            safety: "✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【思緒梳理】瞬間切斷外界雜訊干擾，讓過載的思緒冷卻，帶來第一層的清晰與淨化感。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【溫柔支撐】針對太容易共感而疲憊的內在，給予溫柔而堅定的支撐，收攏渙散的思緒。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div><div class="track-effect">【大地定錨】打造安定的空間感。透過深沉的木質與根系氣味，將意識重新定錨回自己的中心。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、雙重岩蘭草 (波旁與海地)</div><div class="track-effect">【大地定錨】打造神聖的定心空間。透過深沉的絲滑煙燻與泥土氣味，將意識重新定錨回自己的中心。</div></div>
             `
         },
         pet: {
             desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
-            safety: "✦ 寵物友善：剔除對貓狗代謝有負擔之精油，全面選用溫和安撫成分，讓您與毛孩安心共處。",
+            safety: "✦ 寵物友善：全面選用溫和安撫成分，針對神經質與分離焦慮的毛孩，打造安心的安全結界。",
             tracks: `
-                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">苦橙葉、甜橙</div><div class="track-effect">【溫和降噪】移除刺激性高的柑橘類，以最溫和的果香過濾空間裡的浮躁氣息。</div></div>
-                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">羅馬洋甘菊、高地薰衣草</div><div class="track-effect">【毛孩安撫】蘋果般的蜜糖甜香，能有效撫平容易驚嚇、焦慮的敏銳感知，帶來純真無邪的安心感。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、花梨木</div><div class="track-effect">【純淨守護】移除過重的木質與根系負擔，留下最輕盈的定靜能量，打造柔軟的安全結界。</div></div>
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">羅馬洋甘菊、快樂鼠尾草</div><div class="track-effect">【天使光環】以蘋果般的蜜糖甜香與草本幸福感，撫平容易驚嚇、焦慮的敏銳感知。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【核心包覆】安全的溫柔基底，平衡厚重的泥土氣息，提供如懷抱般的深層放鬆。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、雙重岩蘭草</div><div class="track-effect">【純淨守護】雷聲與鞭炮恐懼救星。強大的鎮定效果，提供溫暖且極具安全感的靈魂之錨。</div></div>
             `
         },
         baby: {
             desc: "【過濾雜訊】以極致溫和的頻率過濾環境雜訊，溫柔包覆夜間敏銳的感知。",
-            safety: "✦ 寶寶安睡：極低濃度與無刺激性配方，專為敏銳感知設計，溫柔包覆夜晚的不安。",
+            safety: "✦ 寶寶安睡：極低濃度與無刺激性配方，專為 0-6 歲幼兒敏銳感知設計，溫柔安撫夜驚與入睡困難。",
             tracks: `
-                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">羅馬洋甘菊</div><div class="track-effect">【天使光環】去除了所有強烈的氣味，僅以極致溫和的蜜糖香，給予純真無邪的安心感。</div></div>
-                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草</div><div class="track-effect">【輕柔包覆】針對夜間容易浮動的情緒，給予宛如母親懷抱般的溫暖支撐，收攏不安。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香</div><div class="track-effect">【安穩搖籃】單純且輕盈的定靜底蘊，像安全的搖籃般穩固，不帶給空間任何沉重負擔。</div></div>
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙</div><div class="track-effect">【快樂撫慰】如同媽媽的微笑般，以溫暖快樂的甜美果香，大幅提升寶寶的接受度與安心感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木</div><div class="track-effect">【神經安撫】針對夜驚、長牙不適與鬧脾氣，給予極度溫柔的撫慰與支撐。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">靜域之心・核心母液 (乳香、岩蘭草、薰衣草)</div><div class="track-effect">【深層放鬆】以 50% 的定靜基調墊底，降低泥土味，讓整體氣味宛如母親堅定而溫暖的懷抱。</div></div>
             `
         },
         pregnant: {
             desc: "【大地支撐】提供穩定厚實的大地能量，穩固孕期容易起伏的情緒。",
-            safety: "✦ 孕期支撐：嚴格剔除通經與子宮收縮疑慮之精油（如快樂鼠尾草等），以最安全的木質給予力量。",
+            safety: "✦ 孕期支撐：配方溫和清爽，給予腰部支撐感，讓呼吸變深。建議懷孕滿 3 個月後可安心使用。",
             tracks: `
-                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【清冷梳理】以清透高雅的茶香感，化解孕期容易浮動的煩悶感，帶來深呼吸的空間。</div></div>
-                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木、高地薰衣草</div><div class="track-effect">【溫潤支撐】無刺激性的安全陪伴，溫柔接住各種疲憊，給予情緒穩定的力量。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、波旁岩蘭草</div><div class="track-effect">【大地安放】以安全劑量的低調木質與根系，穩穩承接所有的起伏，打造堅實的內在靠山。</div></div>
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">紅橘、橙花 (或苦橙葉)</div><div class="track-effect">【情緒救星】以公認最安全的孕婦用油紅橘緩解不適，搭配橙花的強大安撫力，驅散孕期焦慮。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">靜域之心・核心母液 (花梨木、薰衣草)</div><div class="track-effect">【溫暖支柱】強化花梨木的支撐力，給予身體實質的溫暖，與情緒上的開朗感。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">核心底蘊 (乳香、岩蘭草)</div><div class="track-effect">【穩固重心】讓呼吸變深沉，以大地般的穩固力量，承接孕期所有的疲憊與起伏。</div></div>
             `
         }
     };
 
     /* 動態切換函數 */
     function changeVariant(variant) {
-        // 更新按鈕狀態
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
 
-        // 取得動態區塊
         const dynamicContent = document.getElementById('dynamic-content');
-        
-        // 淡出
         dynamicContent.style.opacity = 0;
         
         setTimeout(() => {
-            // 更新文字描述
             document.getElementById('dynamic-desc').innerText = variantsData[variant].desc;
-            // 更新香氣軌跡
             document.getElementById('dynamic-tracks').innerHTML = variantsData[variant].tracks;
-            // 更新安全標示
             document.getElementById('dynamic-safety').innerHTML = variantsData[variant].safety;
-            
-            // 淡入
             dynamicContent.style.opacity = 1;
         }, 300);
     }
