@@ -5,17 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🐯 聚財之眼｜靈魂旅人 Soul Traveler</title>
     <style>
-        :root {
-            --bg-color: #050A14; 
-            --text-main: #EAEAEA;
-            --text-muted: #888899;
-            --gold-accent: #DCA750; 
-            --border-color: #2A2010; 
-            --nav-bg: rgba(5, 10, 20, 0.85);
-            --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --theme-color: #DCA750;
-        }
-
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; --border-color: #2A2010; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #DCA750; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #1a140a 0%, #050A14 70%); }
 
@@ -25,8 +15,6 @@
         .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
         .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
         .smart-nav .nav-links a:hover { color: var(--gold-accent); }
-        .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
-        .cta-btn:hover { background: rgba(220, 167, 80, 0.15); }
 
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
@@ -43,7 +31,6 @@
         .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
         .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
         .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
-        
         .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
 
         .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
@@ -83,8 +70,6 @@
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
         .safety-warning { border-color: rgba(229, 115, 115, 0.2); background: rgba(229, 115, 115, 0.02); }
         .safety-warning strong { color: #E57373; font-weight: 300;}
-
-        /* 法規標示特化版塊 */
         .legal-note { border-color: rgba(220, 167, 80, 0.3); background: rgba(220, 167, 80, 0.05); color: #EAEAEA;}
 
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
@@ -175,25 +160,25 @@
     <div class="track-container">
         <div class="track-item">
             <div class="track-level">Top / 前調</div>
-            <div class="track-ingredients">甜橙精油、佛手柑精油、中國茉莉、銀合歡原精、埃及茉莉原精、香草、玫瑰原精 (CT10)</div>
+            <div class="track-ingredients">甜橙、佛手柑、CT10</div>
             <div class="track-effect">【破除迷霧】強力的招財光波與人緣財。明亮的果香與精緻香氣瞬間掃除焦慮，帶來極致的清晰。</div>
         </div>
         <div class="track-item">
             <div class="track-level">Middle / 中調</div>
-            <div class="track-ingredients">絲柏精油、歐白芷根精油、中國肉桂、多香果、丁香花苞、錫蘭肉桂、印度肉桂、神聖羅勒、丁香羅勒 (CT22)</div>
+            <div class="track-ingredients">絲柏、歐白芷根、CT22</div>
             <div class="track-effect">【驅動活水】絲柏促進財氣流動，歐白芷根帶來貴人與顯化力量，微量辛香能量點燃果斷的行動力。</div>
         </div>
         <div class="track-item">
             <div class="track-level">Base / 後調</div>
-            <div class="track-ingredients">岩蘭草精油、波旁岩蘭草精油、乳香精油</div>
+            <div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div>
             <div class="track-effect">【厚實定錨】聚財核心。雙重岩蘭草接住所有的資源化為底氣，乳香給予強大的氣場加持。</div>
         </div>
     </div>
 
     <div class="spec-box fade-in-element">
         <div class="spec-note legal-note">
-            <strong>✦ 法規全成分標示 (INCI / Full Ingredients)：</strong><br>
-            甜橙精油、佛手柑精油、絲柏精油、歐白芷根精油、岩蘭草精油、波旁岩蘭草精油、乳香精油、茉莉原精、玫瑰原精、香草萃取物、肉桂精油、丁香精油、羅勒精油。
+            <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
+            甜橙精油、佛手柑精油、絲柏精油、歐白芷根精油、岩蘭草精油、波旁岩蘭草精油、乳香精油，以及專屬能量複方 (茉莉原精、玫瑰原精、香草萃取物、中國肉桂、多香果、丁香花苞、錫蘭肉桂、神聖羅勒等)。
         </div>
         <div class="spec-note safety-warning">
             <strong>⛔ 安全提醒：</strong>本香氣含有促進流動之辛香料精油，能量較為強勁，<strong>孕婦與嬰幼兒請避免使用。</strong>
