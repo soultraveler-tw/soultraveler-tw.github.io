@@ -199,23 +199,11 @@
 </footer>
 
 <script>
-    const zone = document.getElementById('product-drop-zone');
-    const input = document.getElementById('product-input');
-    const img = document.getElementById('product-img');
-    zone.addEventListener('click', () => input.click());
-    const handleFile = (file) => {
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = (event) => { img.src = event.target.result; img.style.display = 'block'; zone.style.display = 'none'; };
-            reader.readAsDataURL(file);
-        }
-    };
-    input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
-
     const descriptions = {
         focus: "【專注與流動】破除焦慮與迷惘，帶來極度清醒的邏輯與果斷的行動力。",
         space: "【場域活水】淨化工作空間的停滯氛圍，為團隊與專案迎來活水與新契機。"
     };
+    
     function changeVariant(variant) {
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
