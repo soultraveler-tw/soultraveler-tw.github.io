@@ -5,18 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌲 靜息之森｜靈魂旅人 Soul Traveler</title>
     <style>
-        :root {
-            --bg-color: #050A14; 
-            --text-main: #EAEAEA;
-            --text-muted: #888899;
-            --gold-accent: #DCA750; 
-            --gold-hover: #F9DB78;
-            --border-color: #1a2a22; 
-            --nav-bg: rgba(5, 10, 20, 0.85);
-            --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-            --theme-color: #81C784;
-        }
-
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; --border-color: #1a2a22; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #81C784; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1f15 0%, #050A14 70%); }
 
@@ -44,7 +33,6 @@
         .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
         .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
         
-        /* ✦ 新增：能量主題 (靈魂層級) ✦ */
         .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
 
         .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
@@ -70,7 +58,7 @@
 
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
-        .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(129, 199, 132, 0.3); }
+        .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(129, 199, 132, 0.3); transition: opacity 0.3s ease; }
         .track-item { position: relative; margin-bottom: 40px; }
         .track-item::before { content: ''; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: var(--bg-darker); border: 2px solid var(--theme-color); border-radius: 50%; box-shadow: 0 0 10px var(--theme-color); }
         .track-level { font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
@@ -131,7 +119,7 @@
                 <button class="variant-btn" onclick="changeVariant('morning')">晨光版 (微光)</button>
                 <button class="variant-btn" onclick="changeVariant('night')">夜靜版 (深眠)</button>
             </div>
-            <p id="variant-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px;">
+            <p id="variant-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
                 【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。
             </p>
         </div>
@@ -156,10 +144,10 @@
 
 <section id="resonance" class="resonance-section fade-in-element">
     <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
-    <div class="track-container">
-        <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉</div><div class="track-effect">【卸下防備】帶來一絲溫暖的微光與梳理，溫和地讓緊繃的思緒開始鬆動，告訴自己「今天辛苦了」。</div></div>
-        <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，像是在密林中看見一片開闊的空地，允許自己在此刻大口呼吸。</div></div>
-        <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、岩蘭草</div><div class="track-effect">【大地托住】提供深邃且濕潤的木質底蘊，帶來被大地與樹根穩穩托住的絕對安全感。</div></div>
+    <div class="track-container" id="dynamic-tracks">
+        <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【卸下防備】果香與微透的陽光感，溫和地讓緊繃的思緒開始鬆動。</div></div>
+        <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，像是在密林中看見一片開闊的空地。</div></div>
+        <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【大地托住】提供深邃且濕潤的木質底蘊，帶來被大地穩穩托住的安全感。</div></div>
     </div>
 
     <div class="spec-box fade-in-element">
@@ -198,17 +186,48 @@
     };
     input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
 
-    const descriptions = {
-        classic: "【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。",
-        morning: "【溫和甦醒】穿透葉隙的第一道光。不強迫振作，而是讓光慢慢進來。",
-        night: "【深層休息】夜晚不是危險的，它只是在保護你。陪你慢慢降速，安心入睡。"
+    const variantsData = {
+        classic: {
+            desc: "【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【卸下防備】果香與微透的陽光感，溫和地讓緊繃的思緒開始鬆動。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，像是在密林中看見一片開闊的空地。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【大地托住】提供深邃且濕潤的木質底蘊，帶來被大地穩穩托住的安全感。</div></div>
+            `
+        },
+        morning: {
+            desc: "【晨光微曦】加倍注入 CT10 的陽光流動感。不強迫振作，而是讓光慢慢進來。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10 (加倍)、CT15</div><div class="track-effect">【溫和甦醒】加強版的精緻果園香氣，穿透葉隙帶來第一道光與快樂感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，讓清晨的空氣大口灌入。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【安穩奠基】不帶來壓迫感的木質底蘊，穩健踏出新的一天。</div></div>
+            `
+        },
+        night: {
+            desc: "【深層休息】加重根部力量與安撫神經。夜晚不是危險的，它只是在保護你。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【撫平白日】溫和掃除白天的疲憊與殘存雜訊。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉、高地薰衣草</div><div class="track-effect">【深度安撫】額外加入高地薰衣草，強化睡眠修復功能，讓森林化為安心的臥室。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草 (加倍)</div><div class="track-effect">【絕對安全】加重波旁岩蘭草的根部力量，像被大地深層擁抱一樣，安心入睡。</div></div>
+            `
+        }
     };
+
     function changeVariant(variant) {
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
         const descElement = document.getElementById('variant-desc');
+        const tracksElement = document.getElementById('dynamic-tracks');
+        
         descElement.style.opacity = 0;
-        setTimeout(() => { descElement.innerText = descriptions[variant]; descElement.style.opacity = 1; }, 200);
+        tracksElement.style.opacity = 0;
+        
+        setTimeout(() => { 
+            descElement.innerText = variantsData[variant].desc; 
+            tracksElement.innerHTML = variantsData[variant].tracks;
+            descElement.style.opacity = 1; 
+            tracksElement.style.opacity = 1;
+        }, 200);
     }
 
     document.addEventListener("DOMContentLoaded", function() {
