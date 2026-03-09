@@ -11,14 +11,8 @@
             --text-main: #EAEAEA;
             --text-muted: #888899;
             --gold-accent: #DCA750; 
-            --gold-hover: #F9DB78;
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-            
-            --color-fire: #E57373;  
-            --color-wood: #81C784;  
-            --color-wind: #64B5F6;  
-            --color-earth: #DCA750; 
         }
 
         html { scroll-behavior: smooth; }
@@ -48,9 +42,11 @@
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
         /* 頁面頭部 */
-        .page-header { text-align: center; padding: 180px 20px 80px 20px; position: relative; z-index: 1;}
-        .ph-title { font-size: 2.2em; color: var(--gold-accent); letter-spacing: 8px; font-weight: 300; margin-bottom: 20px;}
-        .ph-subtitle { font-size: 1.15em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; line-height: 1.8; opacity: 0.9;}
+        .page-header { text-align: center; padding: 160px 20px 80px 20px; position: relative; z-index: 1;}
+        .ph-title { font-size: 2.2em; color: var(--gold-accent); letter-spacing: 8px; font-weight: 300; margin-bottom: 40px;}
+        
+        /* ✦ 新增：開頭說明引言 ✦ */
+        .ph-subtitle { font-size: 1.15em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; line-height: 2.2; opacity: 0.9;}
 
         /* 四種狀態網格區 */
         .states-container { max-width: 1000px; margin: 0 auto; padding: 0 20px 100px 20px; position: relative; z-index: 1;}
@@ -69,7 +65,7 @@
         .sc-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;}
         .sc-tag { font-size: 0.85em; color: var(--text-muted); border: 1px solid rgba(136, 136, 153, 0.3); padding: 4px 15px; border-radius: 20px; letter-spacing: 2px; font-weight: 300;}
 
-        /* 工藝堅持宣告 (你剛剛選定的 C 方案，放在這裡！) */
+        /* 工藝堅持宣告 */
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; margin: 80px auto 40px auto; max-width: 1000px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); position: relative; z-index: 1;}
 
         /* Footer */
@@ -95,8 +91,17 @@
 <div class="cosmic-dust"></div>
 
 <header class="page-header fade-in-element">
-    <h1 class="ph-title">四種生命狀態</h1>
-    <p class="ph-subtitle">人的生命其實並不需要太多方向。<br>大多時候，我們只是在幾種狀態之間循環。</p>
+    <h1 class="ph-title">四種內在狀態</h1>
+    
+    <p class="ph-subtitle">
+        人的一生，<br>
+        會不斷在不同狀態之間流動。<br><br>
+        有時需要清晰，<br>
+        有時需要安定，<br><br>
+        有時重新點燃，<br>
+        有時允許自己休息。<br><br>
+        <span style="color: var(--gold-accent);">Soul Traveler 的香氣，<br>就是為這四種狀態而誕生。</span>
+    </p>
 </header>
 
 <div class="states-container">
@@ -159,7 +164,6 @@
         <a href="philosophy.html">Philosophy</a>
         <a href="state.html">States</a>
         <a href="about.html">About</a>
-        <a href="#">Instagram</a>
     </div>
     <div class="footer-copyright">
         &copy; 2026 Soul Traveler. All rights reserved.
