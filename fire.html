@@ -29,8 +29,8 @@
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
-        .product-hero { display: flex; min-height: 100vh; padding: 100px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: center; }
-        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px;} }
+        .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
+        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center;} }
 
         .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(229, 115, 115, 0.2); box-shadow: 0 0 40px rgba(229, 115, 115, 0.05); }
         .drop-zone { border: 1px dashed var(--theme-color); color: var(--theme-color); border-radius: 50%; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.85em; letter-spacing: 1px; line-height: 1.8;}
