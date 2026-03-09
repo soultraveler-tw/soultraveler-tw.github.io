@@ -24,7 +24,7 @@
             background-attachment: fixed;
         }
 
-        /* 導覽列 */
+        /* 導覽列 (已更新為最終版結構) */
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
         .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
@@ -45,7 +45,6 @@
         .page-header { text-align: center; padding: 160px 20px 80px 20px; position: relative; z-index: 1;}
         .ph-title { font-size: 2.2em; color: var(--gold-accent); letter-spacing: 8px; font-weight: 300; margin-bottom: 40px;}
         
-        /* ✦ 新增：開頭說明引言 ✦ */
         .ph-subtitle { font-size: 1.15em; color: var(--text-main); letter-spacing: 3px; font-weight: 300; line-height: 2.2; opacity: 0.9;}
 
         /* 四種狀態網格區 */
@@ -82,9 +81,9 @@
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="state.html" class="active">四種狀態</a>
+        <a href="index.html">首頁</a>
         <a href="philosophy.html">品牌哲學</a>
-        <a href="about.html">關於品牌</a>
+        <a href="state.html" class="active">狀態</a>
     </div>
 </nav>
 
@@ -124,7 +123,7 @@
             <div class="sc-quote">在喧囂之中，建立一個屬於自己的安靜空間。</div>
             <div class="sc-tags">
                 <span class="sc-tag">放鬆</span>
-                <span class="sc-tag">穩定情緒</span>
+                <span class="sc-tag">回到自己的中心</span>
                 <span class="sc-tag">冥想</span>
             </div>
         </a>
@@ -146,7 +145,7 @@
             <div class="sc-quote">有時候，身體只需要一片森林。</div>
             <div class="sc-tags">
                 <span class="sc-tag">放鬆</span>
-                <span class="sc-tag">休息</span>
+                <span class="sc-tag">深層休息</span>
                 <span class="sc-tag">夜晚修復</span>
             </div>
         </a>
@@ -161,9 +160,9 @@
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
+        <a href="index.html">Home</a>
         <a href="philosophy.html">Philosophy</a>
         <a href="state.html">States</a>
-        <a href="about.html">About</a>
     </div>
     <div class="footer-copyright">
         &copy; 2026 Soul Traveler. All rights reserved.

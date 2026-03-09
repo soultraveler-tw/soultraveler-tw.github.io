@@ -22,6 +22,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-darker); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
 
+        /* 導覽列 (已更新為最終版結構) */
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.1); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s ease-in-out; }
         .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
@@ -48,7 +49,6 @@
         .hr-2 { width: 60%; height: 60%; border-style: solid; border-color: rgba(220,167,80,0.1); animation-direction: reverse;}
         .hero-logo { width: 80px; filter: drop-shadow(0 0 15px rgba(220,167,80,0.4)); z-index: 2;}
 
-        /* ✦ 新增：為什麼做這個品牌 ✦ */
         .sec-origin { padding: 120px 20px; background: #080D1A; text-align: center; border-bottom: 1px dashed rgba(220,167,80,0.15);}
 
         .sec-worldview { padding: 120px 10%; background: linear-gradient(to bottom, #050A14 0%, #081B26 100%); display: flex; align-items: center; gap: 80px;}
@@ -122,6 +122,7 @@
 
         .spec-box { padding: 0 20px; text-align: center; background: #0A1C14;}
         .spec-note { display: inline-block; text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px 40px; border-radius: 8px; margin: 20px auto 60px auto; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); }
+        
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508;}
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
@@ -136,9 +137,9 @@
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="state.html">四種狀態</a>
+        <a href="index.html">首頁</a>
         <a href="philosophy.html" class="active">品牌哲學</a>
-        <a href="about.html">關於品牌</a>
+        <a href="state.html">狀態</a>
     </div>
 </nav>
 
@@ -331,9 +332,9 @@
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
+        <a href="index.html">Home</a>
         <a href="philosophy.html">Philosophy</a>
         <a href="state.html">States</a>
-        <a href="about.html">About</a>
     </div>
     <div class="footer-copyright">
         &copy; 2026 Soul Traveler. All rights reserved.
