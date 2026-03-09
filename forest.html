@@ -15,7 +15,6 @@
         .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
         .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
         .smart-nav .nav-links a:hover { color: var(--gold-accent); }
-        .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
 
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
@@ -32,7 +31,6 @@
         .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
         .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
         .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
-        
         .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
 
         .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
@@ -69,6 +67,7 @@
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
         .safety-warning { border-color: rgba(229, 115, 115, 0.2); background: rgba(229, 115, 115, 0.02); }
         .safety-warning strong { color: #E57373; font-weight: 300;}
+        .legal-note { border-color: rgba(129, 199, 132, 0.3); background: rgba(129, 199, 132, 0.05); color: #EAEAEA;}
 
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
@@ -83,7 +82,7 @@
     <div class="nav-links">
         <a href="state.html">四種狀態</a>
         <a href="philosophy.html">品牌哲學</a>
-        <a href="#" class="cta-btn">🛒 購物車</a>
+        <a href="about.html">關於品牌</a>
     </div>
 </nav>
 
@@ -151,6 +150,10 @@
     </div>
 
     <div class="spec-box fade-in-element">
+        <div class="spec-note legal-note">
+            <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
+            甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、高地薰衣草精油、荷荷芭油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精。
+        </div>
         <div class="spec-note">
             ✦ 迷霧儀式：輕晃瓶身，喚醒能量。朝空間高處噴灑，讓香氣如微雨般落下，隨後深呼吸 3 次，感受氣味接住你的重量。
         </div>
@@ -198,7 +201,7 @@
         morning: {
             desc: "【晨光微曦】加倍注入 CT10 的陽光流動感。不強迫振作，而是讓光慢慢進來。",
             tracks: `
-                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10 (加倍)、CT15</div><div class="track-effect">【溫和甦醒】加強版的精緻果園香氣，穿透葉隙帶來第一道光與快樂感。</div></div>
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【溫和甦醒】加強版的精緻果園香氣，穿透葉隙帶來第一道光與快樂感。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，讓清晨的空氣大口灌入。</div></div>
                 <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【安穩奠基】不帶來壓迫感的木質底蘊，穩健踏出新的一天。</div></div>
             `
@@ -208,7 +211,7 @@
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【撫平白日】溫和掃除白天的疲憊與殘存雜訊。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉、高地薰衣草</div><div class="track-effect">【深度安撫】額外加入高地薰衣草，強化睡眠修復功能，讓森林化為安心的臥室。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草 (加倍)</div><div class="track-effect">【絕對安全】加重波旁岩蘭草的根部力量，像被大地深層擁抱一樣，安心入睡。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【絕對安全】加重波旁岩蘭草的根部力量，像被大地深層擁抱一樣，安心入睡。</div></div>
             `
         }
     };

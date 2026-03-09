@@ -10,12 +10,10 @@
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1a33 0%, #050A14 70%); }
 
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
-        .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
         .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
         .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
         .smart-nav .nav-links a:hover { color: var(--gold-accent); }
-        .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
 
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
@@ -32,7 +30,6 @@
         .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
         .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
         .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
-        
         .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
 
         .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
@@ -71,6 +68,7 @@
         .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
         .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
         .safety-warning { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #90CAF9;}
+        .legal-note { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #EAEAEA;}
 
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
@@ -117,8 +115,8 @@
         <div class="variant-group">
             <div class="variant-title">選擇專屬配方版本：</div>
             <div class="variants">
-                <button class="variant-btn active" onclick="changeVariant('standard')">標準穩心版 (無寵物)</button>
-                <button class="variant-btn" onclick="changeVariant('pet')">毛孩安心版 (有寵物)</button>
+                <button class="variant-btn active" onclick="changeVariant('standard')">標準穩心版</button>
+                <button class="variant-btn" onclick="changeVariant('pet')">毛孩安心版</button>
                 <button class="variant-btn" onclick="changeVariant('baby')">寶寶安睡版</button>
                 <button class="variant-btn" onclick="changeVariant('pregnant')">孕媽咪支撐版</button>
             </div>
@@ -166,6 +164,10 @@
         </div>
 
         <div class="spec-box fade-in-element">
+            <div class="spec-note legal-note">
+            <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
+            佛手柑精油、苦橙葉精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油、波旁天竺葵精油、芫荽種子精油、紅橘精油、橙花精油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。
+        </div>
             <div class="spec-note safety-warning" id="dynamic-safety">
                 ✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。
             </div>
@@ -224,7 +226,7 @@
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙</div><div class="track-effect">【快樂撫慰】如同媽媽的微笑般，以溫暖快樂的甜美果香，大幅提升寶寶的接受度與安心感。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木</div><div class="track-effect">【神經安撫】針對夜驚與鬧脾氣，給予極度溫柔的撫慰與支撐。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">靜域之心_狻猊 (原複方_進化版) 50%</div><div class="track-effect">【深層放鬆】保留 50% 的核心定靜基調，讓整體氣味宛如母親堅定而溫暖的懷抱。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">靜域之心原複方 (輕量版)</div><div class="track-effect">【深層放鬆】保留核心定靜基調，讓整體氣味宛如母親堅定而溫暖的懷抱。</div></div>
             `
         },
         pregnant: {
@@ -232,8 +234,8 @@
             safety: "✦ 孕期支撐：配方溫和清爽，給予腰部支撐感，讓呼吸變深。建議懷孕滿 3 個月後可安心使用。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">紅橘、橙花、苦橙葉</div><div class="track-effect">【情緒救星】以公認最安全的紅橘緩解不適，搭配橙花的強大安撫力，驅散孕期焦慮。</div></div>
-                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">靜域之心_狻猊 (原複方_進化版) 50%</div><div class="track-effect">【穩固重心】讓呼吸變深沉，以大地般的穩固力量，承接孕期所有的疲憊與起伏。</div></div>
-                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">無負擔支撐</div><div class="track-effect">【輕盈安放】剔除厚重成分，留下最輕盈但堅實的後盾，給予腰部與情緒雙重支撐感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">靜域之心原複方 (支撐版)</div><div class="track-effect">【穩固重心】讓呼吸變深沉，以大地般的穩固力量，承接孕期所有的疲憊與起伏。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">無負擔木質調</div><div class="track-effect">【輕盈安放】剔除厚重成分，留下最輕盈但堅實的後盾，給予腰部與情緒雙重支撐感。</div></div>
             `
         }
     };
