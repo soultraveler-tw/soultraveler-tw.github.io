@@ -13,44 +13,95 @@
             --gold-accent: #DCA750; 
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+            
+            --c-clear: #DCA750;  /* 清晰 */
+            --c-calm: #64B5F6;   /* 安定 */
+            --c-fire: #E57373;   /* 復燃 */
+            --c-rest: #81C784;   /* 休息 */
         }
 
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-darker); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 30%, #162a52 0%, #050A14 80%); height: 100vh; display: flex; flex-direction: column;}
+        body { background-color: var(--bg-darker); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 30%, #162a52 0%, #050A14 80%); }
 
-        /* 導覽列 */
+        /* ⑤ 導覽列 (最終版) */
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.1); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
         .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
         .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
         .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
         .smart-nav .nav-links a:hover { color: var(--gold-accent); }
+        .smart-nav .nav-links a.active { color: var(--gold-accent); border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; }
         @media (max-width: 768px) { .smart-nav .nav-links a { display: none; } }
 
-        .fade-in-element { opacity: 0; transform: translateY(30px); transition: opacity 1.5s var(--ease-out-cubic), transform 1.5s var(--ease-out-cubic); }
-        .fade-in-element.visible { opacity: 1; transform: translateY(0); }
-
-        /* 首頁核心視覺區 */
-        .hero-section { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; z-index: 1;}
-        .hero-title { font-size: 3em; color: var(--gold-accent); letter-spacing: 12px; font-weight: 300; margin-bottom: 40px; text-transform: uppercase;}
-        
-        /* ✦ 新增：品牌一句話 ✦ */
-        .hero-quote { font-size: 1.3em; color: var(--text-main); line-height: 2.2; letter-spacing: 4px; font-weight: 300; margin-bottom: 60px; opacity: 0.9;}
-        
-        .btn-explore { padding: 15px 40px; border: 1px solid rgba(220,167,80,0.5); border-radius: 30px; color: var(--gold-accent); font-size: 1em; letter-spacing: 4px; text-decoration: none; transition: all 0.5s ease; background: rgba(220,167,80,0.05); font-weight: 300; text-transform: uppercase;}
-        .btn-explore:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 5px 25px rgba(220,167,80,0.4); transform: translateY(-3px);}
-
         /* 宇宙塵背景 */
-        .cosmic-dust { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; background-image: radial-gradient(1.5px 1.5px at 20px 30px, rgba(220,167,80,0.3), rgba(0,0,0,0)), radial-gradient(1px 1px at 80px 70px, rgba(255,255,255,0.2), rgba(0,0,0,0)); background-size: 200px 200px; animation: drift 60s linear infinite; opacity: 0.8; }
+        .cosmic-dust { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; background-image: radial-gradient(1.5px 1.5px at 20px 30px, rgba(220,167,80,0.3), rgba(0,0,0,0)), radial-gradient(1px 1px at 80px 70px, rgba(255,255,255,0.2), rgba(0,0,0,0)); background-size: 200px 200px; animation: drift 60s linear infinite; opacity: 0.8; }
         @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-200px); } }
 
-        /* 工藝宣告與 Footer */
-        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; max-width: 800px; margin: 0 auto 40px auto; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); position: relative; z-index: 1;}
-        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; position: relative; z-index: 1;}
-        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;}
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        /* 滾動淡入 */
+        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
+        .fade-in-element.visible { opacity: 1; transform: translateY(0); }
+
+        /* =====================================
+           ① Hero (首頁第一屏)
+           ===================================== */
+        .sec-hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; padding: 0 20px;}
+        .hero-title { font-size: 3.5em; color: var(--gold-accent); letter-spacing: 15px; font-weight: 300; margin: 0 0 50px 0; text-transform: uppercase;}
+        .hero-quote { font-size: 1.3em; color: var(--text-main); line-height: 2.2; letter-spacing: 5px; font-weight: 300; margin: 0 0 20px 0;}
+        .hero-sub { font-size: 0.85em; color: var(--text-muted); letter-spacing: 4px; font-weight: 300; text-transform: uppercase;}
+
+        /* =====================================
+           ② 品牌概念
+           ===================================== */
+        .sec-concept { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; position: relative; z-index: 1; background: linear-gradient(to bottom, transparent 0%, rgba(5,10,20,0.8) 50%, transparent 100%);}
+        .concept-text { font-size: 1.2em; color: var(--text-main); line-height: 2.4; letter-spacing: 3px; font-weight: 300; margin-bottom: 50px; opacity: 0.9;}
+        .concept-highlight { font-size: 1.3em; color: var(--gold-accent); line-height: 2.4; letter-spacing: 3px; font-weight: 300;}
+
+        /* =====================================
+           ③ 四個狀態 (品牌核心)
+           ===================================== */
+        .sec-states { padding: 150px 20px; position: relative; z-index: 1; text-align: center; background: #030508;}
+        .section-title { font-size: 2em; color: var(--text-main); letter-spacing: 8px; font-weight: 300; margin-bottom: 80px;}
+        
+        .states-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        @media (max-width: 900px) { .states-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (max-width: 500px) { .states-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+        .state-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 60px 30px; text-decoration: none; transition: all 0.5s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center;}
+        
+        .state-card h3 { font-size: 1.8em; color: var(--text-main); letter-spacing: 6px; font-weight: 300; margin: 0 0 15px 0; transition: color 0.4s;}
+        .state-card p { font-size: 1em; color: var(--text-muted); letter-spacing: 3px; font-weight: 300; margin: 0 0 40px 0; transition: color 0.4s;}
+        .state-link { font-size: 0.85em; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid transparent; padding-bottom: 5px; transition: all 0.4s;}
+
+        /* 懸停效果 (顏色對應) */
+        .card-clear:hover { border-color: rgba(220, 167, 80, 0.4); background: rgba(220, 167, 80, 0.03); transform: translateY(-5px);}
+        .card-clear:hover h3, .card-clear:hover .state-link { color: var(--c-clear); border-color: var(--c-clear);}
+        
+        .card-calm:hover { border-color: rgba(100, 181, 246, 0.4); background: rgba(100, 181, 246, 0.03); transform: translateY(-5px);}
+        .card-calm:hover h3, .card-calm:hover .state-link { color: var(--c-calm); border-color: var(--c-calm);}
+
+        .card-fire:hover { border-color: rgba(229, 115, 115, 0.4); background: rgba(229, 115, 115, 0.03); transform: translateY(-5px);}
+        .card-fire:hover h3, .card-fire:hover .state-link { color: var(--c-fire); border-color: var(--c-fire);}
+
+        .card-rest:hover { border-color: rgba(129, 199, 132, 0.4); background: rgba(129, 199, 132, 0.03); transform: translateY(-5px);}
+        .card-rest:hover h3, .card-rest:hover .state-link { color: var(--c-rest); border-color: var(--c-rest);}
+
+        /* =====================================
+           ④ 進入狀態宇宙 (探索入口)
+           ===================================== */
+        .sec-universe { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; position: relative; z-index: 1;}
+        .universe-text { font-size: 1.2em; color: var(--text-main); line-height: 2.4; letter-spacing: 3px; font-weight: 300; margin-bottom: 40px; opacity: 0.9;}
+        
+        .btn-cta { display: inline-block; padding: 18px 50px; border: 1px solid var(--gold-accent); border-radius: 40px; color: var(--gold-accent); font-size: 1.1em; letter-spacing: 6px; text-decoration: none; transition: all 0.5s ease; background: rgba(220,167,80,0.05); font-weight: 300; margin-top: 20px;}
+        .btn-cta:hover { background: var(--gold-accent); color: var(--bg-darker); box-shadow: 0 5px 30px rgba(220,167,80,0.3); transform: translateY(-3px);}
+
+        /* 底部 Footer */
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; position: relative; z-index: 1;}
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
         .footer-links a:hover { color: var(--gold-accent); }
         .footer-copyright { font-size: 0.75em; color: rgba(136, 136, 153, 0.5); letter-spacing: 2px;}
+
     </style>
 </head>
 <body>
@@ -58,34 +109,108 @@
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
-        <a href="state.html">四種狀態</a>
+        <a href="index.html" class="active">首頁</a>
         <a href="philosophy.html">品牌哲學</a>
-        <a href="about.html">關於品牌</a>
+        <a href="state.html">狀態</a>
     </div>
 </nav>
 
 <div class="cosmic-dust"></div>
 
-<section class="hero-section">
-    <h1 class="hero-title fade-in-element">Soul Traveler</h1>
-    
+<section class="sec-hero">
+    <h1 class="hero-title fade-in-element">SOUL TRAVELER</h1>
     <p class="hero-quote fade-in-element" style="transition-delay: 0.3s;">
         香氣不是改變命運，<br>
         而是陪伴你回到自己的狀態。
     </p>
-
-    <a href="state.html" class="btn-explore fade-in-element" style="transition-delay: 0.6s;">四種內在狀態</a>
+    <p class="hero-sub fade-in-element" style="transition-delay: 0.6s;">
+        A scent companion for inner states.
+    </p>
 </section>
 
-<div class="spec-note fade-in-element" style="transition-delay: 0.9s;">
-    ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
-</div>
+<section class="sec-concept">
+    <div class="fade-in-element">
+        <p class="concept-text">
+            人的一生，<br>
+            會在不同的狀態之間流動。
+        </p>
+        <p class="concept-text">
+            有時需要清晰，<br>
+            有時需要安定。
+        </p>
+        <p class="concept-text">
+            有時重新點燃內在的火，<br>
+            有時允許自己停下來休息。
+        </p>
+        <p class="concept-highlight" style="margin-top: 80px;">
+            Soul Traveler 的香氣，<br>
+            不是為了替你完成任何事情，<br>
+            而是陪伴你在不同時刻，<br>
+            重新回到自己。
+        </p>
+    </div>
+</section>
 
-<footer class="site-footer fade-in-element" style="transition-delay: 1.2s;">
+<section class="sec-states">
+    <h2 class="section-title fade-in-element">四種內在狀態</h2>
+    
+    <div class="states-grid">
+        <a href="wealth.html" class="state-card card-clear fade-in-element">
+            <h3>清晰</h3>
+            <p>聚財之眼</p>
+            <div><span class="state-link">探索香氣</span></div>
+        </a>
+
+        <a href="calm.html" class="state-card card-calm fade-in-element" style="transition-delay: 0.1s;">
+            <h3>安定</h3>
+            <p>靜域之心</p>
+            <div><span class="state-link">探索香氣</span></div>
+        </a>
+
+        <a href="fire.html" class="state-card card-fire fade-in-element" style="transition-delay: 0.2s;">
+            <h3>復燃</h3>
+            <p>回火之心</p>
+            <div><span class="state-link">探索香氣</span></div>
+        </a>
+
+        <a href="forest.html" class="state-card card-rest fade-in-element" style="transition-delay: 0.3s;">
+            <h3>休息</h3>
+            <p>靜息之森</p>
+            <div><span class="state-link">探索香氣</span></div>
+        </a>
+    </div>
+</section>
+
+<section class="sec-universe">
+    <div class="fade-in-element">
+        <p class="universe-text">
+            每個人，<br>
+            都會在不同的生命階段，<br>
+            需要不同的狀態。
+        </p>
+        <p class="universe-text">
+            有時需要看清方向，<br>
+            有時需要讓心安靜。
+        </p>
+        <p class="universe-text">
+            有時重新燃起生命的火，<br>
+            有時只是單純地休息。
+        </p>
+        <p class="universe-text" style="color: var(--gold-accent); margin-top: 60px;">
+            探索四種狀態，<br>
+            找到現在的自己。
+        </p>
+        
+        <a href="state.html" class="btn-cta">進入狀態宇宙</a>
+    </div>
+</section>
+
+<footer class="site-footer fade-in-element">
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
+        <a href="index.html">Home</a>
         <a href="philosophy.html">Philosophy</a>
         <a href="state.html">States</a>
-        <a href="about.html">About</a>
     </div>
     <div class="footer-copyright">
         &copy; 2026 Soul Traveler. All rights reserved.
@@ -93,9 +218,29 @@
 </footer>
 
 <script>
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('smart-nav');
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (Math.abs(lastScrollTop - currentScroll) <= 5) return;
+        if (currentScroll > lastScrollTop && currentScroll > 70) {
+            navbar.classList.add('nav-up');
+        } else {
+            navbar.classList.remove('nav-up');
+        }
+        lastScrollTop = currentScroll;
+    });
+
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.15 }); 
+        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
     });
 </script>
+
 </body>
 </html>
