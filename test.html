@@ -22,7 +22,11 @@
         .option-btn { display: block; width: 100%; padding: 18px; margin: 15px 0; background: transparent; border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: all 0.3s; font-size: 1em; letter-spacing: 1px; border-radius: 8px; }
         .option-btn:hover { border-color: var(--gold-accent); background: rgba(220,167,80,0.05); }
 
-        /* 升級後的香氛卡視覺 (塔羅牌感) */
+        /* 上一題按鈕樣式 */
+        .back-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.85em; letter-spacing: 2px; cursor: pointer; margin-top: 20px; transition: color 0.3s; padding: 10px; font-family: inherit;}
+        .back-btn:hover { color: var(--gold-accent); }
+
+        /* 塔羅香氛卡視覺 */
         #result-area { display: none; margin-top: 50px; }
         .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); position: relative;}
         .card-compass { font-size: 0.75em; letter-spacing: 5px; margin-bottom: 30px; color: var(--gold-accent); opacity: 0.7; }
@@ -54,6 +58,7 @@
     <div id="quiz-box">
         <div class="question" id="question-text">載入中...</div>
         <div id="options-area"></div>
+        <button id="back-btn" class="back-btn" onclick="goBack()" style="display: none;">← 回上一題</button>
     </div>
 
     <div id="result-area"></div>
@@ -68,34 +73,68 @@
         { q: "結束測試後，你最想做的是：", options: ["回歸土地", "重新出發", "深度休憩", "迎接挑戰", "創造價值", "安穩入睡"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] }
     ];
 
-    let scores = { forest_c: 0, forest_m: 0, forest_n: 0, fire: 0, wealth: 0, calm: 0 };
+    // 升級大腦：改用陣列來記憶每一題的答案，方便隨時反悔
+    let userAnswers = []; 
     let currentQ = 0;
 
     function renderQuestion() {
         if(currentQ >= questions.length) return showResult();
+        
+        // 更新進度條
         document.getElementById("bar").style.width = (currentQ / questions.length) * 100 + "%";
+        
+        // 渲染題目
         document.getElementById('question-text').innerText = questions[currentQ].q;
+        
+        // 渲染選項
         const area = document.getElementById('options-area');
         area.innerHTML = '';
         questions[currentQ].options.forEach((opt, idx) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt;
-            btn.onclick = () => { scores[questions[currentQ].map[idx]]++; currentQ++; renderQuestion(); };
+            btn.onclick = () => { 
+                // 將答案存入歷史紀錄，並進入下一題
+                userAnswers[currentQ] = questions[currentQ].map[idx]; 
+                currentQ++; 
+                renderQuestion(); 
+            };
             area.appendChild(btn);
         });
+
+        // 判斷是否要顯示「回上一題」按鈕 (第一題隱藏，第二題開始顯示)
+        const backBtn = document.getElementById('back-btn');
+        if (currentQ > 0) {
+            backBtn.style.display = 'inline-block';
+        } else {
+            backBtn.style.display = 'none';
+        }
+    }
+
+    // 新增：回上一題的功能
+    function goBack() {
+        if (currentQ > 0) {
+            currentQ--; // 題號倒退
+            renderQuestion(); // 重新渲染畫面
+        }
     }
 
     function showResult() {
-        // 進度條滿格
+        // 進度滿格
         document.getElementById("bar").style.width = "100%";
         document.getElementById('quiz-box').style.display = 'none';
         
+        // 從歷史紀錄中結算分數
+        let scores = { forest_c: 0, forest_m: 0, forest_n: 0, fire: 0, wealth: 0, calm: 0 };
+        userAnswers.forEach(ans => {
+            if(ans) scores[ans]++;
+        });
+
+        // 決選贏家
         let maxScore = Math.max(...Object.values(scores));
         let winners = Object.keys(scores).filter(key => scores[key] === maxScore);
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
-        // 將「版」拿掉，替換為更具靈性與儀式感的守護字眼
         const mapping = {
             forest_c: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", sub: "經典安放", link: "forest.html?v=classic" },
             forest_m: { state: "FOREST", desc: "Your soul is ready to awaken.<br>This scent brings light and clarity.", title: "靜息之森", sub: "晨光微曦", link: "forest.html?v=morning" },
@@ -107,7 +146,6 @@
 
         const res = mapping[winner];
         
-        // 加入 ✧ SOUL COMPASS ✧ 塔羅牌視覺
         document.getElementById('result-area').innerHTML = `
             <div class="scent-card">
                 <div class="card-compass">✧ SOUL COMPASS ✧</div>
