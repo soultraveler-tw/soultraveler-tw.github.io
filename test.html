@@ -32,7 +32,8 @@
         { q: "最近的你比較像：", options: ["需要安靜下來", "想重新點燃動力", "想回到自然與自己", "想打開機會與流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
         { q: "如果有一種空間，你會選：", options: ["安靜的房間", "充滿火光的地方", "森林", "充滿機會的城市"], map: ['calm', 'fire', 'forest', 'wealth'] },
         { q: "你現在最需要的是：", options: ["平靜", "力量", "安定", "流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
-        { q: "如果是一種元素：", options: ["風", "火", "木", "金"], map: ['calm', 'fire', 'forest', 'wealth'] }
+        { q: "如果是一種元素：", options: ["風", "火", "木", "金"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "結束漫長的一天，你最想：", options: ["窩在沙發發呆，什麼都不想", "運動或做點熱血的事釋放壓力", "聽著音樂閱讀或做點伸展", "翻開筆記，規劃明天的行程"], map: ['calm', 'fire', 'forest', 'wealth'] }
     ];
 
     let scores = { calm: 0, fire: 0, forest: 0, wealth: 0 };
@@ -54,13 +55,22 @@
 
     function showResult() {
         document.getElementById('quiz-box').style.display = 'none';
-        const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        
+        // 為了防止電腦偏心，我們先把分數轉成陣列並隨機打亂平手者的順序
+        let resultKeys = Object.keys(scores);
+        let maxScore = Math.max(...Object.values(scores));
+        let winners = resultKeys.filter(key => scores[key] === maxScore);
+        
+        // 如果還是平手(例如第5題剛好跳過)，隨機選一個
+        const winner = winners[Math.floor(Math.random() * winners.length)];
+
         const mapping = {
             calm: { title: "靜域之心", desc: "你渴望平靜與內在邊界，需要回到無波的狀態。", link: "calm.html" },
             fire: { title: "回火之心", desc: "你感到耗竭，需要一股溫暖的力量帶你重燃熱情。", link: "fire.html" },
             forest: { title: "靜息之森", desc: "你需要大地連結，找回扎根的安定感。", link: "forest.html" },
             wealth: { title: "聚財之眼", desc: "你需要清晰的邏輯與果斷，將資源匯聚。", link: "wealth.html" }
         };
+        
         document.getElementById('result-area').style.display = 'block';
         document.getElementById('result-title').innerText = "你的靈魂狀態：" + mapping[winner].title;
         document.getElementById('result-desc').innerText = mapping[winner].desc;
