@@ -2,29 +2,57 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靈魂狀態測試｜Soul Traveler</title>
     <style>
-        /* 沿用你現有的 :root 與 body 設定 */
-        :root { --bg-color: #050A14; --text-main: #EAEAEA; --gold-accent: #DCA750; --theme-color: #DCA750; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 100px 20px; }
-        .quiz-container { max-width: 600px; width: 100%; text-align: center; }
-        .question { margin-bottom: 40px; }
-        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: 0.3s; border-radius: 8px;}
-        .option-btn:hover { background: rgba(220,167,80,0.1); border-color: var(--gold-accent); }
-        #result-area { display: none; padding: 40px; border: 1px solid var(--gold-accent); border-radius: 20px; }
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; --theme-color: #DCA750; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        /* 導覽列 */
+        .smart-nav { width: 100%; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; border-bottom: 1px solid rgba(220, 167, 80, 0.15); }
+        .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; }
+
+        /* 測試容器 */
+        .quiz-container { max-width: 500px; width: 90%; margin-top: 100px; text-align: center; }
+        
+        /* 進度條 */
+        #progress-bg { width: 100%; height: 2px; background: rgba(255,255,255,0.1); margin-bottom: 40px; }
+        #bar { width: 0%; height: 100%; background: var(--gold-accent); transition: width 0.5s ease; }
+
+        .question { font-size: 1.5em; font-weight: 300; letter-spacing: 2px; margin-bottom: 40px; }
+        .option-btn { display: block; width: 100%; padding: 18px; margin: 15px 0; background: transparent; border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: all 0.3s; font-size: 1em; letter-spacing: 1px; border-radius: 8px; }
+        .option-btn:hover { border-color: var(--gold-accent); background: rgba(220,167,80,0.05); }
+
+        /* 結果卡片 */
+        #result-area { display: none; margin-top: 50px; }
+        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 300px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
+        .card-title { font-size: 1.8em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 30px; }
+        .card-content { font-size: 1em; line-height: 2.2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
+        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; }
     </style>
 </head>
 <body>
 
-<div class="quiz-container" id="quiz-box">
-    <h1 id="question-text">載入中...</h1>
-    <div id="options-area"></div>
-</div>
+<nav class="smart-nav">
+    <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
+    <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="test.html">Find Your State</a>
+        <a href="state.html">狀態</a>
+    </div>
+</nav>
 
-<div id="result-area" class="quiz-container">
-    <h2 id="result-title"></h2>
-    <p id="result-desc"></p>
-    <a id="result-link" href="#" style="color: var(--gold-accent); text-decoration: none; font-size: 1.2em;">探索此香氣 →</a>
+<div class="quiz-container">
+    <div id="progress-bg"><div id="bar"></div></div>
+    
+    <div id="quiz-box">
+        <div class="question" id="question-text">載入中...</div>
+        <div id="options-area"></div>
+    </div>
+
+    <div id="result-area"></div>
 </div>
 
 <script>
@@ -41,6 +69,10 @@
 
     function renderQuestion() {
         if(currentQ >= questions.length) return showResult();
+        
+        // 更新進度條
+        document.getElementById("bar").style.width = (currentQ / questions.length) * 100 + "%";
+        
         document.getElementById('question-text').innerText = questions[currentQ].q;
         const area = document.getElementById('options-area');
         area.innerHTML = '';
@@ -54,27 +86,36 @@
     }
 
     function showResult() {
+        // 結果頁進度滿格
+        document.getElementById("bar").style.width = "100%";
         document.getElementById('quiz-box').style.display = 'none';
         
-        // 為了防止電腦偏心，我們先把分數轉成陣列並隨機打亂平手者的順序
-        let resultKeys = Object.keys(scores);
+        // 決選邏輯
         let maxScore = Math.max(...Object.values(scores));
-        let winners = resultKeys.filter(key => scores[key] === maxScore);
-        
-        // 如果還是平手(例如第5題剛好跳過)，隨機選一個
+        let winners = Object.keys(scores).filter(key => scores[key] === maxScore);
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
         const mapping = {
-            calm: { title: "靜域之心", desc: "你渴望平靜與內在邊界，需要回到無波的狀態。", link: "calm.html" },
-            fire: { title: "回火之心", desc: "你感到耗竭，需要一股溫暖的力量帶你重燃熱情。", link: "fire.html" },
-            forest: { title: "靜息之森", desc: "你需要大地連結，找回扎根的安定感。", link: "forest.html" },
-            wealth: { title: "聚財之眼", desc: "你需要清晰的邏輯與果斷，將資源匯聚。", link: "wealth.html" }
+            calm: { state: "CALM", desc: "Your inner world is asking for quiet.<br>This scent supports stillness and clarity.", title: "靜域之心", link: "calm.html" },
+            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", link: "fire.html" },
+            forest: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", link: "forest.html" },
+            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", link: "wealth.html" }
         };
-        
+
+        const res = mapping[winner];
+        document.getElementById('result-area').innerHTML = `
+            <div class="scent-card">
+                <div style="font-size: 0.7em; letter-spacing: 4px; margin-bottom: 20px; opacity: 0.6;">SOUL STATE</div>
+                <div class="card-title">${res.state}</div>
+                <div class="card-content">${res.desc}</div>
+            </div>
+            <div style="margin-top: 40px;">
+                <div style="color: var(--text-muted); font-size: 0.8em; letter-spacing: 2px; margin-bottom: 10px;">RECOMMENDED SCENT</div>
+                <h3 style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 300;">${res.title}</h3>
+                <a href="${res.link}" class="explore-btn">Explore this scent →</a>
+            </div>
+        `;
         document.getElementById('result-area').style.display = 'block';
-        document.getElementById('result-title').innerText = "你的靈魂狀態：" + mapping[winner].title;
-        document.getElementById('result-desc').innerText = mapping[winner].desc;
-        document.getElementById('result-link').href = mapping[winner].link;
     }
 
     renderQuestion();
