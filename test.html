@@ -18,12 +18,16 @@
         .option-btn { display: block; width: 100%; padding: 18px; margin: 15px 0; background: transparent; border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: all 0.3s; font-size: 1em; letter-spacing: 1px; border-radius: 8px; }
         .option-btn:hover { border-color: var(--gold-accent); background: rgba(220,167,80,0.05); }
 
+        /* 升級後的香氛卡視覺 */
         #result-area { display: none; margin-top: 50px; }
-        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 350px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
-        .card-title { font-size: 1.6em; letter-spacing: 5px; color: var(--gold-accent); margin-bottom: 20px; }
-        .card-subtitle { font-size: 0.9em; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 30px; }
-        .card-content { font-size: 1em; line-height: 2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
-        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; margin-top: 30px; display: inline-block; }
+        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 300px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
+        .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 30px; opacity: 0.7; }
+        .card-title { font-size: 1.8em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 30px; }
+        .card-content { font-size: 1em; line-height: 2.2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
+        
+        .recommend-box { margin-top: 40px; }
+        .recommend-label { color: var(--text-muted); font-size: 0.75em; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
+        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -45,14 +49,14 @@
 
 <script>
     const questions = [
-        { q: "你現在最想感受的頻率：", options: ["深度的根基感", "清新的覺醒感", "寧靜的歸屬感", "行動的熱情", "財富與目標", "絕對的守護與安靜"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
-        { q: "如果這是一個時間點，你會選：", options: ["黃昏，沈穩的時刻", "清晨，萬物初醒", "深夜，與自我對話", "正午，陽光最烈", "午後，專注辦事", "傍晚，放下一切"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
-        { q: "你最需要的香氛體驗：", options: ["踏實的木質基調", "輕盈的草本氣息", "柔和的晚安香氣", "奔放的辛香", "招財的柑橘與香料", "安心的沉穩香氣"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
-        { q: "你心中的狀態形容詞：", options: ["扎根", "清晰", "緩慢", "奔跑", "豐盛", "平靜"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
-        { q: "結束測試後，你最想做的是：", options: ["回歸土地", "重新出發", "深度休憩", "迎接挑戰", "創造價值", "安穩入睡"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] }
+        { q: "最近的你比較像：", options: ["需要安靜下來", "想重新點燃動力", "想回到自然與自己", "想打開機會與流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "如果有一種空間，你會選：", options: ["安靜的房間", "充滿火光的地方", "森林", "充滿機會的城市"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "你現在最需要的是：", options: ["平靜", "力量", "安定", "流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "如果是一種元素：", options: ["風", "火", "木", "金"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "結束漫長的一天，你最想：", options: ["窩在沙發發呆", "運動釋放壓力", "閱讀與伸展", "規劃明天行程"], map: ['calm', 'fire', 'forest', 'wealth'] }
     ];
 
-    let scores = { forest_c: 0, forest_m: 0, forest_n: 0, fire: 0, wealth: 0, calm: 0 };
+    let scores = { calm: 0, fire: 0, forest: 0, wealth: 0 };
     let currentQ = 0;
 
     function renderQuestion() {
@@ -71,6 +75,7 @@
     }
 
     function showResult() {
+        // (2) 進度條滿格
         document.getElementById("bar").style.width = "100%";
         document.getElementById('quiz-box').style.display = 'none';
         
@@ -79,22 +84,24 @@
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
         const mapping = {
-            forest_c: { title: "靜息之森", sub: "經典版", desc: "你正在尋找生命的根基。<br>此香氣能連結大地能量，穩固你的心神。", link: "forest.html" },
-            forest_m: { title: "靜息之森", sub: "晨光版", desc: "你的靈魂正渴望覺醒。<br>此香氣如同晨曦，帶給你全新的視野與能量。", link: "forest.html" },
-            forest_n: { title: "靜息之森", sub: "夜靜版", desc: "你正處於需要深度修復的時刻。<br>此香氣引導你進入靜謐，找回夜晚的安全感。", link: "forest.html" },
-            fire: { title: "回火之心", sub: "熱情版", desc: "你的內在火光正旺盛。<br>此香氣點燃你的勇氣，支持你持續邁進。", link: "fire.html" },
-            wealth: { title: "聚財之眼", sub: "貔貅版", desc: "你的直覺正指向豐盛。<br>此香氣凝聚你的聚焦力，開啟你的財富流動。", link: "wealth.html" },
-            calm: { title: "靜域之心", sub: "狻猊版", desc: "你正需要一股強大的安穩力量。<br>此香氣如同狻猊守護，帶來平靜與定力。", link: "calm.html" }
+            calm: { state: "CALM", desc: "You are seeking stillness and clarity.<br>A quiet scent may help you return to your center.", title: "靜域之心", link: "calm.html" },
+            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", link: "fire.html" },
+            forest: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", link: "forest.html" },
+            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", link: "wealth.html" }
         };
 
         const res = mapping[winner];
+        // (1) 調整為香氛卡視覺 + (3) 加入 Recommended scent 引導語
         document.getElementById('result-area').innerHTML = `
             <div class="scent-card">
-                <div class="card-subtitle">YOUR SOUL STATE</div>
-                <div class="card-title">${res.title}</div>
-                <div style="margin-bottom: 20px; color: var(--gold-accent); letter-spacing: 4px;">—— ${res.sub} ——</div>
+                <div class="card-header">SOUL STATE</div>
+                <div class="card-title">${res.state}</div>
                 <div class="card-content">${res.desc}</div>
-                <a href="${res.link}" class="explore-btn">查看此款系列 →</a>
+            </div>
+            <div class="recommend-box">
+                <div class="recommend-label">Recommended scent</div>
+                <h3 style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 300;">${res.title}</h3>
+                <a href="${res.link}" class="explore-btn">Explore ${res.title} →</a>
             </div>
         `;
         document.getElementById('result-area').style.display = 'block';
