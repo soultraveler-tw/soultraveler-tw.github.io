@@ -43,6 +43,7 @@
         .variant-group { margin-bottom: 40px; }
         .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
         .variants { display: flex; gap: 15px; flex-wrap: wrap; }
+        /* 移除原有的 onclick，改用 data-type 讓 JS 統一接管 */
         .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.9em; letter-spacing: 1px;}
         .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(129, 199, 132, 0.1); box-shadow: 0 0 10px rgba(129, 199, 132, 0.2); }
 
@@ -114,7 +115,7 @@
                <strong>內在需求：</strong>渴望一個能讓自己徹底卸下防備、安心降速的空間。</p>
             <p>➔ 陪伴目標：深層放鬆，讓身體重新找回落地的安全感。</p>
         </div>
-       
+        
         <div style="border: 1px solid rgba(129, 199, 132, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px;">
             <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px;">
@@ -128,9 +129,9 @@
         <div class="variant-group">
             <div class="variant-title">選擇你的降速節奏：</div>
             <div class="variants">
-                <button class="variant-btn active" onclick="changeVariant('classic')">經典版 (安放)</button>
-                <button class="variant-btn" onclick="changeVariant('morning')">晨光版 (微光)</button>
-                <button class="variant-btn" onclick="changeVariant('night')">夜靜版 (深眠)</button>
+                <button class="variant-btn active" data-type="classic">經典版 (安放)</button>
+                <button class="variant-btn" data-type="morning">晨光版 (微光)</button>
+                <button class="variant-btn" data-type="night">夜靜版 (深眠)</button>
             </div>
             <p id="variant-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
                 【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。
@@ -166,7 +167,7 @@
     <div class="spec-box fade-in-element">
         <div class="spec-note legal-note" id="dynamic-ingredients" style="transition: opacity 0.3s ease;">
             <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
-            甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。
+            95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。
         </div>
         <div class="spec-note">
             ✦ 迷霧儀式：輕晃瓶身，喚醒能量。朝空間高處噴灑，讓香氣如微雨般落下，隨後深呼吸 3 次，感受氣味接住你的重量。
@@ -191,10 +192,11 @@
 </footer>
 
 <script>
+    // 這裡是核心資料庫：保留了你的詳細配方，並在開頭嚴格加上 95%酒精
     const variantsData = {
         classic: {
             desc: "【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。",
-            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【卸下防備】果香與微透的陽光感，溫和地讓緊繃的思緒開始鬆動。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，像是在密林中看見一片開闊的空地。</div></div>
@@ -203,7 +205,7 @@
         },
         morning: {
             desc: "【晨光微曦】加倍注入 CT10 的陽光流動感。不強迫振作，而是讓光慢慢進來。",
-            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10 (加倍)、CT15</div><div class="track-effect">【溫和甦醒】加強版的精緻果園香氣，穿透葉隙帶來第一道光與快樂感。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，讓清晨的空氣大口灌入。</div></div>
@@ -212,7 +214,7 @@
         },
         night: {
             desc: "【深層休息】加重根部力量與安撫神經。夜晚不是危險的，它只是在保護你。",
-            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、苦橙葉精油、巨冷杉精油、高地薰衣草精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、高地薰衣草精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【撫平白日】溫和掃除白天的疲憊與殘存雜訊。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉、高地薰衣草</div><div class="track-effect">【深度安撫】額外加入高地薰衣草，強化睡眠修復功能，讓森林化為安心的臥室。</div></div>
@@ -221,17 +223,26 @@
         }
     };
 
-    function changeVariant(variant) {
+    // 自動與手動通用的切換大腦
+    function setVariant(variant) {
+        if (!variantsData[variant]) return; // 防呆機制，如果找不到版本就不動作
+
+        // 1. 切換按鈕的發光狀態
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        const targetBtn = document.querySelector(`.variant-btn[data-type="${variant}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        // 2. 抓取要更新的文字區塊
         const descElement = document.getElementById('variant-desc');
         const tracksElement = document.getElementById('dynamic-tracks');
         const dynamicIngredients = document.getElementById('dynamic-ingredients');
         
+        // 先淡出隱藏
         descElement.style.opacity = 0;
         tracksElement.style.opacity = 0;
         dynamicIngredients.style.opacity = 0;
         
+        // 等待 200 毫秒後，換上新內容並重新浮現
         setTimeout(() => { 
             descElement.innerText = variantsData[variant].desc; 
             tracksElement.innerHTML = variantsData[variant].tracks;
@@ -243,11 +254,26 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+        // --- 網頁載入動畫 ---
         setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
         }, { threshold: 0.15 }); 
         document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
+
+        // --- 綁定按鈕的手動點擊功能 ---
+        document.querySelectorAll('.variant-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setVariant(this.getAttribute('data-type'));
+            });
+        });
+
+        // --- 自動接收來自 test.html 的指令跳轉 ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedVariant = urlParams.get('v');
+        if (requestedVariant) {
+            setVariant(requestedVariant); // 如果網址有帶密碼，就自動執行切換
+        }
     });
 </script>
 </body>

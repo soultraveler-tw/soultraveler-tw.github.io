@@ -84,10 +84,12 @@
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
         const mapping = {
-            calm: { state: "CALM", desc: "You are seeking stillness and clarity.<br>A quiet scent may help you return to your center.", title: "靜域之心", link: "calm.html" },
-            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", link: "fire.html" },
-            forest: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", link: "forest.html" },
-            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", link: "wealth.html" }
+            forest_c: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", sub: "經典版", link: "forest.html?v=classic" },
+            forest_m: { state: "FOREST", desc: "Your soul is ready to awaken.<br>This scent brings light and clarity.", title: "靜息之森", sub: "晨光版", link: "forest.html?v=morning" },
+            forest_n: { state: "FOREST", desc: "You need deep restoration.<br>This scent guides you into peaceful rest.", title: "靜息之森", sub: "夜靜版", link: "forest.html?v=night" },
+            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", sub: "熱情版", link: "fire.html" },
+            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", sub: "貔貅版", link: "wealth.html" },
+            calm: { state: "CALM", desc: "You are seeking stillness and clarity.<br>A quiet scent may help you return to your center.", title: "靜域之心", sub: "狻猊版", link: "calm.html" }
         };
 
         const res = mapping[winner];
