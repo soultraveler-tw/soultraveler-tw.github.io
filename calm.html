@@ -203,35 +203,57 @@
     </section>
 </div>
 
-<section class="ritual-section fade-in-element">
+<section id="dynamic-ritual" class="ritual-section fade-in-element">
     <div class="ritual-header">✦ Soul Ritual ✦</div>
-    <h2 class="ritual-title">狻猊歸心儀式</h2>
-    <p class="ritual-intro">
+    <h2 id="ritual-title" class="ritual-title">狻猊歸心儀式</h2>
+    <p id="ritual-intro" class="ritual-intro">
         狻猊喜靜，是守護空間的絕對防線。<br>
-        當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。<br>
-        請在感到焦慮、或睡前 15 分鐘，給自己一段專屬的降速時光。
+        當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。
     </p>
 
-    <div class="ritual-steps">
+    <div id="ritual-steps" class="ritual-steps">
         <div class="step-box">
             <div class="step-num">01</div>
             <div class="step-title">落界 (The Boundary)</div>
-            <div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓 2-3 次。想像香氣的微粒如同一把金色的傘，在你的周圍緩緩落下，劃出一個「不允許外界打擾」的安全結界。</div>
+            <div class="step-desc">閉上雙眼，將香氣朝空間高處按壓 2-3 次。想像微粒在周圍落下，劃出一個「不允許外界打擾」的安全結界。</div>
         </div>
-        
         <div class="step-box">
             <div class="step-num">02</div>
             <div class="step-title">沉降 (The Anchor)</div>
-            <div class="step-desc">用鼻子深吸氣 4 秒，感受沉穩的木質與根系香氣進入肺部；接著用嘴巴緩慢吐氣 8 秒。想像狻猊如同一座安靜的石獅，穩穩地鎮守在你的心口，接住你所有的重量。</div>
+            <div class="step-desc">用鼻子深吸氣 4 秒，感受穩定的香氣進入肺部；接著用嘴巴緩慢吐氣 8 秒，接住所有的重量。</div>
         </div>
-
         <div class="step-box">
             <div class="step-num">03</div>
             <div class="step-title">歸位 (Return to Center)</div>
-            <div class="step-desc">在香氣的陪伴下，告訴自己：「我現在很安全，我可以停止戰鬥了。」允許自己把大腦的控制權交出去，安然進入深層的休息與平靜。</div>
+            <div class="step-desc">告訴自己：「我現在很安全，我可以停止戰鬥了。」安然進入深層的休息與平靜。</div>
         </div>
     </div>
 </section>
+
+<script>
+    const variantsData = {
+        standard: {
+            desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
+            safety: "✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>佛手柑精油、苦橙葉精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
+            tracks: `... (香氣軌跡內容) ...`,
+            ritualTitle: "狻猊歸心儀式",
+            ritualIntro: "狻猊喜靜，是守護空間的絕對防線。當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。",
+            ritualSteps: `... (這裡填入你上面看到的標準版步驟) ...`
+        },
+        pet: {
+            desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
+            safety: "✦ 寵物友善：嚴格剔除對毛孩有代謝風險的精油。",
+            ingredients: "<strong>✦ 法規全成分標示：</strong><br>波旁天竺葵、芫荽種子、高地薰衣草...",
+            ritualTitle: "同頻撫慰儀式",
+            ritualIntro: "當你與毛孩同時感到焦慮時，氣味是最好的橋樑。透過溫和的草本頻率，讓空間重新回歸平靜。",
+            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">輕柔共振</div><div class="step-desc">在距離毛孩較遠處輕輕噴灑，讓香氣分子自然擴散。</div></div>...`
+        },
+        // ...以此類推填入 baby 和 pregnant 的 ritualTitle/Intro/Steps
+    };
+    
+    // ...setVariant 函式記得加上更新 ritualTitle, ritualIntro, ritualSteps 的邏輯...
+</script>
 
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
