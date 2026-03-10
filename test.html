@@ -10,6 +10,10 @@
 
         .smart-nav { width: 100%; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; border-bottom: 1px solid rgba(220, 167, 80, 0.15); }
         .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold-accent); }
+        
         .quiz-container { max-width: 500px; width: 90%; margin-top: 100px; text-align: center; }
         #progress-bg { width: 100%; height: 2px; background: rgba(255,255,255,0.1); margin-bottom: 40px; }
         #bar { width: 0%; height: 100%; background: var(--gold-accent); transition: width 0.5s ease; }
@@ -18,23 +22,30 @@
         .option-btn { display: block; width: 100%; padding: 18px; margin: 15px 0; background: transparent; border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: all 0.3s; font-size: 1em; letter-spacing: 1px; border-radius: 8px; }
         .option-btn:hover { border-color: var(--gold-accent); background: rgba(220,167,80,0.05); }
 
-        /* 升級後的香氛卡視覺 */
+        /* 升級後的香氛卡視覺 (塔羅牌感) */
         #result-area { display: none; margin-top: 50px; }
-        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
-        .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 20px; opacity: 0.7; }
-        .card-title { font-size: 1.8em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 10px; }
-        .card-subtitle { font-size: 0.9em; letter-spacing: 4px; color: var(--gold-accent); margin-bottom: 30px; opacity: 0.9; }
+        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); position: relative;}
+        .card-compass { font-size: 0.75em; letter-spacing: 5px; margin-bottom: 30px; color: var(--gold-accent); opacity: 0.7; }
+        .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 15px; opacity: 0.6; color: var(--text-main); }
+        .card-title { font-size: 2em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 5px; font-weight: 300;}
+        .card-subtitle { font-size: 0.9em; letter-spacing: 4px; color: var(--gold-accent); margin-bottom: 35px; opacity: 0.9; }
         .card-content { font-size: 1em; line-height: 2.2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
         
         .recommend-box { margin-top: 40px; }
         .recommend-label { color: var(--text-muted); font-size: 0.75em; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
-        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; display: inline-block; margin-top: 10px;}
+        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; display: inline-block; margin-top: 10px; transition: opacity 0.3s;}
+        .explore-btn:hover { opacity: 0.7; }
     </style>
 </head>
 <body>
 
 <nav class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
+    <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="test.html">Find Your State</a>
+        <a href="state.html">狀態</a>
+    </div>
 </nav>
 
 <div class="quiz-container">
@@ -49,7 +60,6 @@
 </div>
 
 <script>
-    // 這裡確定是 6 種結果的選項配置！
     const questions = [
         { q: "你現在最想感受的頻率：", options: ["深度的根基感", "清新的覺醒感", "寧靜的歸屬感", "行動的熱情", "財富與目標", "絕對的守護與安靜"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
         { q: "如果這是一個時間點，你會選：", options: ["黃昏，沈穩的時刻", "清晨，萬物初醒", "深夜，與自我對話", "正午，陽光最烈", "午後，專注辦事", "傍晚，放下一切"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
@@ -85,24 +95,25 @@
         let winners = Object.keys(scores).filter(key => scores[key] === maxScore);
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
-        // 這是帶有跳轉參數的 6 種狀態結果！
+        // 將「版」拿掉，替換為更具靈性與儀式感的守護字眼
         const mapping = {
-            forest_c: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", sub: "經典版", link: "forest.html?v=classic" },
-            forest_m: { state: "FOREST", desc: "Your soul is ready to awaken.<br>This scent brings light and clarity.", title: "靜息之森", sub: "晨光版", link: "forest.html?v=morning" },
-            forest_n: { state: "FOREST", desc: "You need deep restoration.<br>This scent guides you into peaceful rest.", title: "靜息之森", sub: "夜靜版", link: "forest.html?v=night" },
-            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", sub: "熱情版", link: "fire.html" },
-            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", sub: "貔貅版", link: "wealth.html" },
-            calm: { state: "CALM", desc: "You are seeking stillness and clarity.<br>A quiet scent may help you return to your center.", title: "靜域之心", sub: "狻猊版", link: "calm.html" }
+            forest_c: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", sub: "經典安放", link: "forest.html?v=classic" },
+            forest_m: { state: "FOREST", desc: "Your soul is ready to awaken.<br>This scent brings light and clarity.", title: "靜息之森", sub: "晨光微曦", link: "forest.html?v=morning" },
+            forest_n: { state: "FOREST", desc: "You need deep restoration.<br>This scent guides you into peaceful rest.", title: "靜息之森", sub: "夜靜深眠", link: "forest.html?v=night" },
+            fire: { state: "FIRE", desc: "Your inner flame is ready to rise.<br>This scent awakens movement and courage.", title: "回火之心", sub: "力量覺醒", link: "fire.html" },
+            wealth: { state: "WEALTH", desc: "Your focus is becoming sharp.<br>This scent aligns your energy with purpose.", title: "聚財之眼", sub: "貔貅守護", link: "wealth.html" },
+            calm: { state: "CALM", desc: "You are seeking stillness and clarity.<br>A quiet scent may help you return to your center.", title: "靜域之心", sub: "狻猊守護", link: "calm.html" }
         };
 
         const res = mapping[winner];
         
-        // 渲染帶有高級儀式感的香氛卡
+        // 加入 ✧ SOUL COMPASS ✧ 塔羅牌視覺
         document.getElementById('result-area').innerHTML = `
             <div class="scent-card">
+                <div class="card-compass">✧ SOUL COMPASS ✧</div>
                 <div class="card-header">SOUL STATE</div>
                 <div class="card-title">${res.state}</div>
-                <div class="card-subtitle">—— ${res.sub} ——</div>
+                <div class="card-subtitle">${res.sub}</div>
                 <div class="card-content">${res.desc}</div>
             </div>
             <div class="recommend-box">
