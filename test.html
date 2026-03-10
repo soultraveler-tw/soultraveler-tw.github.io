@@ -27,7 +27,7 @@
         .back-btn:hover { color: var(--gold-accent); }
 
         /* 塔羅香氛卡視覺 */
-        #result-area { display: none; margin-top: 50px; }
+        #result-area { display: none; margin-top: 50px; padding-bottom: 80px; }
         .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); position: relative;}
         .card-compass { font-size: 0.75em; letter-spacing: 5px; margin-bottom: 30px; color: var(--gold-accent); opacity: 0.7; }
         .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 15px; opacity: 0.6; color: var(--text-main); }
@@ -39,6 +39,10 @@
         .recommend-label { color: var(--text-muted); font-size: 0.75em; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
         .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; display: inline-block; margin-top: 10px; transition: opacity 0.3s;}
         .explore-btn:hover { opacity: 0.7; }
+        
+        /* 再測一次按鈕樣式 */
+        .retake-btn { display: inline-block; margin-top: 60px; font-size: 0.8em; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; transition: color 0.3s; text-transform: uppercase; border-bottom: 1px dashed rgba(136,136,153,0.3); padding-bottom: 3px; }
+        .retake-btn:hover { color: var(--gold-accent); border-bottom-color: var(--gold-accent); }
     </style>
 </head>
 <body>
@@ -73,20 +77,15 @@
         { q: "結束測試後，你最想做的是：", options: ["回歸土地", "重新出發", "深度休憩", "迎接挑戰", "創造價值", "安穩入睡"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] }
     ];
 
-    // 升級大腦：改用陣列來記憶每一題的答案，方便隨時反悔
     let userAnswers = []; 
     let currentQ = 0;
 
     function renderQuestion() {
         if(currentQ >= questions.length) return showResult();
         
-        // 更新進度條
         document.getElementById("bar").style.width = (currentQ / questions.length) * 100 + "%";
-        
-        // 渲染題目
         document.getElementById('question-text').innerText = questions[currentQ].q;
         
-        // 渲染選項
         const area = document.getElementById('options-area');
         area.innerHTML = '';
         questions[currentQ].options.forEach((opt, idx) => {
@@ -94,7 +93,6 @@
             btn.className = 'option-btn';
             btn.innerText = opt;
             btn.onclick = () => { 
-                // 將答案存入歷史紀錄，並進入下一題
                 userAnswers[currentQ] = questions[currentQ].map[idx]; 
                 currentQ++; 
                 renderQuestion(); 
@@ -102,7 +100,6 @@
             area.appendChild(btn);
         });
 
-        // 判斷是否要顯示「回上一題」按鈕 (第一題隱藏，第二題開始顯示)
         const backBtn = document.getElementById('back-btn');
         if (currentQ > 0) {
             backBtn.style.display = 'inline-block';
@@ -111,26 +108,22 @@
         }
     }
 
-    // 新增：回上一題的功能
     function goBack() {
         if (currentQ > 0) {
-            currentQ--; // 題號倒退
-            renderQuestion(); // 重新渲染畫面
+            currentQ--; 
+            renderQuestion(); 
         }
     }
 
     function showResult() {
-        // 進度滿格
         document.getElementById("bar").style.width = "100%";
         document.getElementById('quiz-box').style.display = 'none';
         
-        // 從歷史紀錄中結算分數
         let scores = { forest_c: 0, forest_m: 0, forest_n: 0, fire: 0, wealth: 0, calm: 0 };
         userAnswers.forEach(ans => {
             if(ans) scores[ans]++;
         });
 
-        // 決選贏家
         let maxScore = Math.max(...Object.values(scores));
         let winners = Object.keys(scores).filter(key => scores[key] === maxScore);
         const winner = winners[Math.floor(Math.random() * winners.length)];
@@ -159,6 +152,8 @@
                 <h3 style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 300;">${res.title}</h3>
                 <a href="${res.link}" class="explore-btn">Explore ${res.title} →</a>
             </div>
+            
+            <a href="test.html" class="retake-btn">⟲ Retake the Compass</a>
         `;
         document.getElementById('result-area').style.display = 'block';
     }
