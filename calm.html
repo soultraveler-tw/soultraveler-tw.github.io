@@ -20,8 +20,8 @@
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
-        .product-hero { display: flex; min-height: 100vh; padding: 100px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: center; }
-        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px;} }
+        .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
+        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center;} }
 
         .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(100, 181, 246, 0.2); box-shadow: 0 0 40px rgba(100, 181, 246, 0.05); }
         .drop-zone { border: 1px dashed var(--theme-color); color: var(--theme-color); border-radius: 50%; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.85em; letter-spacing: 1px; line-height: 1.8;}
@@ -115,6 +115,15 @@
                <strong>內在需求：</strong>渴望一個沒有雜訊、安全且獨立的心理邊界。</p>
             <p>➔ 陪伴目標：協助內在重新平衡，穩固心神與頻率。</p>
         </div>
+        <div style="border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px;">
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px;">
+                <div>✦ 深度冥想靜心時</div>
+                <div>✦ 感到焦慮不安時</div>
+                <div>✦ 需要建立結界時</div>
+                <div>✦ 思緒過載混亂時</div>
+            </div>
+        </div>
 
         <div class="variant-group">
             <div class="variant-title">選擇專屬配方版本：</div>
@@ -193,19 +202,6 @@
 </footer>
 
 <script>
-    const zone = document.getElementById('product-drop-zone');
-    const input = document.getElementById('product-input');
-    const img = document.getElementById('product-img');
-    zone.addEventListener('click', () => input.click());
-    const handleFile = (file) => {
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = (event) => { img.src = event.target.result; img.style.display = 'block'; zone.style.display = 'none'; };
-            reader.readAsDataURL(file);
-        }
-    };
-    input.addEventListener('change', (e) => { handleFile(e.target.files[0]); });
-
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
