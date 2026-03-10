@@ -9,37 +9,85 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1a33 0%, #050A14 70%); }
 
-        /* 導覽列與通用架構 */
         .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
+        .smart-nav.nav-up { top: -80px; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; }
+        .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
+        .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
+        .smart-nav .nav-links a:hover { color: var(--gold-accent); }
+        .cta-btn { border: 1px solid var(--gold-accent); color: var(--gold-accent) !important; padding: 6px 18px; border-radius: 20px; transition: all 0.3s; }
 
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
         .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
-        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center; } }
-        
-        .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(100, 181, 246, 0.2); }
+        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center;} }
+
+        .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(100, 181, 246, 0.2); box-shadow: 0 0 40px rgba(100, 181, 246, 0.05); }
+        .drop-zone { border: 1px dashed var(--theme-color); color: var(--theme-color); border-radius: 50%; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.85em; letter-spacing: 1px; line-height: 1.8;}
+        .product-img { max-width: 90%; max-height: 90%; display: none; filter: drop-shadow(0 0 20px rgba(100, 181, 246, 0.3)); animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
         .product-info { flex: 1; }
         .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
-        .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; }
-        .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; line-height: 1.8; }
+        .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
+        .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
         
-        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; margin: 5px; }
-        .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(100, 181, 246, 0.1); }
-        
-        /* 儀式區塊樣式 (補回) */
-        .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(100, 181, 246, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(100, 181, 246, 0.1); text-align: center; }
-        .ritual-title { font-size: 1.8em; color: var(--text-main); letter-spacing: 4px; margin-bottom: 30px; }
-        .ritual-steps { text-align: left; max-width: 600px; margin: 0 auto; }
-        .step-box { margin-bottom: 40px; padding-left: 40px; position: relative; }
-        .step-num { position: absolute; left: 0; top: 0; color: var(--gold-accent); font-size: 1.5em; font-family: serif; font-style: italic; opacity: 0.6; }
-        .step-title { color: var(--gold-accent); font-size: 1.1em; margin-bottom: 10px; }
-        .step-desc { color: #a0a0a0; font-size: 0.95em; line-height: 1.8; }
+        .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
+
+        .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 40px; }
+        .diagnosis-box h5 { margin: 0 0 12px 0; color: var(--theme-color); font-size: 0.9em; letter-spacing: 2px; font-weight: 300;}
+        .diagnosis-box p { margin: 0 0 15px 0; font-size: 0.95em; color: #d0d0d0; line-height: 1.8; letter-spacing: 1px;}
+        .diagnosis-box p:last-child { margin: 0; color: var(--text-main); opacity: 0.9;}
+
+        .variant-group { margin-bottom: 40px; }
+        .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
+        .variants { display: flex; gap: 12px; flex-wrap: wrap; }
+        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.85em; letter-spacing: 1px;}
+        .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(100, 181, 246, 0.1); box-shadow: 0 0 10px rgba(100, 181, 246, 0.2); }
+        #dynamic-content { transition: opacity 0.4s ease; }
+
+        .price-action { display: flex; align-items: center; gap: 30px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .price { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 1px; }
+        .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
+
+        .mythical-section { text-align: center; padding: 60px 20px; border-top: 1px dashed rgba(100, 181, 246, 0.3); border-bottom: 1px dashed rgba(100, 181, 246, 0.3); margin: 80px auto; max-width: 700px; position: relative; background: rgba(255,255,255,0.01);}
+        .mythical-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; font-weight: 300; margin-bottom: 25px; }
+        .mythical-text { font-size: 1.1em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+
+        .story-section { max-width: 700px; margin: 80px auto; text-align: center; padding: 0 20px; position: relative; }
+        .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
+        .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+
+        .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
+        .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(100, 181, 246, 0.3); }
+        .track-item { position: relative; margin-bottom: 40px; }
+        .track-item::before { content: ''; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: var(--bg-darker); border: 2px solid var(--theme-color); border-radius: 50%; box-shadow: 0 0 10px var(--theme-color); }
+        .track-level { font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
+        .track-ingredients { font-size: 1.1em; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px; font-weight: 300;}
+        .track-effect { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; font-weight: 300; letter-spacing: 1px;}
+
+        .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
+        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
+        .safety-warning { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #90CAF9;}
+        .legal-note { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #EAEAEA;}
+
+        /* --- 新增：儀式區塊專屬視覺 --- */
+        .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(100, 181, 246, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(100, 181, 246, 0.1); border-bottom: 1px solid rgba(100, 181, 246, 0.1); text-align: center; }
+        .ritual-header { font-size: 0.8em; color: var(--gold-accent); letter-spacing: 6px; margin-bottom: 20px; text-transform: uppercase; }
+        .ritual-title { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 4px; margin-bottom: 30px; }
+        .ritual-intro { font-size: 1em; color: var(--text-muted); line-height: 2; letter-spacing: 2px; margin-bottom: 50px; font-weight: 300; }
+        .ritual-steps { display: flex; flex-direction: column; gap: 40px; text-align: left; max-width: 600px; margin: 0 auto; }
+        .step-box { position: relative; padding-left: 40px; }
+        .step-num { position: absolute; left: 0; top: -5px; font-size: 1.5em; color: var(--gold-accent); opacity: 0.5; font-family: serif; font-style: italic; }
+        .step-title { font-size: 1.1em; color: var(--text-main); letter-spacing: 2px; margin-bottom: 10px; font-weight: 300; }
+        .step-desc { font-size: 0.95em; color: #a0a0a0; line-height: 1.8; letter-spacing: 1px; font-weight: 300; }
 
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
+        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
+        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
     </style>
 </head>
 <body>
@@ -59,6 +107,7 @@
     <div class="product-visual">
         <div id="product-drop-zone" class="drop-zone">放入<br>靜域之心<br>視覺圖</div>
         <img id="product-img" class="product-img" alt="靜域之心">
+        <input type="file" id="product-input" accept="image/*" style="display: none;">
     </div>
 
     <div class="product-info">
@@ -67,30 +116,120 @@
         <div class="core-quote">
             「靜域之心不是讓世界變安靜。<br>而是在喧囂之中，建立一個屬於自己的安靜空間。」
         </div>
+        
+        <div class="energy-theme">
+            ✦ 能量主題｜內在安定 ‧ 結界防護 ‧ 思緒沉靜
+        </div>
+
+        <div class="diagnosis-box">
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p><strong>當下狀態：</strong>焦躁、情緒起伏大、容易被外界的聲音或他人的情緒干擾。<br>
+               <strong>內在需求：</strong>渴望一個沒有雜訊、安全且獨立的心理邊界。</p>
+            <p>➔ 陪伴目標：協助內在重新平衡，穩固心神與頻率。</p>
+        </div>
+        <div style="border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px;">
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px;">
+                <div>✦ 深度冥想靜心時</div>
+                <div>✦ 感到焦慮不安時</div>
+                <div>✦ 需要建立結界時</div>
+                <div>✦ 思緒過載混亂時</div>
+            </div>
+        </div>
 
         <div class="variant-group">
             <div class="variant-title">選擇專屬配方版本：</div>
             <div class="variants">
-                <button class="variant-btn active" data-type="standard">標準穩心版</button>
-                <button class="variant-btn" data-type="pet">毛孩安心版</button>
+                <button class="variant-btn active" data-type="standard">標準穩心版 (無寵物)</button>
+                <button class="variant-btn" data-type="pet">毛孩安心版 (有寵物)</button>
                 <button class="variant-btn" data-type="baby">寶寶安睡版</button>
                 <button class="variant-btn" data-type="pregnant">孕媽咪支撐版</button>
             </div>
-            <p id="dynamic-desc" style="margin-top: 15px; color: var(--text-muted);">【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。</p>
+            <p id="dynamic-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
+                【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。
+            </p>
+        </div>
+
+        <div class="price-action">
+            <div class="price">NT$ 9,999</div>
+            <button class="add-to-cart">選擇此香氣</button>
         </div>
     </div>
 </section>
 
-<section id="dynamic-ritual" class="ritual-section fade-in-element">
-    <div class="ritual-header">✦ Soul Ritual ✦</div>
-    <h2 id="ritual-title" class="ritual-title">狻猊歸心儀式</h2>
-    <p id="ritual-intro" class="ritual-intro">
-        狻猊喜靜，是守護空間的絕對防線。當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。
+<section class="mythical-section fade-in-element">
+    <h3 class="mythical-title">✦ 神獸象徵｜狻猊 ✦</h3>
+    <p class="mythical-text">
+        狻猊是守護香火的神獸，<br>
+        常坐於香爐之上。<br><br>
+        它象徵安定、沉靜與守護。<br>
+        當香氣升起，心也會慢慢回到自己的中心。
     </p>
-    <div id="ritual-steps" class="ritual-steps">
-        <div class="step-box"><div class="step-num">01</div><div class="step-title">落界 (The Boundary)</div><div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓。想像香氣的微粒如金色的傘落下。</div></div>
-        <div class="step-box"><div class="step-num">02</div><div class="step-title">沉降 (The Anchor)</div><div class="step-desc">深吸氣 4 秒，感受穩定的氣味；吐氣 8 秒，接住所有的重量。</div></div>
-        <div class="step-box"><div class="step-num">03</div><div class="step-title">歸位 (Return to Center)</div><div class="step-desc">告訴自己：「我現在很安全。」安然進入深層休息。</div></div>
+</section>
+
+<section class="story-section fade-in-element">
+    <h3 class="story-title">✦ 氣味場景 ✦</h3>
+    <p class="story-text">
+        當你閉上眼睛，世界的一切喧囂瞬間被隔絕在外。<br>
+        這裡像是一座深海裡的純白房間，<br>
+        沒有雜訊，沒有他人情緒的拉扯，只有你穩定的心跳聲。<br><br>
+        你不必再過度共感，不必再承接外界的重量。<br>
+        在這個絕對真空的靜域裡，你終於可以把心安放下來，<br>
+        聽見自己最真實的聲音。
+    </p>
+</section>
+
+<div id="dynamic-content">
+    <section class="resonance-section fade-in-element">
+        <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
+        <div class="track-container" id="dynamic-tracks">
+            <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【思緒梳理】瞬間切斷外界雜訊干擾，讓過載的思緒冷卻，帶來第一層的清晰與淨化感。</div></div>
+            <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【溫柔支撐】針對太容易共感而疲憊的內在，給予溫柔而堅定的支撐，收攏渙散的思緒。</div></div>
+            <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div><div class="track-effect">【大地定錨】打造神聖的定心空間。透過深沉的絲滑煙燻與泥土氣味，將意識重新定錨回自己的中心。</div></div>
+        </div>
+
+        <div class="spec-box fade-in-element">
+            <div class="spec-note legal-note" id="dynamic-ingredients" style="transition: opacity 0.3s ease;">
+                <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
+                佛手柑精油、苦橙葉精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。
+            </div>
+            <div class="spec-note safety-warning" id="dynamic-safety">
+                ✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。
+            </div>
+            <div class="spec-note">
+                ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
+    <h2 class="ritual-title">狻猊歸心儀式</h2>
+    <p class="ritual-intro">
+        狻猊喜靜，是守護空間的絕對防線。<br>
+        當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。<br>
+        請在感到焦慮、或睡前 15 分鐘，給自己一段專屬的降速時光。
+    </p>
+
+    <div class="ritual-steps">
+        <div class="step-box">
+            <div class="step-num">01</div>
+            <div class="step-title">落界 (The Boundary)</div>
+            <div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓 2-3 次。想像香氣的微粒如同一把金色的傘，在你的周圍緩緩落下，劃出一個「不允許外界打擾」的安全結界。</div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-num">02</div>
+            <div class="step-title">沉降 (The Anchor)</div>
+            <div class="step-desc">用鼻子深吸氣 4 秒，感受沉穩的木質與根系香氣進入肺部；接著用嘴巴緩慢吐氣 8 秒。想像狻猊如同一座安靜的石獅，穩穩地鎮守在你的心口，接住你所有的重量。</div>
+        </div>
+
+        <div class="step-box">
+            <div class="step-num">03</div>
+            <div class="step-title">歸位 (Return to Center)</div>
+            <div class="step-desc">在香氣的陪伴下，告訴自己：「我現在很安全，我可以停止戰鬥了。」允許自己把大腦的控制權交出去，安然進入深層的休息與平靜。</div>
+        </div>
     </div>
 </section>
 
@@ -108,45 +247,97 @@
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
-            ritualTitle: "狻猊歸心儀式",
-            ritualIntro: "狻猊喜靜，是守護空間的絕對防線。當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">落界</div><div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓。想像香氣落下。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">沉降</div><div class="step-desc">深吸氣 4 秒，感受穩定的氣味；吐氣 8 秒，接住所有的重量。</div></div><div class="step-box"><div class="step-num">03</div><div class="step-title">歸位</div><div class="step-desc">告訴自己：「我現在很安全。」安然進入深層休息。</div></div>`
+            safety: "✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>佛手柑精油、苦橙葉精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">佛手柑、苦橙葉</div><div class="track-effect">【思緒梳理】瞬間切斷外界雜訊干擾，讓過載的思緒冷卻，帶來第一層的清晰與淨化感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【溫柔支撐】針對太容易共感而疲憊的內在，給予溫柔而堅定的支撐，收攏渙散的思緒。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">岩蘭草、波旁岩蘭草、乳香</div><div class="track-effect">【大地定錨】打造神聖的定心空間。透過深沉的絲滑煙燻與泥土氣味，將意識重新定錨回自己的中心。</div></div>
+            `
         },
         pet: {
             desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
-            ritualTitle: "同頻撫慰儀式",
-            ritualIntro: "當你與毛孩同時感到焦慮時，氣味是最好的橋樑。透過溫和的草本頻率，讓空間重新回歸平靜。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">輕柔擴散</div><div class="step-desc">在距離毛孩較遠處輕噴，讓香氣分子自然擴散。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">溫和共鳴</div><div class="step-desc">緩慢呼吸，傳遞安心的頻率給毛孩。</div></div>`
+            safety: "✦ 寵物友善：嚴格剔除對毛孩有代謝風險的精油，選用最高安全級別的安撫成分。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>波旁天竺葵精油、芫荽種子精油、高地薰衣草精油、花梨木精油、乳香精油、岩蘭草精油、波旁岩蘭草精油、荷荷芭油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">波旁天竺葵、芫荽（種子）、CT15</div><div class="track-effect">【溫和降噪】剔除柑橘類，改以極度溫和的草本香氣，過濾空間裡的浮躁與不安。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">高地薰衣草、花梨木</div><div class="track-effect">【平衡大師】芳療中最萬用且極度安全的安撫劑，能有效放鬆毛孩與主人的緊繃神經。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">乳香、岩蘭草、波旁岩蘭草</div><div class="track-effect">【純淨守護】雙重頂級岩蘭草結合乳香，提供深層放鬆的安全感，安撫敏銳感知。</div></div>
+            `
         },
         baby: {
             desc: "【過濾雜訊】以極致溫和的頻率過濾環境雜訊，溫柔包覆夜間敏銳的感知。",
-            ritualTitle: "星光安撫儀式",
-            ritualIntro: "寶寶的夜驚源於訊息過載，此儀式旨在創造溫柔防護罩，幫助寶寶安穩入眠。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">氣味搖籃</div><div class="step-desc">在睡眠區域邊緣噴灑，形成柔軟的氣味保護層。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">輕拍節奏</div><div class="step-desc">隨香氣節奏緩慢拍撫，讓寶寶進入深層寧靜。</div></div>`
+            safety: "✦ 寶寶安睡：極低濃度與無刺激性配方，專為幼兒敏銳感知設計，溫柔安撫夜驚與入睡困難。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、花梨木精油、佛手柑精油、苦橙葉精油、高地薰衣草精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙</div><div class="track-effect">【快樂撫慰】如同媽媽的微笑般，以溫暖快樂的甜美果香，大幅提升寶寶的接受度與安心感。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木</div><div class="track-effect">【神經安撫】針對夜驚與鬧脾氣，給予極度溫柔的撫慰與支撐。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">靜域之心_狻猊 (原複方_進化版) 50%</div><div class="track-effect">【深層放鬆】保留 50% 的核心定靜基調，讓整體氣味宛如母親堅定而溫暖的懷抱。</div></div>
+            `
         },
         pregnant: {
             desc: "【大地支撐】提供穩定厚實的大地能量，穩固孕期容易起伏的情緒。",
-            ritualTitle: "孕期連結儀式",
-            ritualIntro: "孕期需要深層的支撐感。透過這個儀式，重新連結呼吸與身體。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">深層呼吸</div><div class="step-desc">噴灑後，感受香氣帶動腹部起伏。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">情緒安放</div><div class="step-desc">雙手撫腹，感受安心力量，傳遞穩固感給寶寶。</div></div>`
+            safety: "✦ 孕期支撐：配方溫和清爽，給予腰部支撐感，讓呼吸變深。建議懷孕滿 3 個月後可安心使用。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>紅橘精油、橙花精油、苦橙葉精油、佛手柑精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
+            tracks: `
+                <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">紅橘、橙花、苦橙葉</div><div class="track-effect">【情緒救星】以公認最安全的紅橘緩解不適，搭配橙花的強大安撫力，驅散孕期焦慮。</div></div>
+                <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">靜域之心_狻猊 (原複方_進化版) 50%</div><div class="track-effect">【穩固重心】讓呼吸變深沉，以大地般的穩固力量，承接孕期所有的疲憊與起伏。</div></div>
+                <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">無負擔支撐</div><div class="track-effect">【輕盈安放】剔除厚重成分，留下最輕盈但堅實的後盾，給予腰部與情緒雙重支撐感。</div></div>
+            `
         }
     };
 
     function setVariant(variant) {
-        if(!variantsData[variant]) return;
-        const d = variantsData[variant];
-        document.getElementById('dynamic-desc').innerText = d.desc;
-        document.getElementById('ritual-title').innerText = d.ritualTitle;
-        document.getElementById('ritual-intro').innerText = d.ritualIntro;
-        document.getElementById('ritual-steps').innerHTML = d.ritualSteps;
-        document.querySelectorAll('.variant-btn').forEach(b => b.classList.toggle('active', b.dataset.type === variant));
+        if (!variantsData[variant]) return;
+
+        // 更新按鈕亮起狀態
+        document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.querySelector(`.variant-btn[data-type="${variant}"]`);
+        if(targetBtn) targetBtn.classList.add('active');
+
+        // 更新文字內容並加上淡入淡出效果
+        const dynamicContent = document.getElementById('dynamic-content');
+        const dynamicIngredients = document.getElementById('dynamic-ingredients');
+        const dynamicDesc = document.getElementById('dynamic-desc');
+        
+        dynamicContent.style.opacity = 0;
+        dynamicIngredients.style.opacity = 0;
+        dynamicDesc.style.opacity = 0;
+
+        setTimeout(() => {
+            dynamicDesc.innerText = variantsData[variant].desc;
+            document.getElementById('dynamic-tracks').innerHTML = variantsData[variant].tracks;
+            document.getElementById('dynamic-safety').innerHTML = variantsData[variant].safety;
+            dynamicIngredients.innerHTML = variantsData[variant].ingredients;
+            
+            dynamicContent.style.opacity = 1;
+            dynamicIngredients.style.opacity = 1;
+            dynamicDesc.style.opacity = 1;
+        }, 300);
     }
 
-    document.querySelectorAll('.variant-btn').forEach(b => b.onclick = () => setVariant(b.dataset.type));
-    
-    // 初始化參數讀取
-    const params = new URLSearchParams(window.location.search);
-    setVariant(params.get('v') || 'standard');
+    document.addEventListener("DOMContentLoaded", function() {
+        // 載入動畫
+        setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.15 }); 
+        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
+
+        // 綁定按鈕點擊事件
+        document.querySelectorAll('.variant-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setVariant(this.getAttribute('data-type'));
+            });
+        });
+
+        // 接收來自 test.html 的網址參數 (自動跳轉對應版本)
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedVariant = urlParams.get('v');
+        if(requestedVariant) {
+            setVariant(requestedVariant);
+        }
+    });
 </script>
 </body>
 </html>
