@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>靈魂狀態測試｜Soul Traveler</title>
+    <style>
+        /* 沿用你現有的 :root 與 body 設定 */
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --gold-accent: #DCA750; --theme-color: #DCA750; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 100px 20px; }
+        .quiz-container { max-width: 600px; width: 100%; text-align: center; }
+        .question { margin-bottom: 40px; }
+        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: 0.3s; border-radius: 8px;}
+        .option-btn:hover { background: rgba(220,167,80,0.1); border-color: var(--gold-accent); }
+        #result-area { display: none; padding: 40px; border: 1px solid var(--gold-accent); border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quiz-box">
+    <h1 id="question-text">載入中...</h1>
+    <div id="options-area"></div>
+</div>
+
+<div id="result-area" class="quiz-container">
+    <h2 id="result-title"></h2>
+    <p id="result-desc"></p>
+    <a id="result-link" href="#" style="color: var(--gold-accent); text-decoration: none; font-size: 1.2em;">探索此香氣 →</a>
+</div>
+
+<script>
+    const questions = [
+        { q: "最近的你比較像：", options: ["需要安靜下來", "想重新點燃動力", "想回到自然與自己", "想打開機會與流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "如果有一種空間，你會選：", options: ["安靜的房間", "充滿火光的地方", "森林", "充滿機會的城市"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "你現在最需要的是：", options: ["平靜", "力量", "安定", "流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
+        { q: "如果是一種元素：", options: ["風", "火", "木", "金"], map: ['calm', 'fire', 'forest', 'wealth'] }
+    ];
+
+    let scores = { calm: 0, fire: 0, forest: 0, wealth: 0 };
+    let currentQ = 0;
+
+    function renderQuestion() {
+        if(currentQ >= questions.length) return showResult();
+        document.getElementById('question-text').innerText = questions[currentQ].q;
+        const area = document.getElementById('options-area');
+        area.innerHTML = '';
+        questions[currentQ].options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => { scores[questions[currentQ].map[idx]]++; currentQ++; renderQuestion(); };
+            area.appendChild(btn);
+        });
+    }
+
+    function showResult() {
+        document.getElementById('quiz-box').style.display = 'none';
+        const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const mapping = {
+            calm: { title: "靜域之心", desc: "你渴望平靜與內在邊界，需要回到無波的狀態。", link: "calm.html" },
+            fire: { title: "回火之心", desc: "你感到耗竭，需要一股溫暖的力量帶你重燃熱情。", link: "fire.html" },
+            forest: { title: "靜息之森", desc: "你需要大地連結，找回扎根的安定感。", link: "forest.html" },
+            wealth: { title: "聚財之眼", desc: "你需要清晰的邏輯與果斷，將資源匯聚。", link: "wealth.html" }
+        };
+        document.getElementById('result-area').style.display = 'block';
+        document.getElementById('result-title').innerText = "你的靈魂狀態：" + mapping[winner].title;
+        document.getElementById('result-desc').innerText = mapping[winner].desc;
+        document.getElementById('result-link').href = mapping[winner].link;
+    }
+
+    renderQuestion();
+</script>
+</body>
+</html>
