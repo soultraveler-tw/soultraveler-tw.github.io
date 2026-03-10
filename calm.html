@@ -73,6 +73,17 @@
         .safety-warning { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #90CAF9;}
         .legal-note { border-color: rgba(100, 181, 246, 0.3); background: rgba(100, 181, 246, 0.05); color: #EAEAEA;}
 
+        /* --- 新增：儀式區塊專屬視覺 --- */
+        .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(100, 181, 246, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(100, 181, 246, 0.1); border-bottom: 1px solid rgba(100, 181, 246, 0.1); text-align: center; }
+        .ritual-header { font-size: 0.8em; color: var(--gold-accent); letter-spacing: 6px; margin-bottom: 20px; text-transform: uppercase; }
+        .ritual-title { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 4px; margin-bottom: 30px; }
+        .ritual-intro { font-size: 1em; color: var(--text-muted); line-height: 2; letter-spacing: 2px; margin-bottom: 50px; font-weight: 300; }
+        .ritual-steps { display: flex; flex-direction: column; gap: 40px; text-align: left; max-width: 600px; margin: 0 auto; }
+        .step-box { position: relative; padding-left: 40px; }
+        .step-num { position: absolute; left: 0; top: -5px; font-size: 1.5em; color: var(--gold-accent); opacity: 0.5; font-family: serif; font-style: italic; }
+        .step-title { font-size: 1.1em; color: var(--text-main); letter-spacing: 2px; margin-bottom: 10px; font-weight: 300; }
+        .step-desc { font-size: 0.95em; color: #a0a0a0; line-height: 1.8; letter-spacing: 1px; font-weight: 300; }
+
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
@@ -129,10 +140,10 @@
         <div class="variant-group">
             <div class="variant-title">選擇專屬配方版本：</div>
             <div class="variants">
-                <button class="variant-btn active" onclick="changeVariant('standard')">標準穩心版 (無寵物)</button>
-                <button class="variant-btn" onclick="changeVariant('pet')">毛孩安心版 (有寵物)</button>
-                <button class="variant-btn" onclick="changeVariant('baby')">寶寶安睡版</button>
-                <button class="variant-btn" onclick="changeVariant('pregnant')">孕媽咪支撐版</button>
+                <button class="variant-btn active" data-type="standard">標準穩心版 (無寵物)</button>
+                <button class="variant-btn" data-type="pet">毛孩安心版 (有寵物)</button>
+                <button class="variant-btn" data-type="baby">寶寶安睡版</button>
+                <button class="variant-btn" data-type="pregnant">孕媽咪支撐版</button>
             </div>
             <p id="dynamic-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
                 【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。
@@ -192,6 +203,36 @@
     </section>
 </div>
 
+<section class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
+    <h2 class="ritual-title">狻猊歸心儀式</h2>
+    <p class="ritual-intro">
+        狻猊喜靜，是守護空間的絕對防線。<br>
+        當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。<br>
+        請在感到焦慮、或睡前 15 分鐘，給自己一段專屬的降速時光。
+    </p>
+
+    <div class="ritual-steps">
+        <div class="step-box">
+            <div class="step-num">01</div>
+            <div class="step-title">落界 (The Boundary)</div>
+            <div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓 2-3 次。想像香氣的微粒如同一把金色的傘，在你的周圍緩緩落下，劃出一個「不允許外界打擾」的安全結界。</div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-num">02</div>
+            <div class="step-title">沉降 (The Anchor)</div>
+            <div class="step-desc">用鼻子深吸氣 4 秒，感受沉穩的木質與根系香氣進入肺部；接著用嘴巴緩慢吐氣 8 秒。想像狻猊如同一座安靜的石獅，穩穩地鎮守在你的心口，接住你所有的重量。</div>
+        </div>
+
+        <div class="step-box">
+            <div class="step-num">03</div>
+            <div class="step-title">歸位 (Return to Center)</div>
+            <div class="step-desc">在香氣的陪伴下，告訴自己：「我現在很安全，我可以停止戰鬥了。」允許自己把大腦的控制權交出去，安然進入深層的休息與平靜。</div>
+        </div>
+    </div>
+</section>
+
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
@@ -246,30 +287,56 @@
         }
     };
 
-    function changeVariant(variant) {
+    function setVariant(variant) {
+        if (!variantsData[variant]) return;
+
+        // 更新按鈕亮起狀態
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        const targetBtn = document.querySelector(`.variant-btn[data-type="${variant}"]`);
+        if(targetBtn) targetBtn.classList.add('active');
+
+        // 更新文字內容並加上淡入淡出效果
         const dynamicContent = document.getElementById('dynamic-content');
         const dynamicIngredients = document.getElementById('dynamic-ingredients');
+        const dynamicDesc = document.getElementById('dynamic-desc');
         
         dynamicContent.style.opacity = 0;
         dynamicIngredients.style.opacity = 0;
+        dynamicDesc.style.opacity = 0;
+
         setTimeout(() => {
-            document.getElementById('dynamic-desc').innerText = variantsData[variant].desc;
+            dynamicDesc.innerText = variantsData[variant].desc;
             document.getElementById('dynamic-tracks').innerHTML = variantsData[variant].tracks;
             document.getElementById('dynamic-safety').innerHTML = variantsData[variant].safety;
             dynamicIngredients.innerHTML = variantsData[variant].ingredients;
+            
             dynamicContent.style.opacity = 1;
             dynamicIngredients.style.opacity = 1;
+            dynamicDesc.style.opacity = 1;
         }, 300);
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+        // 載入動畫
         setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
         }, { threshold: 0.15 }); 
         document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
+
+        // 綁定按鈕點擊事件
+        document.querySelectorAll('.variant-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setVariant(this.getAttribute('data-type'));
+            });
+        });
+
+        // 接收來自 test.html 的網址參數 (自動跳轉對應版本)
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedVariant = urlParams.get('v');
+        if(requestedVariant) {
+            setVariant(requestedVariant);
+        }
     });
 </script>
 </body>
