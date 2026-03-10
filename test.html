@@ -20,14 +20,15 @@
 
         /* 升級後的香氛卡視覺 */
         #result-area { display: none; margin-top: 50px; }
-        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 300px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
-        .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 30px; opacity: 0.7; }
-        .card-title { font-size: 1.8em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 30px; }
+        .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); }
+        .card-header { font-size: 0.7em; letter-spacing: 6px; margin-bottom: 20px; opacity: 0.7; }
+        .card-title { font-size: 1.8em; letter-spacing: 8px; color: var(--gold-accent); margin-bottom: 10px; }
+        .card-subtitle { font-size: 0.9em; letter-spacing: 4px; color: var(--gold-accent); margin-bottom: 30px; opacity: 0.9; }
         .card-content { font-size: 1em; line-height: 2.2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
         
         .recommend-box { margin-top: 40px; }
         .recommend-label { color: var(--text-muted); font-size: 0.75em; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
-        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; }
+        .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; display: inline-block; margin-top: 10px;}
     </style>
 </head>
 <body>
@@ -48,15 +49,16 @@
 </div>
 
 <script>
+    // 這裡確定是 6 種結果的選項配置！
     const questions = [
-        { q: "最近的你比較像：", options: ["需要安靜下來", "想重新點燃動力", "想回到自然與自己", "想打開機會與流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
-        { q: "如果有一種空間，你會選：", options: ["安靜的房間", "充滿火光的地方", "森林", "充滿機會的城市"], map: ['calm', 'fire', 'forest', 'wealth'] },
-        { q: "你現在最需要的是：", options: ["平靜", "力量", "安定", "流動"], map: ['calm', 'fire', 'forest', 'wealth'] },
-        { q: "如果是一種元素：", options: ["風", "火", "木", "金"], map: ['calm', 'fire', 'forest', 'wealth'] },
-        { q: "結束漫長的一天，你最想：", options: ["窩在沙發發呆", "運動釋放壓力", "閱讀與伸展", "規劃明天行程"], map: ['calm', 'fire', 'forest', 'wealth'] }
+        { q: "你現在最想感受的頻率：", options: ["深度的根基感", "清新的覺醒感", "寧靜的歸屬感", "行動的熱情", "財富與目標", "絕對的守護與安靜"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
+        { q: "如果這是一個時間點，你會選：", options: ["黃昏，沈穩的時刻", "清晨，萬物初醒", "深夜，與自我對話", "正午，陽光最烈", "午後，專注辦事", "傍晚，放下一切"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
+        { q: "你最需要的香氛體驗：", options: ["踏實的木質基調", "輕盈的草本氣息", "柔和的晚安香氣", "奔放的辛香", "招財的柑橘與香料", "安心的沉穩香氣"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
+        { q: "你心中的狀態形容詞：", options: ["扎根", "清晰", "緩慢", "奔跑", "豐盛", "平靜"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] },
+        { q: "結束測試後，你最想做的是：", options: ["回歸土地", "重新出發", "深度休憩", "迎接挑戰", "創造價值", "安穩入睡"], map: ['forest_c', 'forest_m', 'forest_n', 'fire', 'wealth', 'calm'] }
     ];
 
-    let scores = { calm: 0, fire: 0, forest: 0, wealth: 0 };
+    let scores = { forest_c: 0, forest_m: 0, forest_n: 0, fire: 0, wealth: 0, calm: 0 };
     let currentQ = 0;
 
     function renderQuestion() {
@@ -75,7 +77,7 @@
     }
 
     function showResult() {
-        // (2) 進度條滿格
+        // 進度條滿格
         document.getElementById("bar").style.width = "100%";
         document.getElementById('quiz-box').style.display = 'none';
         
@@ -83,6 +85,7 @@
         let winners = Object.keys(scores).filter(key => scores[key] === maxScore);
         const winner = winners[Math.floor(Math.random() * winners.length)];
 
+        // 這是帶有跳轉參數的 6 種狀態結果！
         const mapping = {
             forest_c: { state: "FOREST", desc: "You are seeking deeper roots.<br>This scent connects you to the earth.", title: "靜息之森", sub: "經典版", link: "forest.html?v=classic" },
             forest_m: { state: "FOREST", desc: "Your soul is ready to awaken.<br>This scent brings light and clarity.", title: "靜息之森", sub: "晨光版", link: "forest.html?v=morning" },
@@ -93,11 +96,13 @@
         };
 
         const res = mapping[winner];
-        // (1) 調整為香氛卡視覺 + (3) 加入 Recommended scent 引導語
+        
+        // 渲染帶有高級儀式感的香氛卡
         document.getElementById('result-area').innerHTML = `
             <div class="scent-card">
                 <div class="card-header">SOUL STATE</div>
                 <div class="card-title">${res.state}</div>
+                <div class="card-subtitle">—— ${res.sub} ——</div>
                 <div class="card-content">${res.desc}</div>
             </div>
             <div class="recommend-box">
