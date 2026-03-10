@@ -9,112 +9,133 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1a33 0%, #050A14 70%); }
 
-        .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; }
+        /* 導覽列與通用架構 */
+        .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
         .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
-        .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
-        .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; }
 
-        .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; max-width: 1200px; margin: 0 auto; gap: 60px; }
+        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
+        .fade-in-element.visible { opacity: 1; transform: translateY(0); }
+
+        .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
+        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center; } }
+        
+        .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(100, 181, 246, 0.2); }
         .product-info { flex: 1; }
-        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; transition: all 0.3s; margin: 5px; }
+        .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
+        .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; }
+        .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; line-height: 1.8; }
+        
+        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; margin: 5px; }
         .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(100, 181, 246, 0.1); }
         
+        /* 儀式區塊樣式 (補回) */
         .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(100, 181, 246, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(100, 181, 246, 0.1); text-align: center; }
         .ritual-title { font-size: 1.8em; color: var(--text-main); letter-spacing: 4px; margin-bottom: 30px; }
         .ritual-steps { text-align: left; max-width: 600px; margin: 0 auto; }
-        .step-box { margin-bottom: 30px; padding-left: 40px; position: relative; }
-        .step-num { position: absolute; left: 0; top: 0; color: var(--gold-accent); font-size: 1.5em; }
-        .step-title { color: var(--gold-accent); margin-bottom: 5px; }
-        .step-desc { color: #a0a0a0; font-size: 0.9em; line-height: 1.8; }
-        
-        .track-item { margin-bottom: 30px; }
-        .track-level { color: var(--theme-color); font-size: 0.8em; }
+        .step-box { margin-bottom: 40px; padding-left: 40px; position: relative; }
+        .step-num { position: absolute; left: 0; top: 0; color: var(--gold-accent); font-size: 1.5em; font-family: serif; font-style: italic; opacity: 0.6; }
+        .step-title { color: var(--gold-accent); font-size: 1.1em; margin-bottom: 10px; }
+        .step-desc { color: #a0a0a0; font-size: 0.95em; line-height: 1.8; }
+
+        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
     </style>
 </head>
 <body>
 
-<nav class="smart-nav">
+<nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
     <div class="nav-links">
         <a href="index.html">首頁</a>
+        <a href="about.html">關於品牌</a>
+        <a href="philosophy.html">品牌哲學</a>
         <a href="test.html">Find Your State</a>
         <a href="state.html">狀態</a>
     </div>
 </nav>
 
-<section class="product-hero">
+<section class="product-hero fade-in-element">
+    <div class="product-visual">
+        <div id="product-drop-zone" class="drop-zone">放入<br>靜域之心<br>視覺圖</div>
+        <img id="product-img" class="product-img" alt="靜域之心">
+    </div>
+
     <div class="product-info">
-        <h1>🜁 靜域之心</h1>
-        <div class="variant-group">
-            <button class="variant-btn active" data-type="standard">標準穩心版</button>
-            <button class="variant-btn" data-type="pet">毛孩安心版</button>
-            <button class="variant-btn" data-type="baby">寶寶安睡版</button>
-            <button class="variant-btn" data-type="pregnant">孕媽咪支撐版</button>
+        <div class="axis-badge">適合需要：放鬆 ‧ 回到自己的中心 ‧ 冥想</div>
+        <h1 class="product-title">🜁 靜域之心</h1>
+        <div class="core-quote">
+            「靜域之心不是讓世界變安靜。<br>而是在喧囂之中，建立一個屬於自己的安靜空間。」
         </div>
-        <p id="dynamic-desc">【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。</p>
+
+        <div class="variant-group">
+            <div class="variant-title">選擇專屬配方版本：</div>
+            <div class="variants">
+                <button class="variant-btn active" data-type="standard">標準穩心版</button>
+                <button class="variant-btn" data-type="pet">毛孩安心版</button>
+                <button class="variant-btn" data-type="baby">寶寶安睡版</button>
+                <button class="variant-btn" data-type="pregnant">孕媽咪支撐版</button>
+            </div>
+            <p id="dynamic-desc" style="margin-top: 15px; color: var(--text-muted);">【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。</p>
+        </div>
     </div>
 </section>
 
-<div id="dynamic-content">
-    <section class="resonance-section">
-        <div id="dynamic-tracks"></div>
-        <div id="dynamic-ingredients" style="margin-top:20px; color:#888;"></div>
-        <div id="dynamic-safety" style="margin-top:10px; color:#64B5F6;"></div>
-    </section>
-</div>
-
-<section id="dynamic-ritual" class="ritual-section">
+<section id="dynamic-ritual" class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
     <h2 id="ritual-title" class="ritual-title">狻猊歸心儀式</h2>
-    <p id="ritual-intro" class="ritual-intro"></p>
-    <div id="ritual-steps" class="ritual-steps"></div>
+    <p id="ritual-intro" class="ritual-intro">
+        狻猊喜靜，是守護空間的絕對防線。當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。
+    </p>
+    <div id="ritual-steps" class="ritual-steps">
+        <div class="step-box"><div class="step-num">01</div><div class="step-title">落界 (The Boundary)</div><div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓。想像香氣的微粒如金色的傘落下。</div></div>
+        <div class="step-box"><div class="step-num">02</div><div class="step-title">沉降 (The Anchor)</div><div class="step-desc">深吸氣 4 秒，感受穩定的氣味；吐氣 8 秒，接住所有的重量。</div></div>
+        <div class="step-box"><div class="step-num">03</div><div class="step-title">歸位 (Return to Center)</div><div class="step-desc">告訴自己：「我現在很安全。」安然進入深層休息。</div></div>
+    </div>
 </section>
+
+<footer class="site-footer fade-in-element">
+    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="state.html">States</a>
+    </div>
+</footer>
 
 <script>
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
-            safety: "✦ 穩心配方：適合日常靜心。",
-            ingredients: "佛手柑、苦橙葉、高地薰衣草、花梨木、岩蘭草、乳香。",
-            tracks: `<div class="track-item"><div class="track-level">Top</div><div>佛手柑、苦橙葉：思緒梳理</div></div><div class="track-item"><div class="track-level">Middle</div><div>薰衣草、花梨木：溫柔支撐</div></div><div class="track-item"><div class="track-level">Base</div><div>岩蘭草、乳香：大地定錨</div></div>`,
             ritualTitle: "狻猊歸心儀式",
-            ritualIntro: "狻猊喜靜，守護空間。當外界嘈雜，這裡是你安放靈魂的靜域。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">落界</div><div class="step-desc">按壓香氣，畫出安全結界。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">沉降</div><div class="step-desc">深吸 4 秒，慢吐 8 秒，放下重量。</div></div>`
+            ritualIntro: "狻猊喜靜，是守護空間的絕對防線。當外界過於嘈雜，你需要的不只是香氣，而是一個為你擋下所有紛擾的神聖結界。",
+            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">落界</div><div class="step-desc">閉上雙眼，將【靜域之心】朝空間高處按壓。想像香氣落下。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">沉降</div><div class="step-desc">深吸氣 4 秒，感受穩定的氣味；吐氣 8 秒，接住所有的重量。</div></div><div class="step-box"><div class="step-num">03</div><div class="step-title">歸位</div><div class="step-desc">告訴自己：「我現在很安全。」安然進入深層休息。</div></div>`
         },
         pet: {
-            desc: "【溫和頻率】調整共振，安撫毛孩，建立人寵共生靜謐空間。",
-            safety: "✦ 寵物友善：嚴格剔除高風險成分。",
-            ingredients: "波旁天竺葵、芫荽種子、高地薰衣草、花梨木、乳香、岩蘭草。",
-            tracks: `<div class="track-item"><div class="track-level">Top</div><div>波旁天竺葵：溫和降噪</div></div><div class="track-item"><div class="track-level">Middle</div><div>薰衣草、花梨木：平衡神經</div></div><div class="track-item"><div class="track-level">Base</div><div>岩蘭草、乳香：純淨守護</div></div>`,
+            desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
             ritualTitle: "同頻撫慰儀式",
-            ritualIntro: "當你與毛孩同時焦慮時，氣味是最好的橋樑。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">輕柔擴散</div><div class="step-desc">遠處輕噴，讓香氣自然融合。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">溫和連結</div><div class="step-desc">緩慢呼吸，傳遞安心訊號。</div></div>`
+            ritualIntro: "當你與毛孩同時感到焦慮時，氣味是最好的橋樑。透過溫和的草本頻率，讓空間重新回歸平靜。",
+            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">輕柔擴散</div><div class="step-desc">在距離毛孩較遠處輕噴，讓香氣分子自然擴散。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">溫和共鳴</div><div class="step-desc">緩慢呼吸，傳遞安心的頻率給毛孩。</div></div>`
         },
         baby: {
-            desc: "【過濾雜訊】溫柔包覆夜間敏銳感知，助寶寶好眠。",
-            safety: "✦ 寶寶安睡：專為幼兒敏銳感知設計。",
-            ingredients: "甜橙、花梨木、佛手柑、薰衣草、岩蘭草、乳香。",
-            tracks: `<div class="track-item"><div class="track-level">Top</div><div>甜橙：快樂撫慰</div></div><div class="track-item"><div class="track-level">Middle</div><div>花梨木：神經安撫</div></div><div class="track-item"><div class="track-level">Base</div><div>狻猊複方：深層放鬆</div></div>`,
+            desc: "【過濾雜訊】以極致溫和的頻率過濾環境雜訊，溫柔包覆夜間敏銳的感知。",
             ritualTitle: "星光安撫儀式",
-            ritualIntro: "以溫柔的氣味雲朵，覆蓋寶寶的睡眠空間。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">氣味搖籃</div><div class="step-desc">噴灑空間，營造柔軟氣場。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">輕拍入夢</div><div class="step-desc">隨香氣節奏拍撫，進入深層安穩。</div></div>`
+            ritualIntro: "寶寶的夜驚源於訊息過載，此儀式旨在創造溫柔防護罩，幫助寶寶安穩入眠。",
+            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">氣味搖籃</div><div class="step-desc">在睡眠區域邊緣噴灑，形成柔軟的氣味保護層。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">輕拍節奏</div><div class="step-desc">隨香氣節奏緩慢拍撫，讓寶寶進入深層寧靜。</div></div>`
         },
         pregnant: {
-            desc: "【大地支撐】穩固孕期情緒，提供厚實安全感。",
-            safety: "✦ 孕期支撐：配方溫和清爽，懷孕滿 3 個月適用。",
-            ingredients: "紅橘、橙花、苦橙葉、佛手柑、薰衣草、花梨木、岩蘭草、乳香。",
-            tracks: `<div class="track-item"><div class="track-level">Top</div><div>紅橘、橙花：情緒救星</div></div><div class="track-item"><div class="track-level">Middle</div><div>狻猊複方：穩固重心</div></div><div class="track-item"><div class="track-level">Base</div><div>輕盈安放：腰部與情緒支撐</div></div>`,
+            desc: "【大地支撐】提供穩定厚實的大地能量，穩固孕期容易起伏的情緒。",
             ritualTitle: "孕期連結儀式",
-            ritualIntro: "給予孕期所需的深層支撐感，感受與寶寶的穩固連結。",
-            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">呼吸連結</div><div class="step-desc">專注呼吸，讓香氣帶動腹部起伏。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">安撫穩定</div><div class="step-desc">雙手撫腹，確認彼此的安穩。</div></div>`
+            ritualIntro: "孕期需要深層的支撐感。透過這個儀式，重新連結呼吸與身體。",
+            ritualSteps: `<div class="step-box"><div class="step-num">01</div><div class="step-title">深層呼吸</div><div class="step-desc">噴灑後，感受香氣帶動腹部起伏。</div></div><div class="step-box"><div class="step-num">02</div><div class="step-title">情緒安放</div><div class="step-desc">雙手撫腹，感受安心力量，傳遞穩固感給寶寶。</div></div>`
         }
     };
 
     function setVariant(variant) {
+        if(!variantsData[variant]) return;
         const d = variantsData[variant];
         document.getElementById('dynamic-desc').innerText = d.desc;
-        document.getElementById('dynamic-tracks').innerHTML = d.tracks;
-        document.getElementById('dynamic-safety').innerText = d.safety;
-        document.getElementById('dynamic-ingredients').innerText = d.ingredients;
         document.getElementById('ritual-title').innerText = d.ritualTitle;
         document.getElementById('ritual-intro').innerText = d.ritualIntro;
         document.getElementById('ritual-steps').innerHTML = d.ritualSteps;
@@ -123,7 +144,7 @@
 
     document.querySelectorAll('.variant-btn').forEach(b => b.onclick = () => setVariant(b.dataset.type));
     
-    // 初始化
+    // 初始化參數讀取
     const params = new URLSearchParams(window.location.search);
     setVariant(params.get('v') || 'standard');
 </script>
