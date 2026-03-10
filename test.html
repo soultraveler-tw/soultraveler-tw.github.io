@@ -22,11 +22,9 @@
         .option-btn { display: block; width: 100%; padding: 18px; margin: 15px 0; background: transparent; border: 1px solid rgba(220,167,80,0.2); color: var(--text-main); cursor: pointer; transition: all 0.3s; font-size: 1em; letter-spacing: 1px; border-radius: 8px; }
         .option-btn:hover { border-color: var(--gold-accent); background: rgba(220,167,80,0.05); }
 
-        /* 上一題按鈕樣式 */
         .back-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.85em; letter-spacing: 2px; cursor: pointer; margin-top: 20px; transition: color 0.3s; padding: 10px; font-family: inherit;}
         .back-btn:hover { color: var(--gold-accent); }
 
-        /* 塔羅香氛卡視覺 */
         #result-area { display: none; margin-top: 50px; padding-bottom: 80px; }
         .scent-card { border: 1px solid var(--gold-accent); padding: 50px 30px; border-radius: 2px; max-width: 320px; margin: 0 auto 30px auto; background: rgba(220, 167, 80, 0.03); position: relative;}
         .card-compass { font-size: 0.75em; letter-spacing: 5px; margin-bottom: 30px; color: var(--gold-accent); opacity: 0.7; }
@@ -35,14 +33,16 @@
         .card-subtitle { font-size: 0.9em; letter-spacing: 4px; color: var(--gold-accent); margin-bottom: 35px; opacity: 0.9; }
         .card-content { font-size: 1em; line-height: 2.2; color: var(--text-main); letter-spacing: 2px; font-weight: 300; }
         
-        .recommend-box { margin-top: 40px; }
+        .recommend-box { margin-top: 40px; margin-bottom: 60px; }
         .recommend-label { color: var(--text-muted); font-size: 0.75em; letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase; }
         .explore-btn { color: var(--gold-accent); text-decoration: none; border-bottom: 1px solid var(--gold-accent); padding-bottom: 5px; font-size: 1.1em; letter-spacing: 2px; display: inline-block; margin-top: 10px; transition: opacity 0.3s;}
         .explore-btn:hover { opacity: 0.7; }
         
-        /* 再測一次按鈕樣式 */
-        .retake-btn { display: inline-block; margin-top: 60px; font-size: 0.8em; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; transition: color 0.3s; text-transform: uppercase; border-bottom: 1px dashed rgba(136,136,153,0.3); padding-bottom: 3px; }
-        .retake-btn:hover { color: var(--gold-accent); border-bottom-color: var(--gold-accent); }
+        /* 升級：更明顯的再測一次按鈕 */
+        .retake-btn { display: inline-flex; flex-direction: column; align-items: center; margin-top: 40px; padding: 15px 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(136, 136, 153, 0.3); border-radius: 30px; text-decoration: none; transition: all 0.3s ease; }
+        .retake-btn:hover { border-color: var(--gold-accent); background: rgba(220, 167, 80, 0.05); transform: translateY(-2px); }
+        .retake-icon-text { font-size: 0.9em; color: var(--text-main); letter-spacing: 2px; margin-bottom: 5px; }
+        .retake-subtext { font-size: 0.7em; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -147,13 +147,17 @@
                 <div class="card-subtitle">${res.sub}</div>
                 <div class="card-content">${res.desc}</div>
             </div>
+            
             <div class="recommend-box">
                 <div class="recommend-label">Recommended scent</div>
                 <h3 style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 300;">${res.title}</h3>
                 <a href="${res.link}" class="explore-btn">Explore ${res.title} →</a>
             </div>
             
-            <a href="test.html" class="retake-btn">⟲ Retake the Compass</a>
+            <a href="test.html" class="retake-btn">
+                <div class="retake-icon-text">⟲ 重新探索狀態</div>
+                <div class="retake-subtext">Retake the Compass</div>
+            </a>
         `;
         document.getElementById('result-area').style.display = 'block';
     }
