@@ -42,20 +42,21 @@
         .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 0.85em; }
         .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(100, 181, 246, 0.1); }
 
-        /* ✦ 神獸象徵 ✦ - 視覺框設計 */
+        /* ✦ 神獸象徵 ✦ */
         .symbol-section { max-width: 800px; margin: 100px auto; padding: 0 20px; }
         .symbol-box { border: 1px solid rgba(100, 181, 246, 0.2); background: rgba(100, 181, 246, 0.02); padding: 60px 40px; border-radius: 2px; position: relative; text-align: center; }
         .symbol-box::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid rgba(100, 181, 246, 0.05); pointer-events: none; }
         .symbol-title { font-size: 1.2em; color: var(--theme-color); letter-spacing: 6px; margin-bottom: 30px; font-weight: 300; }
         .symbol-desc { font-size: 1.1em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; max-width: 500px; margin: 0 auto; }
 
-        /* ✦ 氣味場景 ✦ */
+        /* ✦ 氣味場景 ✦ - 已更新顏色 */
         .scene-section { max-width: 700px; margin: 80px auto; text-align: center; padding: 0 20px; }
-        .scene-title { font-size: 1.1em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
+        .scene-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
         .scene-desc { font-size: 1.1em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; opacity: 0.9; }
 
-        /* 香氣軌跡 */
+        /* ✦ 香氣軌跡 ✦ - 已更新顏色 */
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 1.4em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
         .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(100, 181, 246, 0.3); text-align: left; }
         .track-item { position: relative; margin-bottom: 40px; }
         .track-item::before { content: ''; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: #050A14; border: 2px solid var(--theme-color); border-radius: 50%; box-shadow: 0 0 10px var(--theme-color); }
@@ -130,12 +131,12 @@
 <section class="scene-section fade-in-element">
     <h3 class="scene-title">✦ 氣味場景 ✦</h3>
     <p id="dynamic-scene" class="scene-desc">
-        當你閉上眼睛，世界的一切喧囂瞬間被隔絕在外。<br>這裡像是一座深海裡的純白房間，沒有雜訊，沒有他人情緒的拉扯，只有你穩定的心跳聲。
+        當你閉上眼睛，世界的一切喧囂瞬間被隔絕在外。<br>這裡像是一座深海裡的純白房間，沒有雜訊，只有你穩定的心跳聲。
     </p>
 </section>
 
 <section class="resonance-section fade-in-element">
-    <h2 style="text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300;">✦ 香氣軌跡 ✦</h2>
+    <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
     <div class="track-container" id="dynamic-tracks"></div>
     <div class="spec-box">
         <div class="spec-note legal-note" id="dynamic-ingredients"></div>
@@ -162,6 +163,7 @@
 </footer>
 
 <script>
+    // 資料結構與更新邏輯維持不變，已確保內容完整性
     const variantsData = {
         standard: {
             need: "適合需要：放鬆 ‧ 回到自己的中心 ‧ 冥想",
@@ -188,8 +190,33 @@
             ritTitle: "同頻撫慰儀式",
             ritIntro: "當你與毛孩同時感到焦慮時，透過溫和的草本頻率，讓空間重新回歸平靜。",
             ritSteps: `<div class="step-box"><div class="step-num">01</div><div style="color:var(--text-main); margin-bottom:10px">輕柔擴散</div><div style="font-size:0.95em; color:#a0a0a0; line-height:1.8">在距離毛孩較遠處噴灑，讓香氣微分子自然與空間磁場融合。</div></div>`
+        },
+        baby: {
+            need: "適合需要：安穩入眠 ‧ 感知保護 ‧ 溫柔包覆",
+            theme: "✦ 能量主題｜過濾雜訊 ‧ 夜間修護 ‧ 純淨守護",
+            diag: "<strong>當下狀態：</strong>寶寶睡不安穩。<br><strong>內在需求：</strong>如同母親懷抱般的保護層。",
+            desc: "【過濾雜訊】以溫和頻率過濾環境雜訊，包覆敏銳感知。",
+            scene: "想像寶寶躺在由香氣織成的柔軟雲朵上，外界所有的尖銳聲音都被過濾成溫和的頻率。在這裡，沒有惡夢，只有深深的睡眠。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、花梨木精油、高地薰衣草精油、乳香精油。",
+            safety: "<span class='alert'>●</span> 安全提醒：極低濃度配方。<b>建議噴灑於床周遭環境。</b>",
+            tracks: `<div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙</div><div class="track-effect">【快樂撫慰】溫暖快樂的甜美果香。</div></div><div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">花梨木</div><div class="track-effect">【神經安撫】給予極度溫柔的撫慰。</div></div><div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">核心基調 (50%)</div><div class="track-effect">【深層放鬆】宛如母親堅定而溫暖的懷抱。</div></div>`,
+            ritTitle: "星光安撫儀式",
+            ritIntro: "創造一個溫柔的防護罩，守護寶寶的夢境。",
+            ritSteps: `<div class="step-box"><div class="step-num">01</div><div style="color:var(--text-main); margin-bottom:10px">氣味搖籃</div><div style="font-size:0.95em; color:#a0a0a0; line-height:1.8">在睡眠區域噴灑，讓香氣如雲朵般覆蓋。</div></div>`
+        },
+        pregnant: {
+            need: "適合需要：情緒穩固 ‧ 身體支撐 ‧ 能量定錨",
+            theme: "✦ 能量主題｜大地連結 ‧ 壓力釋放 ‧ 雙心共振",
+            diag: "<strong>當下狀態：</strong>孕期情緒易感。<br><strong>內在需求：</strong>厚實的大地支撐感。",
+            desc: "【大地支撐】提供穩定厚實的能量，穩固孕期情緒。",
+            scene: "感受到大地深處傳來的支撐感，不僅放鬆了肩膀，也讓靈魂深處感到踏實與被愛。",
+            ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>紅橘精油、橙花精油、苦橙葉精油、乳香精油。",
+            safety: "<span class='alert'>●</span> 安全提醒：<b>建議懷孕滿 12 週後使用。</b>",
+            tracks: `<div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">紅橘、橙花</div><div class="track-effect">【情緒救星】緩解不適，驅散焦慮。</div></div><div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">核心基調 (50%)</div><div class="track-effect">【穩固重心】讓呼吸變深沉。</div></div><div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">無負擔支撐</div><div class="track-effect">【輕盈安放】留下堅實的後盾。</div></div>`,
+            ritTitle: "孕期連結儀式",
+            ritIntro: "重新感受呼吸與身體的連結。",
+            ritSteps: `<div class="step-box"><div class="step-num">01</div><div style="color:var(--text-main); margin-bottom:10px">深層呼吸</div><div style="font-size:0.95em; color:#a0a0a0; line-height:1.8">專注感受香氣進入鼻腔。</div></div>`
         }
-        // ... (baby 與 pregnant 版本可依此類推補齊)
     };
 
     function update(type) {
