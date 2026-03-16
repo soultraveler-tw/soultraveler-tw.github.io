@@ -40,9 +40,9 @@
 
         .variant-group { margin-bottom: 40px; }
         .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
-        .variants { display: flex; gap: 15px; flex-wrap: wrap; }
-        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.9em; letter-spacing: 1px;}
-        .variant-btn.active { border-color: var(--theme-color); color: var(--bg-darker); background: var(--theme-color); box-shadow: 0 0 15px rgba(220, 167, 80, 0.3); font-weight: bold;}
+        .variants { display: flex; gap: 12px; flex-wrap: wrap; }
+        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.85em; letter-spacing: 1px;}
+        .variant-btn.active { border-color: var(--theme-color); color: var(--text-main); background: rgba(220, 167, 80, 0.1); box-shadow: 0 0 10px rgba(220, 167, 80, 0.2); }
 
         .price-action { display: flex; align-items: center; gap: 30px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
         .price { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 1px; }
@@ -76,6 +76,16 @@
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+
+        /* Ritual Section Styles */
+        .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(220, 167, 80, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(220, 167, 80, 0.1); border-bottom: 1px solid rgba(220, 167, 80, 0.1); text-align: center; }
+        .ritual-header { font-size: 0.8em; color: var(--gold-accent); letter-spacing: 6px; margin-bottom: 20px; text-transform: uppercase; font-weight: 300; }
+        .ritual-title { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 4px; margin-bottom: 50px; }
+        .ritual-steps { display: flex; flex-direction: column; gap: 40px; text-align: left; max-width: 600px; margin: 0 auto; transition: opacity 0.4s ease; }
+        .step-box { position: relative; padding-left: 40px; }
+        .step-num { position: absolute; left: 0; top: -5px; font-size: 1.5em; color: var(--gold-accent); opacity: 0.5; font-family: serif; font-style: italic; }
+        .step-title { font-size: 1.1em; color: var(--text-main); letter-spacing: 2px; margin-bottom: 10px; font-weight: 300; }
+        .step-desc { font-size: 0.95em; color: #a0a0a0; line-height: 1.8; letter-spacing: 1px; font-weight: 300; }
     </style>
 </head>
 <body>
@@ -187,7 +197,7 @@
         </div>
     </div>
 
-    <div class="spec-box fade-in-element">
+<div class="spec-box fade-in-element">
         <div class="spec-note legal-note">
             <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
             甜橙精油、佛手柑精油、絲柏精油、歐白芷根精油、岩蘭草精油、波旁岩蘭草精油、乳香精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、中國肉桂精油、多香果精油、丁香花苞精油、錫蘭肉桂精油、印度肉桂精油、神聖羅勒精油、丁香羅勒精油。
@@ -197,6 +207,29 @@
         </div>
         <div class="spec-note">
             ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+        </div>
+    </div>
+</section> <section class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
+    <h2 class="ritual-title" id="ritual-title">貔貅聚財儀式</h2>
+
+    <div class="ritual-steps" id="dynamic-ritual">
+        <div class="step-box">
+            <div class="step-num">01</div>
+            <div class="step-title">開眼 (The Awakening)</div>
+            <div class="step-desc">晨間出門前，將香氣朝空間高處或玄關噴灑。深呼吸，想像金色的微粒為你開啟今日的敏銳視野，精準捕捉所有潛在的機會。</div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-num">02</div>
+            <div class="step-title">招財 (The Magnetism)</div>
+            <div class="step-desc">將香氣輕灑於名片、辦公桌或隨身錢包上方。想像貔貅的能量與你隨行，讓自己成為一個強大的引力場，將流動的豐盛匯聚於此。</div>
+        </div>
+
+        <div class="step-box">
+            <div class="step-num">03</div>
+            <div class="step-title">鎮庫 (The Treasury)</div>
+            <div class="step-desc">工作結束或回到家後，於財位再次噴灑。在香氣的陪伴下，將今日所有的收穫與好運穩穩沉降、收斂入庫，化為你最安定的底氣。</div>
         </div>
     </div>
 </section>
