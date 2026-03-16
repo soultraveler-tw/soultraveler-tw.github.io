@@ -118,13 +118,13 @@
             ✦ 能量主題｜內在安定 ‧ 結界防護 ‧ 思緒沉靜
         </div>
 
-        <div class="diagnosis-box">
+        <div class="diagnosis-box" id="dynamic-diagnosis" style="transition: opacity 0.3s ease;">
             <h5>✦ 狀態覺察 ✦</h5>
             <p><strong>當下狀態：</strong>焦躁、情緒起伏大、容易被外界的聲音或他人的情緒干擾。<br>
                <strong>內在需求：</strong>渴望一個沒有雜訊、安全且獨立的心理邊界。</p>
             <p>➔ 陪伴目標：協助內在重新平衡，穩固心神與頻率。</p>
         </div>
-        <div style="border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px;">
+        <div id="dynamic-moment" style="border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px; transition: opacity 0.3s ease;">
             <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px;">
                 <div>✦ 深度冥想靜心時</div>
@@ -230,6 +230,18 @@
     const variantsData = {
         standard: {
             desc: "【深度冥想、思緒清理】為太容易共感的你，建立堅實的心理空間。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當思緒如亂麻，感到外在的喧囂已經滲透進內心，無法專注於當下，亟需找回內在秩序與純粹的平靜時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 結束一天的高壓工作踏入家門時</div>
+                <div>✦ 展開冥想與瑜伽練習前</div>
+                <div>✦ 需要深度閱讀與獨處沉澱的靜謐夜晚</div>
+            </div>
+            `,
             safety: "✦ 穩心配方：本配方能量平穩收斂，適合日常靜心與空間結界使用。",
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>佛手柑精油、苦橙葉精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
             tracks: `
@@ -251,6 +263,18 @@
         },
         pet: {
             desc: "【溫和頻率】調整共振頻率，安撫毛孩的焦躁，建立人寵共生的靜謐空間。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當你與毛孩共處，感受到空間中有一絲浮躁，希望能以最溫和無害的方式，為彼此創造一個純淨且安心的結界時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 與寵物共享的慵懶午後</div>
+                <div>✦ 毛孩情緒略顯焦躁需要環境安撫時</div>
+                <div>✦ 雷雨天與節慶煙火等易受外界驚嚇的日子</div>
+            </div>
+            `,
             safety: "✦ 寵物友善：嚴格剔除對毛孩有代謝風險的精油，選用最高安全級別的安撫成分。",
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>波旁天竺葵精油、芫荽種子精油、高地薰衣草精油、花梨木精油、乳香精油、岩蘭草精油、波旁岩蘭草精油、荷荷芭油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
@@ -271,6 +295,18 @@
         },
         baby: {
             desc: "【過濾雜訊】以極致溫和的頻率過濾環境雜訊，溫柔包覆夜間敏銳的感知。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當夜幕降臨，空間需要轉換為休憩頻率，而幼小的靈魂仍依戀著白日的喧鬧，需要一雙無形的溫柔手輕撫入夢時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 睡前儀式（如床邊故事結束、沐浴後）</div>
+                <div>✦ 午後小睡的過渡期</div>
+                <div>✦ 半夜易醒需要重新建立空間安全感時</div>
+            </div>
+            `,
             safety: "✦ 寶寶安睡：極低濃度與無刺激性配方，專為幼兒敏銳感知設計。",
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>甜橙精油、花梨木精油、佛手柑精油、苦橙葉精油、高地薰衣草精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
             tracks: `
@@ -291,6 +327,18 @@
         },
         pregnant: {
             desc: "【大地支撐】提供穩定厚實的大地能量，穩固孕期容易起伏的情緒。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當身體承受著孕育生命的重量，身心靈的邊界感到緊繃與疲乏，需要一股安定的力量，溫柔托住所有不安、焦慮與氣味敏感時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 孕期感到胸悶或情緒起伏較大時</div>
+                <div>✦ 產前放鬆身心的休息時光</div>
+                <div>✦ 準備入睡但難以找到平靜的夜晚</div>
+            </div>
+            `,
             safety: "✦ 孕期支撐：配方溫和清爽，建議懷孕滿 3 個月後可安心使用。",
             ingredients: "<strong>✦  法規全成分標示 (Full Ingredients)：</strong><br>紅橘精油、橙花精油、苦橙葉精油、佛手柑精油、高地薰衣草精油、花梨木精油、岩蘭草精油、波旁岩蘭草精油、乳香精油。",
             tracks: `
@@ -369,13 +417,18 @@
         const dDesc = document.getElementById('dynamic-desc');
         const dRitualIntro = document.getElementById('ritual-intro');
         const capacityGroup = document.getElementById('capacity-group');
+        const dDiagnosis = document.getElementById('dynamic-diagnosis');
+        const dMoment = document.getElementById('dynamic-moment');
 
         // 淡出效果
-        [dContent, dRitual, dDesc, capacityGroup].forEach(el => el.style.opacity = 0);
+        [dContent, dRitual, dDesc, capacityGroup, dDiagnosis, dMoment].forEach(el => el.style.opacity = 0);
 
         setTimeout(() => {
             // 更新內容
             dDesc.innerText = variantsData[variant].desc;
+            dDiagnosis.innerHTML = variantsData[variant].diagnosis;
+            dMoment.innerHTML = variantsData[variant].moment;
+
             document.getElementById('dynamic-tracks').innerHTML = variantsData[variant].tracks;
             document.getElementById('dynamic-safety').innerHTML = variantsData[variant].safety;
             document.getElementById('dynamic-ingredients').innerHTML = variantsData[variant].ingredients;
@@ -388,7 +441,7 @@
             renderCapacities(variant);
 
             // 淡入
-            [dContent, dRitual, dDesc, capacityGroup].forEach(el => el.style.opacity = 1);
+            [dContent, dRitual, dDesc, capacityGroup, dDiagnosis, dMoment].forEach(el => el.style.opacity = 1);
         }, 300);
     }
 
