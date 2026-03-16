@@ -73,6 +73,24 @@
         .safety-warning strong { color: #E57373; font-weight: 300;}
         .legal-note { border-color: rgba(129, 199, 132, 0.3); background: rgba(129, 199, 132, 0.05); color: #EAEAEA;}
 
+        .ritual-section { max-width: 800px; margin: 100px auto 80px auto; padding: 60px 40px; background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(129, 199, 132, 0.03) 50%, rgba(5,10,20,0) 100%); border-top: 1px solid rgba(129, 199, 132, 0.1); border-bottom: 1px solid rgba(129, 199, 132, 0.1); text-align: center; }
+        .ritual-header { font-size: 0.8em; color: var(--gold-accent); letter-spacing: 6px; margin-bottom: 20px; text-transform: uppercase; }
+        .ritual-title { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 4px; margin-bottom: 30px; }
+        .ritual-intro { font-size: 1em; color: var(--text-muted); line-height: 2; letter-spacing: 2px; margin-bottom: 40px; font-weight: 300; opacity: 0.7; }
+        .ritual-tabs { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; flex-wrap: wrap; }
+        .ritual-tab-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.95em; letter-spacing: 2px; cursor: pointer; padding: 10px 20px; position: relative; transition: color 0.3s; font-family: inherit; font-weight: 300;}
+        .ritual-tab-btn::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 1px; background: var(--theme-color); transition: width 0.3s ease; box-shadow: 0 0 8px rgba(129, 199, 132, 0); }
+        .ritual-tab-btn:hover { color: var(--text-main); }
+        .ritual-tab-btn.active { color: var(--text-main); }
+        .ritual-tab-btn.active::after { width: 80%; box-shadow: 0 0 8px rgba(129, 199, 132, 0.5); }
+        .ritual-content { transition: opacity 0.4s ease; min-height: 250px;}
+        .ritual-subtitle { font-size: 1.2em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 40px; font-weight: 300; }
+        .ritual-steps { display: flex; flex-direction: column; gap: 40px; text-align: left; max-width: 600px; margin: 0 auto; }
+        .step-box { position: relative; padding-left: 40px; }
+        .step-num { position: absolute; left: 0; top: -5px; font-size: 1.5em; color: var(--gold-accent); opacity: 0.5; font-family: serif; font-style: italic; }
+        .step-title { font-size: 1.1em; color: var(--text-main); letter-spacing: 2px; margin-bottom: 10px; font-weight: 300; }
+        .step-desc { font-size: 0.95em; color: #a0a0a0; line-height: 1.8; letter-spacing: 1px; font-weight: 300; }
+
         .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
         .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
         .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
@@ -189,6 +207,24 @@
     </div>
 </section>
 
+<section class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
+    <div class="ritual-title">靜息之儀</div>
+    <div class="ritual-intro">
+        每一座森林都有它的頻率，請為你此刻的身心，選擇一場專屬的入林儀式。
+    </div>
+    
+    <div class="ritual-tabs">
+        <button class="ritual-tab-btn active" data-ritual="classic">經典版 (安放)</button>
+        <button class="ritual-tab-btn" data-ritual="morning">晨光版 (微光)</button>
+        <button class="ritual-tab-btn" data-ritual="night">夜靜版 (深眠)</button>
+    </div>
+
+    <div class="ritual-content" id="ritual-dynamic-content">
+        <!-- Dynamically populated by JS -->
+    </div>
+</section>
+
 <footer class="site-footer fade-in-element">
     <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
     <div class="footer-links">
@@ -281,6 +317,33 @@
         }
     };
 
+    const ritualData = {
+        classic: {
+            subtitle: "安放之儀",
+            steps: `
+                <div class="step-box"><div class="step-num">01</div><div class="step-title">觸地</div><div class="step-desc">雙腳平放於地，感受大地承載的重量。</div></div>
+                <div class="step-box"><div class="step-num">02</div><div class="step-title">沐雨</div><div class="step-desc">在頭頂上方輕壓噴霧，讓水霧如森林晨露般自然落下。</div></div>
+                <div class="step-box"><div class="step-num">03</div><div class="step-title">歸根</div><div class="step-desc">隨著香氣沉降，想像自己化作一棵樹，將意識深深紮入當下。</div></div>
+            `
+        },
+        morning: {
+            subtitle: "微光之儀",
+            steps: `
+                <div class="step-box"><div class="step-num">01</div><div class="step-title">迎光</div><div class="step-desc">面朝窗外或光源，微微抬起下巴。</div></div>
+                <div class="step-box"><div class="step-num">02</div><div class="step-title">破曉</div><div class="step-desc">在身前噴灑，並主動向前踏入香氣的薄霧中。</div></div>
+                <div class="step-box"><div class="step-num">03</div><div class="step-title">綻放</div><div class="step-desc">深吸一口氣，感受清澈的氣息在胸腔裡擴張，喚醒內在的明亮。</div></div>
+            `
+        },
+        night: {
+            subtitle: "深眠之儀",
+            steps: `
+                <div class="step-box"><div class="step-num">01</div><div class="step-title">卸甲</div><div class="step-desc">將雙手輕貼胸口，緩慢地吐出所有的緊繃與防備。</div></div>
+                <div class="step-box"><div class="step-num">02</div><div class="step-title">沉暮</div><div class="step-desc">將噴霧灑於周圍空間或床沿，為自己降下一道安全的夜幕結界。</div></div>
+                <div class="step-box"><div class="step-num">03</div><div class="step-title">潛航</div><div class="step-desc">隨著呼吸放慢，想像自己沉入一片溫暖且無聲的深海，放心地將重量交給夜晚。</div></div>
+            `
+        }
+    };
+
     let currentRecipe = 'classic';
 
     function renderCapacities(variantKey) {
@@ -364,6 +427,25 @@
         }, 300);
     }
 
+    function setRitual(ritualKey) {
+        document.querySelectorAll('.ritual-tab-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.querySelector(`.ritual-tab-btn[data-ritual="${ritualKey}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        const contentElement = document.getElementById('ritual-dynamic-content');
+        if (!contentElement || !ritualData[ritualKey]) return;
+
+        contentElement.style.opacity = 0;
+        
+        setTimeout(() => {
+            contentElement.innerHTML = `
+                <div class="ritual-subtitle">${ritualData[ritualKey].subtitle}</div>
+                <div class="ritual-steps">${ritualData[ritualKey].steps}</div>
+            `;
+            contentElement.style.opacity = 1;
+        }, 300);
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         // --- 網頁載入動畫 ---
         setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
@@ -379,13 +461,22 @@
             });
         });
 
+        // 綁定儀式按鈕切換
+        document.querySelectorAll('.ritual-tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setRitual(this.getAttribute('data-ritual'));
+            });
+        });
+
         // --- 自動接收來自 test.html 的指令跳轉 ---
         const urlParams = new URLSearchParams(window.location.search);
         const requestedVariant = urlParams.get('v');
         if (requestedVariant) {
             setVariant(requestedVariant); // 如果網址有帶密碼，就自動執行切換
+            setRitual(requestedVariant); // 也把儀式連動切換過去
         } else {
             setVariant('classic'); // 否則預設載入經典版
+            setRitual('classic'); 
         }
     });
 </script>
