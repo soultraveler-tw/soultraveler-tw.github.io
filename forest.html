@@ -50,6 +50,7 @@
         .price-action { display: flex; align-items: center; gap: 30px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
         .price { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 1px; }
         .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
+        .add-to-cart:hover { background: var(--gold-accent); color: var(--bg-color); box-shadow: 0 0 20px rgba(220, 167, 80, 0.4); transform: translateY(-2px); }
 
         .story-section { max-width: 700px; margin: 100px auto 80px auto; text-align: center; padding: 0 20px; position: relative; }
         .story-section::before, .story-section::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(129, 199, 132, 0.3); margin: 0 auto 30px auto; }
@@ -109,26 +110,23 @@
             ✦ 能量主題｜回歸 ‧ 呼吸 ‧ 靈魂棲息
         </div>
 
-        <div class="diagnosis-box">
+        <div class="diagnosis-box" id="dynamic-diagnosis" style="transition: opacity 0.3s ease;">
             <h5>✦ 狀態覺察 ✦</h5>
-            <p><strong>當下狀態：</strong>長期緊繃、過度用力、想好好休息大腦卻停不下來。<br>
-               <strong>內在需求：</strong>渴望一個能讓自己徹底卸下防備、安心降速的空間。</p>
-            <p>➔ 陪伴目標：深層放鬆，讓身體重新找回落地的安全感。</p>
+            <p style="margin-bottom: 0;">當你感到靈魂的根基有些鬆動，被日常的瑣碎切分得支離破碎，需要一座無形的森林將你包圍，找回最原始的安全感與穩定力時。</p>
         </div>
         
-        <div style="border: 1px solid rgba(129, 199, 132, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px;">
+        <div id="dynamic-moment" style="border: 1px solid rgba(129, 199, 132, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px; transition: opacity 0.3s ease;">
             <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px;">
-                <div>✦ 睡前深度修復時</div>
-                <div>✦ 感到長期緊繃時</div>
-                <div>✦ 想要放慢節奏時</div>
-                <div>✦ 需要大地支持時</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 任何需要找回重心的時刻</div>
+                <div>✦ 剛抵達一個新空間需要建立結界時</div>
+                <div>✦ 思緒紛亂需要立即錨定的當下</div>
             </div>
         </div>
 
         <div class="variant-group">
             <div class="variant-title">選擇你的降速節奏：</div>
-            <div class="variants">
+            <div class="variants" id="recipe-variants">
                 <button class="variant-btn active" data-type="classic">經典版 (安放)</button>
                 <button class="variant-btn" data-type="morning">晨光版 (微光)</button>
                 <button class="variant-btn" data-type="night">夜靜版 (深眠)</button>
@@ -138,9 +136,19 @@
             </p>
         </div>
 
+        <div class="variant-group" id="capacity-group" style="transition: opacity 0.3s ease;">
+            <div class="variant-title">容量與價格：</div>
+            <div class="variants" id="capacity-variants">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
         <div class="price-action">
-            <div class="price">NT$ 9,999</div>
-            <button class="add-to-cart">選擇此香氣</button>
+            <div class="price-container" style="display: flex; flex-direction: column; justify-content: center; min-height: 60px;">
+                <div id="product-spec-display" style="font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 4px; transition: all 0.3s ease; display: none;"></div>
+                <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 380</div>
+            </div>
+            <button class="add-to-cart">加入購物車</button>
         </div>
     </div>
 </section>
@@ -196,61 +204,164 @@
     const variantsData = {
         classic: {
             desc: "【核心修復】回到森林地表，被樹根與土地穩穩托住。適合長期緊繃的你。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當你感到靈魂的根基有些鬆動，被日常的瑣碎切分得支離破碎，需要一座無形的森林將你包圍，找回最原始的安全感與穩定力時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 任何需要找回重心的時刻</div>
+                <div>✦ 剛抵達一個新空間需要建立結界時</div>
+                <div>✦ 思緒紛亂需要立即錨定的當下</div>
+            </div>
+            `,
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【卸下防備】果香與微透的陽光感，溫和地讓緊繃的思緒開始鬆動。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，像是在密林中看見一片開闊的空地。</div></div>
                 <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【大地托住】提供深邃且濕潤的木質底蘊，帶來被大地穩穩托住的安全感。</div></div>
-            `
+            `,
+            capacities: [
+                { spec: "10ML 隨身噴霧", price: "NT$ 380", val: "10ml" },
+                { spec: "50ML 空間噴霧", price: "NT$ 880", val: "50ml" },
+                { spec: "100ML 擴香", price: "NT$ 1,680", val: "100ml" }
+            ]
         },
         morning: {
             desc: "【晨光微曦】加倍注入 CT10 的陽光流動感。不強迫振作，而是讓光慢慢進來。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當早晨醒來，意識仍帶著昨夜的倦怠，需要一縷穿透樹冠的清晨微光，溫柔且清晰地喚醒感官，為嶄新的一天注入明亮的動能時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 晨間甦醒後的梳洗時光</div>
+                <div>✦ 準備開始一天重要工作前的轉換期</div>
+                <div>✦ 午後感到精神渙散需要重新聚焦時</div>
+            </div>
+            `,
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10 (加倍)、CT15</div><div class="track-effect">【溫和甦醒】加強版的精緻果園香氣，穿透葉隙帶來第一道光與快樂感。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉</div><div class="track-effect">【空間開闊】拉開內在的擁擠感，讓清晨的空氣大口灌入。</div></div>
                 <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草</div><div class="track-effect">【安穩奠基】不帶來壓迫感的木質底蘊，穩健踏出新的一天。</div></div>
-            `
+            `,
+            capacities: [
+                { spec: "10ML 隨身噴霧", price: "NT$ 380", val: "10ml" },
+                { spec: "50ML 空間噴霧", price: "NT$ 980", val: "50ml" }
+            ]
         },
         night: {
             desc: "【深層休息】加重根部力量與安撫神經。夜晚不是危險的，它只是在保護你。",
+            diagnosis: `
+            <h5>✦ 狀態覺察 ✦</h5>
+            <p style="margin-bottom: 0;">當夜色已深，但腦海中的齒輪仍在高速運轉，無法卸下白日的防備，渴望被一片靜謐的黑夜溫柔覆蓋，沉入無夢的深淵時。</p>
+            `,
+            moment: `
+            <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; font-size: 0.9em; color: #d0d0d0; font-weight: 300; letter-spacing: 1px; line-height: 1.8;">
+                <div>✦ 睡前一小時的靜心準備期</div>
+                <div>✦ 躺在床上輾轉難眠的時刻</div>
+                <div>✦ 半夜醒來需要再次安撫神經入睡時</div>
+            </div>
+            `,
             ingredients: "<strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>95%植萃香水酒精、純水、甜橙精油、苦橙葉精油、巨冷杉精油、高地薰衣草精油、黑雲杉精油、波旁岩蘭草精油、荷荷芭油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油。",
             tracks: `
                 <div class="track-item"><div class="track-level">Top / 前調</div><div class="track-ingredients">甜橙、苦橙葉、CT10、CT15</div><div class="track-effect">【撫平白日】溫和掃除白天的疲憊與殘存雜訊。</div></div>
                 <div class="track-item"><div class="track-level">Middle / 中調</div><div class="track-ingredients">巨冷杉、高地薰衣草</div><div class="track-effect">【深度安撫】額外加入高地薰衣草，強化睡眠修復功能，讓森林化為安心的臥室。</div></div>
                 <div class="track-item"><div class="track-level">Base / 後調</div><div class="track-ingredients">黑雲杉、波旁岩蘭草 (加倍)</div><div class="track-effect">【絕對安全】加重波旁岩蘭草的根部力量，像被大地深層擁抱一樣，安心入睡。</div></div>
-            `
+            `,
+            capacities: [
+                { spec: "10ML 隨身噴霧", price: "NT$ 380", val: "10ml" },
+                { spec: "50ML 空間噴霧", price: "NT$ 880", val: "50ml" },
+                { spec: "100ML 擴香", price: "NT$ 1,680", val: "100ml" }
+            ]
         }
     };
 
-    // 自動與手動通用的切換大腦
-    function setVariant(variant) {
-        if (!variantsData[variant]) return; // 防呆機制，如果找不到版本就不動作
+    let currentRecipe = 'classic';
 
-        // 1. 切換按鈕的發光狀態
-        document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
-        const targetBtn = document.querySelector(`.variant-btn[data-type="${variant}"]`);
+    function renderCapacities(variantKey) {
+        const capacityContainer = document.getElementById('capacity-variants');
+        const defaultCapacities = variantsData[variantKey].capacities;
+        
+        capacityContainer.innerHTML = '';
+        defaultCapacities.forEach((cap, index) => {
+            const btn = document.createElement('button');
+            btn.className = `variant-btn ${index === 0 ? 'active' : ''}`;
+            btn.innerHTML = cap.spec;
+            btn.onclick = (e) => selectCapacity(cap, e.target);
+            capacityContainer.appendChild(btn);
+        });
+
+        // 預設選中第一個容量
+        if (defaultCapacities.length > 0) {
+            selectCapacity(defaultCapacities[0], null, false);
+        }
+    }
+
+    function selectCapacity(capData, element, animate = true) {
+        const capacityBtns = document.getElementById('capacity-variants').querySelectorAll('.variant-btn');
+        capacityBtns.forEach(btn => btn.classList.remove('active'));
+        if (element) {
+            element.classList.add('active');
+        } else if (capacityBtns.length > 0) {
+            capacityBtns[0].classList.add('active');
+        }
+
+        const priceElement = document.getElementById('product-price');
+        
+        if (animate) {
+            priceElement.style.opacity = 0;
+            priceElement.style.transform = 'translateY(5px)';
+            setTimeout(() => {
+                priceElement.innerText = capData.price;
+                priceElement.style.opacity = 1;
+                priceElement.style.transform = 'translateY(0)';
+            }, 200);
+        } else {
+            priceElement.innerText = capData.price;
+        }
+    }
+
+    function setVariant(variant) {
+        if (!variantsData[variant]) return;
+        currentRecipe = variant;
+
+        document.querySelectorAll('#recipe-variants .variant-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.querySelector(`#recipe-variants .variant-btn[data-type="${variant}"]`);
         if (targetBtn) targetBtn.classList.add('active');
 
-        // 2. 抓取要更新的文字區塊
+        // 確保抓取所有要更新的文字區塊，如果網頁還沒有這些id會有問題
         const descElement = document.getElementById('variant-desc');
         const tracksElement = document.getElementById('dynamic-tracks');
         const dynamicIngredients = document.getElementById('dynamic-ingredients');
+        const capacityGroup = document.getElementById('capacity-group');
+        const dDiagnosis = document.getElementById('dynamic-diagnosis');
+        const dMoment = document.getElementById('dynamic-moment');
         
         // 先淡出隱藏
-        descElement.style.opacity = 0;
-        tracksElement.style.opacity = 0;
-        dynamicIngredients.style.opacity = 0;
+        [descElement, tracksElement, dynamicIngredients, capacityGroup, dDiagnosis, dMoment].forEach(el => {
+            if (el) el.style.opacity = 0;
+        });
         
-        // 等待 200 毫秒後，換上新內容並重新浮現
+        // 等待 300 毫秒後，換上新內容並重新浮現
         setTimeout(() => { 
-            descElement.innerText = variantsData[variant].desc; 
-            tracksElement.innerHTML = variantsData[variant].tracks;
-            dynamicIngredients.innerHTML = variantsData[variant].ingredients;
-            descElement.style.opacity = 1; 
-            tracksElement.style.opacity = 1;
-            dynamicIngredients.style.opacity = 1;
-        }, 200);
+            if (descElement) descElement.innerText = variantsData[variant].desc; 
+            if (dDiagnosis) dDiagnosis.innerHTML = variantsData[variant].diagnosis;
+            if (dMoment) dMoment.innerHTML = variantsData[variant].moment;
+            if (tracksElement) tracksElement.innerHTML = variantsData[variant].tracks;
+            if (dynamicIngredients) dynamicIngredients.innerHTML = variantsData[variant].ingredients;
+            
+            // 重新渲染容量按鈕並重置價格
+            renderCapacities(variant);
+            
+            [descElement, tracksElement, dynamicIngredients, capacityGroup, dDiagnosis, dMoment].forEach(el => {
+                if (el) el.style.opacity = 1;
+            });
+        }, 300);
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -262,7 +373,7 @@
         document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
 
         // --- 綁定按鈕的手動點擊功能 ---
-        document.querySelectorAll('.variant-btn').forEach(btn => {
+        document.querySelectorAll('#recipe-variants .variant-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 setVariant(this.getAttribute('data-type'));
             });
@@ -273,6 +384,8 @@
         const requestedVariant = urlParams.get('v');
         if (requestedVariant) {
             setVariant(requestedVariant); // 如果網址有帶密碼，就自動執行切換
+        } else {
+            setVariant('classic'); // 否則預設載入經典版
         }
     });
 </script>
