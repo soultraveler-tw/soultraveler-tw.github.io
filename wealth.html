@@ -126,10 +126,10 @@
         </div>
 
         <div class="variant-group">
-            <div class="variant-title">選擇你的流動方式：</div>
+            <div class="variant-title">品項與容量：</div>
             <div class="variants">
-                <button class="variant-btn active" onclick="changeVariant('focus')">標準行動版</button>
-                <button class="variant-btn" onclick="changeVariant('space')">辦公空間版</button>
+                <button class="variant-btn active" onclick="changeVariant('focus', this)">標準行動版</button>
+                <button class="variant-btn" onclick="changeVariant('space', this)">辦公空間版</button>
             </div>
             <p id="variant-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
                 【專注與流動】破除焦慮與迷惘，帶來極度清醒的邏輯與果斷的行動力。
@@ -137,8 +137,11 @@
         </div>
 
         <div class="price-action">
-            <div class="price">NT$ 9,999</div>
-            <button class="add-to-cart">選擇此香氣</button>
+            <div class="price-container" style="display: flex; flex-direction: column; justify-content: center; min-height: 60px;">
+                <div id="product-spec" style="font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 4px; transition: all 0.3s ease;">10ML 噴霧</div>
+                <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 580</div>
+            </div>
+            <button class="add-to-cart">加入購物車</button>
         </div>
     </div>
 </section>
@@ -210,17 +213,44 @@
 </footer>
 
 <script>
-    const descriptions = {
-        focus: "【專注與流動】破除焦慮與迷惘，帶來極度清醒的邏輯與果斷的行動力。",
-        space: "【場域活水】淨化工作空間的停滯氛圍，為團隊與專案迎來活水與新契機。"
+    const variantData = {
+        focus: {
+            desc: "【專注與流動】破除焦慮與迷惘，帶來極度清醒的邏輯與果斷的行動力。",
+            spec: "10ML 噴霧",
+            price: "NT$ 580"
+        },
+        space: {
+            desc: "【場域活水】淨化工作空間的停滯氛圍，為團隊與專案迎來活水與新契機。",
+            spec: "30ML 空間噴霧",
+            price: "NT$ 1,380"
+        }
     };
     
-    function changeVariant(variant) {
+    function changeVariant(variant, element) {
         document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        if (element) element.classList.add('active');
+        
         const descElement = document.getElementById('variant-desc');
+        const specElement = document.getElementById('product-spec');
+        const priceElement = document.getElementById('product-price');
+        
         descElement.style.opacity = 0;
-        setTimeout(() => { descElement.innerText = descriptions[variant]; descElement.style.opacity = 1; }, 200);
+        specElement.style.opacity = 0;
+        specElement.style.transform = 'translateY(5px)';
+        priceElement.style.opacity = 0;
+        priceElement.style.transform = 'translateY(5px)';
+        
+        setTimeout(() => { 
+            descElement.innerText = variantData[variant].desc; 
+            specElement.innerText = variantData[variant].spec;
+            priceElement.innerText = variantData[variant].price;
+            
+            descElement.style.opacity = 1; 
+            specElement.style.opacity = 1;
+            specElement.style.transform = 'translateY(0)';
+            priceElement.style.opacity = 1;
+            priceElement.style.transform = 'translateY(0)';
+        }, 300);
     }
 
     document.addEventListener("DOMContentLoaded", function() {
