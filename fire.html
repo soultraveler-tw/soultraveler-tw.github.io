@@ -1,237 +1,815 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 回火之心｜靈魂旅人 Soul Traveler</title>
     <style>
         :root {
-            --bg-color: #050A14; 
+            --bg-color: #050A14;
             --text-main: #EAEAEA;
             --text-muted: #888899;
-            --gold-accent: #DCA750; 
-            --border-color: #2A1010; 
+            --gold-accent: #DCA750;
+            --border-color: #2A1010;
             --nav-bg: rgba(5, 10, 20, 0.85);
             --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
             --theme-color: #E57373;
         }
 
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #1a0a0a 0%, #050A14 70%); }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .smart-nav { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(220, 167, 80, 0.15); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; z-index: 1000; transition: top 0.4s; }
-        .smart-nav.nav-up { top: -80px; }
-        .smart-nav .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; font-weight: 300; text-decoration: none; }
-        .smart-nav .nav-links { display: flex; gap: 30px; align-items: center; }
-        .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
-        .smart-nav .nav-links a:hover { color: var(--gold-accent); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: "PingFang TC", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #1a0a0a 0%, #050A14 70%);
+        }
 
-        .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
-        .fade-in-element.visible { opacity: 1; transform: translateY(0); }
+        .smart-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(220, 167, 80, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+            z-index: 1000;
+            transition: top 0.4s;
+        }
 
-        .product-hero { display: flex; min-height: 100vh; padding: 140px 40px 40px 40px; box-sizing: border-box; max-width: 1200px; margin: 0 auto; gap: 60px; align-items: flex-start; }
-        @media (max-width: 900px) { .product-hero { flex-direction: column; padding: 100px 20px 40px 20px; text-align: center; gap: 40px; align-items: center;} }
+        .smart-nav.nav-up {
+            top: -80px;
+        }
 
-        .product-visual { flex: 1; position: relative; width: 100%; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: center; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(229, 115, 115, 0.2); box-shadow: 0 0 40px rgba(229, 115, 115, 0.05); }
-        .drop-zone { border: 1px dashed var(--theme-color); color: var(--theme-color); border-radius: 50%; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; cursor: pointer; text-align: center; font-size: 0.85em; letter-spacing: 1px; line-height: 1.8;}
-        .product-img { max-width: 90%; max-height: 90%; display: none; filter: drop-shadow(0 0 20px rgba(229, 115, 115, 0.3)); animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .smart-nav .brand-logo {
+            color: var(--gold-accent);
+            font-size: 1.1em;
+            letter-spacing: 3px;
+            font-weight: 300;
+            text-decoration: none;
+        }
 
-        .product-info { flex: 1; }
-        .axis-badge { display: inline-block; padding: 6px 16px; border: 1px solid var(--theme-color); color: var(--theme-color); border-radius: 30px; font-size: 0.8em; letter-spacing: 2px; margin-bottom: 20px; }
-        .product-title { font-size: 2.5em; color: var(--text-main); margin: 0 0 15px 0; font-weight: 300; letter-spacing: 2px; }
-        .core-quote { font-size: 1.15em; color: var(--gold-accent); margin-bottom: 20px; letter-spacing: 2px; line-height: 1.8; font-weight: 300;}
-        .energy-theme { font-size: 0.85em; color: var(--text-muted); letter-spacing: 3px; margin-bottom: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; font-weight: 300;}
+        .smart-nav .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-        .diagnosis-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid var(--theme-color); padding: 20px; margin-bottom: 30px; }
-        .diagnosis-box h5 { margin: 0 0 12px 0; color: var(--theme-color); font-size: 0.9em; letter-spacing: 2px; font-weight: 300;}
-        .diagnosis-box p { margin: 0 0 15px 0; font-size: 0.95em; color: #d0d0d0; line-height: 1.8; letter-spacing: 1px;}
-        .diagnosis-box p:last-child { margin: 0; color: var(--text-main); opacity: 0.9;}
+        .smart-nav .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
 
-        .moment-box { background: rgba(229, 115, 115, 0.03); border-radius: 12px; padding: 20px 25px; margin-bottom: 40px; border: 1px solid rgba(229, 115, 115, 0.15);}
-        .moment-title { font-size: 0.9em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 15px; font-weight: 300;}
-        .moment-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
-        .moment-list li { font-size: 0.95em; color: var(--text-muted); letter-spacing: 1px; display: flex; align-items: center; font-weight: 300;}
-        .moment-list li::before { content: '✦'; color: var(--theme-color); margin-right: 8px; font-size: 0.8em; opacity: 0.7;}
+        .smart-nav .nav-links a:hover {
+            color: var(--gold-accent);
+        }
 
-        .variant-group { margin-bottom: 40px; }
-        .variant-title { font-size: 0.9em; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; font-weight: 300;}
-        .variants { display: flex; gap: 15px; flex-wrap: wrap; }
-        .variant-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.9em; letter-spacing: 1px;}
-        .variant-btn.active { border-color: var(--theme-color); color: var(--bg-darker); background: var(--theme-color); box-shadow: 0 0 15px rgba(229, 115, 115, 0.3); font-weight: bold;}
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic);
+        }
 
-        .price-action { display: flex; align-items: center; gap: 30px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color); }
-        .price { font-size: 1.8em; color: var(--text-main); font-weight: 300; letter-spacing: 1px; }
-        .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        .story-section { max-width: 700px; margin: 100px auto 80px auto; text-align: center; padding: 0 20px; position: relative; }
-        .story-section::before, .story-section::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(229, 115, 115, 0.3); margin: 0 auto 30px auto; }
-        .story-section::after { margin: 30px auto 0 auto; }
-        .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
-        .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+        .product-hero {
+            display: flex;
+            min-height: 100vh;
+            padding: 140px 40px 40px 40px;
+            box-sizing: border-box;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: flex-start;
+        }
 
-        .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
-        .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
-        .track-container { position: relative; padding-left: 30px; border-left: 1px solid rgba(229, 115, 115, 0.3); }
-        .track-item { position: relative; margin-bottom: 40px; }
-        .track-item::before { content: ''; position: absolute; left: -36px; top: 5px; width: 10px; height: 10px; background: var(--bg-darker); border: 2px solid var(--theme-color); border-radius: 50%; box-shadow: 0 0 10px var(--theme-color); }
-        .track-level { font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
-        .track-ingredients { font-size: 1.1em; color: var(--text-main); margin-bottom: 8px; letter-spacing: 1px; font-weight: 300;}
-        .track-effect { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; font-weight: 300; letter-spacing: 1px;}
+        @media (max-width: 900px) {
+            .product-hero {
+                flex-direction: column;
+                padding: 100px 20px 40px 20px;
+                text-align: center;
+                gap: 40px;
+                align-items: center;
+            }
+        }
 
-        .spec-box { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 80px auto 80px auto; }
-        .spec-note { text-align: center; font-size: 0.85em; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 25px; border-radius: 8px; letter-spacing: 2px; border: 1px solid rgba(220,167,80,0.1); line-height: 1.8;}
-        .safety-warning { border-color: rgba(229, 115, 115, 0.2); background: rgba(229, 115, 115, 0.02); }
-        .safety-warning strong { color: #E57373; font-weight: 300;}
-        .legal-note { border-color: rgba(229, 115, 115, 0.3); background: rgba(229, 115, 115, 0.05); color: #EAEAEA;}
+        .product-visual {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(229, 115, 115, 0.2);
+            box-shadow: 0 0 40px rgba(229, 115, 115, 0.05);
+        }
 
-        .site-footer { border-top: 1px solid rgba(220, 167, 80, 0.15); padding: 60px 20px; display: flex; flex-direction: column; align-items: center; background: #030508; }
-        .footer-logo { color: var(--gold-accent); font-size: 1.2em; letter-spacing: 6px; font-weight: 300; margin-bottom: 30px; text-decoration: none;}
-        .footer-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;}
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9em; letter-spacing: 2px; transition: color 0.3s; font-weight: 300; text-transform: uppercase;}
+        .drop-zone {
+            border: 1px dashed var(--theme-color);
+            color: var(--theme-color);
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+        .product-img {
+            max-width: 90%;
+            max-height: 90%;
+            display: none;
+            filter: drop-shadow(0 0 20px rgba(229, 115, 115, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .axis-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid var(--theme-color);
+            color: var(--theme-color);
+            border-radius: 30px;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-size: 2.5em;
+            color: var(--text-main);
+            margin: 0 0 15px 0;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .core-quote {
+            font-size: 1.15em;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .energy-theme {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            margin-bottom: 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
+            font-weight: 300;
+        }
+
+        .diagnosis-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--theme-color);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .diagnosis-box h5 {
+            margin: 0 0 12px 0;
+            color: var(--theme-color);
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .diagnosis-box p {
+            margin: 0 0 15px 0;
+            font-size: 0.95em;
+            color: #d0d0d0;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .diagnosis-box p:last-child {
+            margin: 0;
+            color: var(--text-main);
+            opacity: 0.9;
+        }
+
+        .moment-box {
+            background: rgba(229, 115, 115, 0.03);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(229, 115, 115, 0.15);
+        }
+
+        .moment-title {
+            font-size: 0.9em;
+            color: var(--theme-color);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .moment-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .moment-list li {
+            font-size: 0.95em;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+        }
+
+        .moment-list li::before {
+            content: '✦';
+            color: var(--theme-color);
+            margin-right: 8px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .variant-group {
+            margin-bottom: 40px;
+        }
+
+        .variant-title {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .variants {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .variant-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .variant-btn.active {
+            border-color: var(--theme-color);
+            color: var(--bg-darker);
+            background: var(--theme-color);
+            box-shadow: 0 0 15px rgba(229, 115, 115, 0.3);
+            font-weight: bold;
+        }
+
+        .price-action {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: var(--text-main);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart {
+            background: rgba(220, 167, 80, 0.1);
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1em;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-weight: 300;
+        }
+
+        .add-to-cart:hover {
+            background: var(--gold-accent);
+            color: var(--bg-darker);
+            box-shadow: 0 0 20px rgba(220, 167, 80, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .story-section {
+            max-width: 700px;
+            margin: 100px auto 80px auto;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .story-section::before,
+        .story-section::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: rgba(229, 115, 115, 0.3);
+            margin: 0 auto 30px auto;
+        }
+
+        .story-section::after {
+            margin: 30px auto 0 auto;
+        }
+
+        .story-title {
+            font-size: 1.1em;
+            color: var(--theme-color);
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .story-text {
+            font-size: 1.15em;
+            color: var(--text-main);
+            line-height: 2.2;
+            letter-spacing: 2px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .resonance-section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.4em;
+            color: var(--gold-accent);
+            letter-spacing: 4px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .track-container {
+            position: relative;
+            padding-left: 30px;
+            border-left: 1px solid rgba(229, 115, 115, 0.3);
+        }
+
+        .track-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .track-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-darker);
+            border: 2px solid var(--theme-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--theme-color);
+        }
+
+        .track-level {
+            font-size: 0.85em;
+            color: var(--theme-color);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .track-ingredients {
+            font-size: 1.1em;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .track-effect {
+            font-size: 0.95em;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .spec-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            margin: 80px auto 80px auto;
+        }
+
+        .spec-note {
+            text-align: center;
+            font-size: 0.85em;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(220, 167, 80, 0.1);
+            line-height: 1.8;
+        }
+
+        .safety-warning {
+            border-color: rgba(229, 115, 115, 0.2);
+            background: rgba(229, 115, 115, 0.02);
+        }
+
+        .safety-warning strong {
+            color: #E57373;
+            font-weight: 300;
+        }
+
+        .legal-note {
+            border-color: rgba(229, 115, 115, 0.3);
+            background: rgba(229, 115, 115, 0.05);
+            color: #EAEAEA;
+        }
+
+        .site-footer {
+            border-top: 1px solid rgba(220, 167, 80, 0.15);
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #030508;
+        }
+
+        .footer-logo {
+            color: var(--gold-accent);
+            font-size: 1.2em;
+            letter-spacing: 6px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* Ritual Section Styles */
+        .ritual-section {
+            max-width: 800px;
+            margin: 100px auto 80px auto;
+            padding: 60px 40px;
+            background: linear-gradient(180deg, rgba(5, 10, 20, 0) 0%, rgba(229, 115, 115, 0.03) 50%, rgba(5, 10, 20, 0) 100%);
+            border-top: 1px solid rgba(229, 115, 115, 0.1);
+            border-bottom: 1px solid rgba(229, 115, 115, 0.1);
+            text-align: center;
+        }
+
+        .ritual-header {
+            font-size: 0.8em;
+            color: var(--gold-accent);
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .ritual-title {
+            font-size: 1.8em;
+            color: var(--text-main);
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .ritual-intro {
+            font-size: 1em;
+            color: var(--text-muted);
+            line-height: 2;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .ritual-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: opacity 0.4s ease;
+        }
+
+        .step-box {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .step-num {
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 1.5em;
+            color: var(--gold-accent);
+            opacity: 0.5;
+            font-family: serif;
+            font-style: italic;
+        }
+
+        .step-title {
+            font-size: 1.1em;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .step-desc {
+            font-size: 0.95em;
+            color: #a0a0a0;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
     </style>
 </head>
+
 <body>
 
-<nav id="smart-nav" class="smart-nav">
-    <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
-    <div class="nav-links">
-        <a href="index.html">首頁</a>
-        <a href="about.html">關於品牌</a>
-        <a href="philosophy.html">品牌哲學</a>
-        <a href="test.html">Find Your State</a>
-        <a href="state.html">狀態</a>
-    </div>
-</nav>
-
-<section class="product-hero fade-in-element">
-    <div class="product-visual" style="overflow: hidden;">
-        <img src="fire-visual.jpg" alt="回火之心" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-    </div>
-
-    <div class="product-info">
-        <div class="axis-badge">適合需要：找回熱度 ‧ 提振精神 ‧ 重啟動能</div>
-        <h1 class="product-title">🔥 回火之心</h1>
-        
-        <div class="core-quote">
-            「不是燃燒殆盡的火，而是慢慢回溫的火。<br>你沒有壞掉，你只是暫時熄火。」
+    <nav id="smart-nav" class="smart-nav">
+        <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="about.html">關於品牌</a>
+            <a href="philosophy.html">品牌哲學</a>
+            <a href="test.html">Find Your State</a>
+            <a href="state.html">狀態</a>
         </div>
-        
-        <div class="energy-theme">
-            ✦ 能量主題｜慾望轉化 ‧ 創造動能 ‧ 熱度復燃
+    </nav>
+
+    <section class="product-hero fade-in-element">
+        <div class="product-visual" style="overflow: hidden;">
+            <img src="fire-visual.jpg" alt="回火之心"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
         </div>
 
-        <div class="diagnosis-box">
-            <h5>✦ 狀態覺察 ✦</h5>
-            <p><strong>當下狀態：</strong>燃燒殆盡 (Burnout)、失去熱情、覺得做什麼事都提不起勁。<br>
-               <strong>內在需求：</strong>需要溫暖且不刺眼的推力，喚醒沉睡在身體裡的生命力。</p>
-            <p>➔ 陪伴目標：重新點燃內在的火種，溫和地重啟生命動能。</p>
-        </div>
+        <div class="product-info">
+            <div class="axis-badge">適合需要：找回熱度 ‧ 提振精神 ‧ 重啟動能</div>
+            <h1 class="product-title">🔥 回火之心</h1>
 
-        <div class="moment-box">
-            <div class="moment-title">適合使用時刻</div>
-            <ul class="moment-list">
-                <li>感到疲憊時</li>
-                <li>失去動力時</li>
-                <li>想重新點燃熱情時</li>
-                <li>創作與行動之前</li>
-            </ul>
-        </div>
-
-        <div class="variant-group">
-            <div class="variant-title">選擇你的復燃方式：</div>
-            <div class="variants">
-                <button class="variant-btn active" onclick="changeVariant('classic')">標準復燃版</button>
-                <button class="variant-btn" onclick="changeVariant('power')">極限動能版</button>
+            <div class="core-quote">
+                「不是燃燒殆盡的火，而是慢慢回溫的火。<br>你沒有壞掉，你只是暫時熄火。」
             </div>
-            <p id="variant-desc" style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
-                【溫和重啟】不強迫你立刻振作，而是從內底層慢慢生出溫暖與前進的力量。
-            </p>
+
+            <div class="energy-theme">
+                ✦ 能量主題｜慾望轉化 ‧ 創造動能 ‧ 熱度復燃
+            </div>
+
+            <div class="diagnosis-box">
+                <h5>✦ 狀態覺察 ✦</h5>
+                <p><strong>當下狀態：</strong>燃燒殆盡 (Burnout)、失去熱情、覺得做什麼事都提不起勁。<br>
+                    <strong>內在需求：</strong>需要溫暖且不刺眼的推力，喚醒沉睡在身體裡的生命力。
+                </p>
+                <p>➔ 陪伴目標：重新點燃內在的火種，溫和地重啟生命動能。</p>
+            </div>
+
+            <div class="moment-box">
+                <div class="moment-title">適合使用時刻</div>
+                <ul class="moment-list">
+                    <li>感到疲憊時</li>
+                    <li>失去動力時</li>
+                    <li>想重新點燃熱情時</li>
+                    <li>創作與行動之前</li>
+                </ul>
+            </div>
+
+            <div class="variant-group">
+                <div class="variant-title">品項與容量：</div>
+                <div class="variants">
+                    <button class="variant-btn active" onclick="changeVariant('classic', this)">標準復燃版</button>
+                    <button class="variant-btn" onclick="changeVariant('space', this)">辦公空間版</button>
+                </div>
+                <p id="variant-desc"
+                    style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; line-height: 1.8; letter-spacing: 1px; transition: opacity 0.3s ease;">
+                    【溫和重啟】不強迫你立刻振作，而是從內底層慢慢生出溫暖與前進的力量。
+                </p>
+            </div>
+
+            <div class="price-action">
+                <div class="price-container"
+                    style="display: flex; flex-direction: column; justify-content: center; min-height: 60px;">
+                    <div id="product-spec"
+                        style="font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 4px; transition: all 0.3s ease;">
+                        10ML 隨身噴霧</div>
+                    <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 480</div>
+                </div>
+                <button class="add-to-cart">加入購物車</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section fade-in-element">
+        <h3 class="story-title">✦ 氣味場景 ✦</h3>
+        <p class="story-text">
+            你以為自己已經燃燒殆盡，只剩下冰冷的灰燼。<br>
+            但在靈魂的最深處，那顆火種從未真正熄滅。<br><br>
+            這個氣味不會殘酷地強迫你立刻站起來戰鬥，<br>
+            它像是寒冬裡的一杯熱香料紅酒，或是營火旁遞來的一條毛毯。<br>
+            它先溫暖你，等你感覺夠安全了，<br>
+            那股久違的生命力，自然會重新亮起微光。
+        </p>
+    </section>
+
+    <section id="resonance" class="resonance-section fade-in-element">
+        <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
+        <div class="track-container">
+            <div class="track-item">
+                <div class="track-level">動力核心 1</div>
+                <div class="track-ingredients">CT22</div>
+                <div class="track-effect">【熱能驅動】注入強大溫潤的熱性能量，深入冰冷的胸腔，重新啟動停滯的生命動能。</div>
+            </div>
+            <div class="track-item">
+                <div class="track-level">動力核心 2</div>
+                <div class="track-ingredients">CT15</div>
+                <div class="track-effect">【化解淤積】永久花與雪松強大的疏通力量，化解燃燒殆盡後的心理淤積，給予重新向上的支撐力。</div>
+            </div>
+            <div class="track-item">
+                <div class="track-level">動力核心 3</div>
+                <div class="track-ingredients">CT10</div>
+                <div class="track-effect">【靈魂撫慰】精緻的甜美花香底蘊。在火熱的動能中，給予內心最溫柔的擁抱，讓火光穩定而不暴躁。</div>
+            </div>
         </div>
 
-        <div class="price-action">
-            <div class="price">NT$ 9,999</div>
-            <button class="add-to-cart">選擇此香氣</button>
+        <div class="spec-box fade-in-element">
+            <div class="spec-note legal-note">
+                <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
+                荷荷芭油、中國肉桂精油、多香果精油、丁香花苞精油、錫蘭肉桂精油、印度肉桂精油、神聖羅勒精油、丁香羅勒精油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精。
+            </div>
+            <div class="spec-note safety-warning">
+                <strong>⛔ 安全提醒：</strong>本香氣含有高純度肉桂、丁香與羅勒等促進循環之熱性精油，<strong>孕婦與嬰幼兒請避免使用。</strong>
+            </div>
+            <div class="spec-note">
+                ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="story-section fade-in-element">
-    <h3 class="story-title">✦ 氣味場景 ✦</h3>
-    <p class="story-text">
-        你以為自己已經燃燒殆盡，只剩下冰冷的灰燼。<br>
-        但在靈魂的最深處，那顆火種從未真正熄滅。<br><br>
-        這個氣味不會殘酷地強迫你立刻站起來戰鬥，<br>
-        它像是寒冬裡的一杯熱香料紅酒，或是營火旁遞來的一條毛毯。<br>
-        它先溫暖你，等你感覺夠安全了，<br>
-        那股久違的生命力，自然會重新亮起微光。
+<section class="ritual-section fade-in-element">
+    <div class="ritual-header">✦ Soul Ritual ✦</div>
+    <h2 class="ritual-title" id="ritual-title">浴火煉心儀式</h2>
+    <p class="ritual-intro" id="ritual-intro">
+        「回火」是鍛造鋼鐵必經的過程，歷經極端的冷與熱，才能成就最堅韌的質地。<br>
+        當你感到內在力量枯竭、被創傷困住，或是需要重新點燃生命熱情時，這段儀式將陪伴你經歷一場冰與火的轉化，讓你從裂縫中透出光芒，迎來浴火重生。
     </p>
-</section>
 
-<section id="resonance" class="resonance-section fade-in-element">
-    <h2 class="section-title">✦ 香氣軌跡 ✦</h2>
-    <div class="track-container">
-        <div class="track-item">
-            <div class="track-level">動力核心 1</div>
-            <div class="track-ingredients">CT22</div>
-            <div class="track-effect">【熱能驅動】注入強大溫潤的熱性能量，深入冰冷的胸腔，重新啟動停滯的生命動能。</div>
+    <div class="ritual-steps" id="dynamic-ritual">
+        <div class="step-box">
+            <div class="step-num">01</div>
+            <div class="step-title">破冰 (The Thaw)</div>
+            <div class="step-desc">將香氣輕灑於空間。深深吸氣，感受前調中那股清透的穿透力，想像它正溫柔地解開你內心冰封、麻木的角落，為接下來的轉化做準備。</div>
         </div>
-        <div class="track-item">
-            <div class="track-level">動力核心 2</div>
-            <div class="track-ingredients">CT15</div>
-            <div class="track-effect">【化解淤積】永久花與雪松強大的疏通力量，化解燃燒殆盡後的心理淤積，給予重新向上的支撐力。</div>
+        
+        <div class="step-box">
+            <div class="step-num">02</div>
+            <div class="step-title">點火 (The Ignition)</div>
+            <div class="step-desc">將雙手輕覆於胸口，緩慢吐氣。隨著香氣中後段的溫度逐漸釋放，想像心臟深處有一簇暗紅與銅金色的火苗被重新點燃，將過往的傷痕鍛造為強大的底氣。</div>
         </div>
-        <div class="track-item">
-            <div class="track-level">動力核心 3</div>
-            <div class="track-ingredients">CT10</div>
-            <div class="track-effect">【靈魂撫慰】精緻的甜美花香底蘊。在火熱的動能中，給予內心最溫柔的擁抱，讓火光穩定而不暴躁。</div>
-        </div>
-    </div>
 
-    <div class="spec-box fade-in-element">
-       <div class="spec-note legal-note">
-            <strong>✦ 法規全成分標示 (Full Ingredients)：</strong><br>
-            荷荷芭油、中國肉桂精油、多香果精油、丁香花苞精油、錫蘭肉桂精油、印度肉桂精油、神聖羅勒精油、丁香羅勒精油、大西洋雪松精油、薑黃精油、喜馬拉雅雪松精油、永久花精油、莎草精油、松紅梅精油、中國茉莉原精、銀合歡原精、埃及茉莉原精、香草原精、玫瑰原精。
-        </div>
-        <div class="spec-note safety-warning">
-            <strong>⛔ 安全提醒：</strong>本香氣含有高純度肉桂、丁香與羅勒等促進循環之熱性精油，<strong>孕婦與嬰幼兒請避免使用。</strong>
-        </div>
-        <div class="spec-note">
-            ✦ 工藝堅持：以 <strong>95% 植萃香水酒精</strong> 為載體，不妥協的純粹，只為精準還原每一分狀態。
+        <div class="step-box">
+            <div class="step-num">03</div>
+            <div class="step-title">重生 (The Rebirth)</div>
+            <div class="step-desc">在溫暖的香氣包圍下，告訴自己：「裂縫，正是光照進來的地方。」感受那股由內而外擴散的暖流，允許自己帶著全新的溫度與力量，重新出發。</div>
         </div>
     </div>
 </section>
 
-<footer class="site-footer fade-in-element">
-    <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
-    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="philosophy.html">Philosophy</a>
-        <a href="state.html">States</a>
-    </div>
-</footer>
 
-<script>
-    const descriptions = {
-        classic: "【溫和重啟】不強迫你立刻振作，而是從內底層慢慢生出溫暖與前進的力量。",
-        power: "【突破極限】給予強大的能量支撐，喚醒專注力，適合需要瞬間爆發力的時刻。"
-    };
-    function changeVariant(variant) {
-        document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        const descElement = document.getElementById('variant-desc');
-        descElement.style.opacity = 0;
-        setTimeout(() => { descElement.innerText = descriptions[variant]; descElement.style.opacity = 1; }, 200);
-    }
+    <footer class="site-footer fade-in-element">
+        <a href="index.html" class="footer-logo">SOUL TRAVELER</a>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="philosophy.html">Philosophy</a>
+            <a href="state.html">States</a>
+        </div>
+    </footer>
 
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.15 }); 
-        document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
-    });
-</script>
+    <script>
+        const variantData = {
+            classic: {
+                desc: "【溫和重啟】不強迫你立刻振作，而是從內底層慢慢生出溫暖與前進的力量。",
+                spec: "10ML 噴霧",
+                price: "NT$ 480"
+            },
+            space: {
+                desc: "【突破極限】給予強大的能量支撐，喚醒專注力，適合需要瞬間爆發力的時刻。",
+                spec: "50ML 空間噴霧",
+                price: "NT$ 980"
+            }
+        };
+        function changeVariant(variant, element) {
+            document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+            if (element) element.classList.add('active');
+            const descElement = document.getElementById('variant-desc');
+            const specElement = document.getElementById('product-spec');
+            const priceElement = document.getElementById('product-price');
+
+            descElement.style.opacity = 0;
+            specElement.style.opacity = 0;
+            specElement.style.transform = 'translateY(5px)';
+            priceElement.style.opacity = 0;
+            priceElement.style.transform = 'translateY(5px)';
+
+            setTimeout(() => {
+                descElement.innerText = variantData[variant].desc;
+                specElement.innerText = variantData[variant].spec;
+                priceElement.innerText = variantData[variant].price;
+
+                descElement.style.opacity = 1;
+                specElement.style.opacity = 1;
+                specElement.style.transform = 'translateY(0)';
+                priceElement.style.opacity = 1;
+                priceElement.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => { document.querySelectorAll('.fade-in-element').forEach(el => { el.classList.add('visible'); }); }, 100);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.fade-in-element').forEach(el => { observer.observe(el); });
+        });
+    </script>
 </body>
+
 </html>
