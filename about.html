@@ -24,6 +24,60 @@
         .smart-nav .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9em; letter-spacing: 1px; transition: color 0.3s; }
         .smart-nav .nav-links a:hover, .smart-nav .nav-links a.active { color: var(--gold-accent); }
 
+        /* 漢堡選單按鈕 */
+        .hamburger { display: none; flex-direction: column; justify-content: space-around; width: 30px; height: 21px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001; }
+        .hamburger span { width: 100%; height: 2px; background: var(--text-main); transition: all 0.3s linear; position: relative; transform-origin: 1px; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg); }
+
+        /* 手機版導覽列覆蓋 */
+        @media (max-width: 768px) {
+            .smart-nav .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(5, 10, 20, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
+                z-index: 1000;
+            }
+            .smart-nav .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .smart-nav .nav-links a {
+                font-size: 1.5em;
+                letter-spacing: 4px;
+                color: var(--text-main);
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s;
+            }
+            .smart-nav .nav-links.active a {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* 讓選項依序淡入 */
+            .smart-nav .nav-links.active a:nth-child(1) { transition-delay: 0.1s; }
+            .smart-nav .nav-links.active a:nth-child(2) { transition-delay: 0.2s; }
+            .smart-nav .nav-links.active a:nth-child(3) { transition-delay: 0.3s; }
+            .smart-nav .nav-links.active a:nth-child(4) { transition-delay: 0.4s; }
+            .smart-nav .nav-links.active a:nth-child(5) { transition-delay: 0.5s; }
+
+            .smart-nav .nav-links a:active { color: var(--gold-accent); }
+            
+            .hamburger { display: flex; }
+        }
+
         /* 動畫設定 */
         .fade-in-element { opacity: 0; transform: translateY(30px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
@@ -53,7 +107,12 @@
 
 <nav id="smart-nav" class="smart-nav">
     <a href="index.html" class="brand-logo">SOUL TRAVELER</a>
-    <div class="nav-links">
+    <button class="hamburger" id="hamburger-menu" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
         <a href="index.html">首頁</a>
         <a href="about.html">關於品牌</a>
         <a href="philosophy.html">品牌哲學</a>
@@ -117,6 +176,30 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const hamburgerBtn = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (hamburgerBtn && navLinks) {
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navLinks.classList.toggle('active');
+                
+                if (navLinks.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('open');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
         // 進入畫面時的第一波淡入
         setTimeout(() => { 
             document.querySelectorAll('.fade-in-element').forEach(el => { 
