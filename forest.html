@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌲 靜息之森｜靈魂旅人 Soul Traveler</title>
     <style>
-        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; --border-color: #1a2a22; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #81C784; }
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #A8B0C8; --gold-accent: #DCA750; --border-color: #1a2a22; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #81C784; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1f15 0%, #050A14 70%); }
 
@@ -71,6 +71,17 @@
             .hamburger { display: flex; }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .concrete-pain-pdp { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(129,199,132,0.3); color: var(--theme-color); font-size: 0.95em; letter-spacing: 1px; font-weight: 400;}
+
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
@@ -106,11 +117,9 @@
         .add-to-cart { background: rgba(220, 167, 80, 0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 15px 40px; border-radius: 30px; font-size: 1em; letter-spacing: 2px; cursor: pointer; transition: all 0.4s; font-weight: 300;}
         .add-to-cart:hover { background: var(--gold-accent); color: var(--bg-color); box-shadow: 0 0 20px rgba(220, 167, 80, 0.4); transform: translateY(-2px); }
 
-        .story-section { max-width: 700px; margin: 100px auto 80px auto; text-align: center; padding: 0 20px; position: relative; }
-        .story-section::before, .story-section::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(129, 199, 132, 0.3); margin: 0 auto 30px auto; }
-        .story-section::after { margin: 30px auto 0 auto; }
-        .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
-        .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+        .story-section { margin: 20px 0 40px 0; text-align: left; position: relative; padding-left: 15px; border-left: 2px solid var(--theme-color); }
+        .story-title { font-size: 0.9em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 10px; font-weight: 300; }
+        .story-text { font-size: 1.05em; color: var(--text-main); line-height: 2; letter-spacing: 1.5px; font-weight: 300; opacity: 0.9; }
 
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
@@ -177,6 +186,16 @@
         <div class="core-quote">
             「你不需要再撐。<br>這支香存在的目的只有一個：<br>讓你的身體知道——現在是安全的。」
         </div>
+
+        <section class="story-section">
+            <h3 class="story-title">✦ 具象氣味場景</h3>
+            <p class="story-text">
+                當你閉上眼睛，這是一片沒有人會催促你的古老松林。<br>
+                陽光微弱地穿透巨冷杉的枝葉縫隙，<br>
+                腳下是柔軟、濕潤的泥土與黑雲杉交錯的根系。<br>
+                森林只是安靜地存在，然後穩穩地接住你所有的疲憊。
+            </p>
+        </section>
         
         <div class="energy-theme">
             ✦ 能量主題｜回歸 ‧ 呼吸 ‧ 靈魂棲息
@@ -185,6 +204,7 @@
         <div class="diagnosis-box" id="dynamic-diagnosis" style="transition: opacity 0.3s ease;">
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當你感到靈魂的根基有些鬆動，被日常的瑣碎切分得支離破碎，需要一座無形的森林將你包圍，找回最原始的安全感與穩定力時。</p>
+            <div class="concrete-pain-pdp">對應：長期疲勞與睡眠品質不佳、需要深度放鬆</div>
         </div>
         
         <div id="dynamic-moment" style="border: 1px solid rgba(129, 199, 132, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px; transition: opacity 0.3s ease;">
@@ -220,20 +240,12 @@
                 <div id="product-spec-display" style="font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 4px; transition: all 0.3s ease; display: none;"></div>
                 <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 380</div>
             </div>
-            <button class="add-to-cart">加入購物車</button>
+            <a href="https://myship.7-11.com.tw/general/detail/GM2603185944361" target="_blank" class="add-to-cart" style="text-decoration: none; display: inline-block; text-align: center; box-sizing: border-box;">前往專屬香氛庫選購</a>
         </div>
     </div>
 </section>
 
-<section class="story-section fade-in-element">
-    <h3 class="story-title">✦ 氣味場景 ✦</h3>
-    <p class="story-text">
-        當你閉上眼睛，這是一片沒有人會催促你的古老松林。<br>
-        陽光微弱地穿透巨冷杉的枝葉縫隙，<br>
-        腳下是柔軟、濕潤的泥土與黑雲杉交錯的根系。<br><br>
-        在這裡，你不必扮演任何角色，不必準備戰鬥。<br>
-        森林只是安靜地存在，然後穩穩地接住你所有的疲憊。
-    </p>
+    </div>
 </section>
 
 <section id="resonance" class="resonance-section fade-in-element">
@@ -291,6 +303,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當你感到靈魂的根基有些鬆動，被日常的瑣碎切分得支離破碎，需要一座無形的森林將你包圍，找回最原始的安全感與穩定力時。</p>
+            <div class="concrete-pain-pdp">對應：長期疲勞與睡眠品質不佳、需要深度放鬆</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
@@ -342,6 +355,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當夜色已深，但腦海中的齒輪仍在高速運轉，無法卸下白日的防備，渴望被一片靜謐的黑夜溫柔覆蓋，沉入無夢的深淵時。</p>
+            <div class="concrete-pain-pdp">對應：入睡困難、多夢淺眠、強迫性思考無法放鬆</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #81C784; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>

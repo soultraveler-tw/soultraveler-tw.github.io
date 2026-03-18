@@ -9,7 +9,7 @@
         :root {
             --bg-color: #050A14;
             --text-main: #EAEAEA;
-            --text-muted: #888899;
+            --text-muted: #A8B0C8;
             --gold-accent: #DCA750;
             --border-color: #2A2010;
             --nav-bg: rgba(5, 10, 20, 0.85);
@@ -131,6 +131,17 @@
             
             .hamburger { display: flex; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .concrete-pain-pdp { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(220,167,80,0.3); color: var(--theme-color); font-size: 0.95em; letter-spacing: 1px; font-weight: 400; margin-bottom: 15px;}
 
         .fade-in-element {
             opacity: 0;
@@ -387,30 +398,9 @@
             opacity: 0.9;
         }
 
-        .story-section {
-            max-width: 700px;
-            margin: 80px auto;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .story-title {
-            font-size: 1.1em;
-            color: var(--theme-color);
-            letter-spacing: 4px;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-
-        .story-text {
-            font-size: 1.15em;
-            color: var(--text-main);
-            line-height: 2.2;
-            letter-spacing: 2px;
-            font-weight: 300;
-            opacity: 0.9;
-        }
+        .story-section { margin: 20px 0 40px 0; text-align: left; position: relative; padding-left: 15px; border-left: 2px solid var(--theme-color); }
+        .story-title { font-size: 0.9em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 10px; font-weight: 300; }
+        .story-text { font-size: 1.05em; color: var(--text-main); line-height: 2; letter-spacing: 1.5px; font-weight: 300; opacity: 0.9; }
 
         .resonance-section {
             max-width: 900px;
@@ -651,6 +641,16 @@
                 「真正的財富，來自清晰的方向與持續的行動。<br>當你狀態對了，資源自然會向你匯聚。」
             </div>
 
+            <section class="story-section">
+                <h3 class="story-title">✦ 具象氣味場景</h3>
+                <p class="story-text">
+                    當你深吸一口氣，就像是在混亂的桌面清出了一塊乾淨的空間。<br>
+                    果香與微辛的氣息喚醒了你的理智，深邃的木質調撐起了你的脊椎。<br>
+                    你清楚知道自己的價值，不再被焦慮綁架。<br>
+                    每一步都踩得無比踏實，當你準備好了，世界自然會把資源交到你手上。
+                </p>
+            </section>
+
             <div class="energy-theme">
                 ✦ 能量主題｜資源流動 ‧ 氣場守護 ‧ 命運定錨
             </div>
@@ -660,6 +660,7 @@
                 <p><strong>當下狀態：</strong>思緒混亂、缺乏果斷的行動力、對未來的資源與方向感到焦慮與不踏實。<br>
                     <strong>內在需求：</strong>渴望清晰的頭腦與堅定的底氣，讓每一個計畫都能穩穩落地。
                 </p>
+                <div class="concrete-pain-pdp">對應：預期性焦慮、對自我價值懷疑、行動力停滯與財務焦慮</div>
                 <p>➔ 陪伴目標：破除迷惘，提升專注力，讓內外在資源順暢流動。</p>
             </div>
 
@@ -696,7 +697,7 @@
                         10ML 隨身噴霧</div>
                     <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 580</div>
                 </div>
-                <button class="add-to-cart">加入購物車</button>
+                <a href="https://myship.7-11.com.tw/general/detail/GM2603185944361" target="_blank" class="add-to-cart" style="text-decoration: none; display: inline-block; text-align: center; box-sizing: border-box;">前往專屬香氛庫選購</a>
             </div>
         </div>
     </section>
@@ -710,16 +711,6 @@
         </p>
     </section>
 
-    <section class="story-section fade-in-element">
-        <h3 class="story-title">✦ 氣味場景 ✦</h3>
-        <p class="story-text">
-            這不是虛幻的魔法，而是極度清醒的現實。<br>
-            當你深吸一口氣，就像是在混亂的桌面清出了一塊乾淨的空間。<br>
-            果香與微辛的氣息喚醒了你的理智，深邃的木質調撐起了你的脊椎。<br><br>
-            你清楚知道自己的價值，不再被焦慮綁架。<br>
-            每一步都踩得無比踏實，因為你知道，<br>
-            當你準備好了，世界自然會把資源交到你手上。
-        </p>
     </section>
 
     <section id="resonance" class="resonance-section fade-in-element">

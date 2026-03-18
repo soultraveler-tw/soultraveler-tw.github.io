@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🜁 靜域之心｜靈魂旅人 Soul Traveler</title>
     <style>
-        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; --border-color: #1E3050; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #64B5F6; }
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #A8B0C8; --gold-accent: #DCA750; --border-color: #1E3050; --nav-bg: rgba(5, 10, 20, 0.85); --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1); --theme-color: #64B5F6; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; overflow-x: hidden; background-image: radial-gradient(circle at 50% 0%, #0d1a33 0%, #050A14 70%); }
 
@@ -70,6 +70,17 @@
             .hamburger { display: flex; }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .concrete-pain-pdp { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(100, 181, 246, 0.3); color: var(--theme-color); font-size: 0.95em; letter-spacing: 1px; font-weight: 400; margin-bottom: 15px;}
+
         .fade-in-element { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-cubic), transform 1.2s var(--ease-out-cubic); }
         .fade-in-element.visible { opacity: 1; transform: translateY(0); }
 
@@ -108,9 +119,9 @@
         .mythical-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; font-weight: 300; margin-bottom: 25px; }
         .mythical-text { font-size: 1.1em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
 
-        .story-section { max-width: 700px; margin: 80px auto; text-align: center; padding: 0 20px; position: relative; }
-        .story-title { font-size: 1.1em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 25px; font-weight: 300; }
-        .story-text { font-size: 1.15em; color: var(--text-main); line-height: 2.2; letter-spacing: 2px; font-weight: 300; opacity: 0.9; }
+        .story-section { margin: 20px 0 40px 0; text-align: left; position: relative; padding-left: 15px; border-left: 2px solid var(--theme-color); }
+        .story-title { font-size: 0.9em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 10px; font-weight: 300; }
+        .story-text { font-size: 1.05em; color: var(--text-main); line-height: 2; letter-spacing: 1.5px; font-weight: 300; opacity: 0.9; }
 
         .resonance-section { max-width: 900px; margin: 80px auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 1.4em; color: var(--gold-accent); letter-spacing: 4px; margin-bottom: 50px; font-weight: 300; }
@@ -173,6 +184,15 @@
             「靜域之心不是讓世界變安靜。<br>而是在喧囂之中，建立一個屬於自己的安靜空間。」
         </div>
         
+        <section class="story-section">
+            <h3 class="story-title">✦ 具象氣味場景</h3>
+            <p class="story-text">
+                當你閉上眼睛，世界的一切喧囂瞬間被隔絕在外。<br>
+                這裡像是一座深海裡的純白房間，沒有雜訊，只有你穩定的心跳聲。<br>
+                在這個絕對真空的靜域裡，你終於可以把心安放下來，聽見自己最真實的聲音。
+            </p>
+        </section>
+
         <div class="energy-theme">
             ✦ 能量主題｜內在安定 ‧ 結界防護 ‧ 思緒沉靜
         </div>
@@ -181,6 +201,7 @@
             <h5>✦ 狀態覺察 ✦</h5>
             <p><strong>當下狀態：</strong>焦躁、情緒起伏大、容易被外界的聲音或他人的情緒干擾。<br>
                <strong>內在需求：</strong>渴望一個沒有雜訊、安全且獨立的心理邊界。</p>
+            <div class="concrete-pain-pdp">對應：高敏感疲勞、情緒容易受外界干擾、無法獨處靜心</div>
             <p>➔ 陪伴目標：協助內在重新平衡，穩固心神與頻率。</p>
         </div>
         <div id="dynamic-moment" style="border: 1px solid rgba(100, 181, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 40px; transition: opacity 0.3s ease;">
@@ -218,7 +239,7 @@
                 <div id="product-spec-display" style="font-size: 0.85em; color: var(--theme-color); letter-spacing: 2px; margin-bottom: 4px; transition: all 0.3s ease; display: none;"></div>
                 <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 380</div>
             </div>
-            <button class="add-to-cart">加入購物車</button>
+            <a href="https://myship.7-11.com.tw/general/detail/GM2603185944361" target="_blank" class="add-to-cart" style="text-decoration: none; display: inline-block; text-align: center; box-sizing: border-box;">前往專屬香氛庫選購</a>
         </div>
     </div>
 </section>
@@ -292,6 +313,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當思緒如亂麻，感到外在的喧囂已經滲透進內心，無法專注於當下，亟需找回內在秩序與純粹的平靜時。</p>
+            <div class="concrete-pain-pdp">對應：高敏感疲勞、情緒容易受外界干擾、無法獨處靜心</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
@@ -325,6 +347,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當你與毛孩共處，感受到空間中有一絲浮躁，希望能以最溫和無害的方式，為彼此創造一個純淨且安心的結界時。</p>
+            <div class="concrete-pain-pdp">對應：寵物焦躁不安、人寵共存空間需要溫和安撫</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
@@ -357,6 +380,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當夜幕降臨，空間需要轉換為休憩頻率，而幼小的靈魂仍依戀著白日的喧鬧，需要一雙無形的溫柔手輕撫入夢時。</p>
+            <div class="concrete-pain-pdp">對應：嬰幼兒夜驚、入睡困難、需要極度溫和的睡前安撫</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>
@@ -389,6 +413,7 @@
             diagnosis: `
             <h5>✦ 狀態覺察 ✦</h5>
             <p style="margin-bottom: 0;">當身體承受著孕育生命的重量，身心靈的邊界感到緊繃與疲乏，需要一股安定的力量，溫柔托住所有不安、焦慮與氣味敏感時。</p>
+            <div class="concrete-pain-pdp">對應：孕期情緒起伏大、對氣味敏感、腰部與身心沉重疲勞</div>
             `,
             moment: `
             <div style="font-size: 0.9em; color: #64B5F6; margin-bottom: 15px; letter-spacing: 2px;">適合使用時刻</div>

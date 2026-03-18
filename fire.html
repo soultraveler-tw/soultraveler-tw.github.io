@@ -9,7 +9,7 @@
         :root {
             --bg-color: #050A14;
             --text-main: #EAEAEA;
-            --text-muted: #888899;
+            --text-muted: #A8B0C8;
             --gold-accent: #DCA750;
             --border-color: #2A1010;
             --nav-bg: rgba(5, 10, 20, 0.85);
@@ -131,6 +131,17 @@
             
             .hamburger { display: flex; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .concrete-pain-pdp { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(229, 115, 115, 0.3); color: var(--theme-color); font-size: 0.95em; letter-spacing: 1px; font-weight: 400; margin-bottom: 15px;}
 
         .fade-in-element {
             opacity: 0;
@@ -411,35 +422,9 @@
         }
 
         .story-section::before,
-        .story-section::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 40px;
-            background: rgba(229, 115, 115, 0.3);
-            margin: 0 auto 30px auto;
-        }
-
-        .story-section::after {
-            margin: 30px auto 0 auto;
-        }
-
-        .story-title {
-            font-size: 1.1em;
-            color: var(--theme-color);
-            letter-spacing: 4px;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-
-        .story-text {
-            font-size: 1.15em;
-            color: var(--text-main);
-            line-height: 2.2;
-            letter-spacing: 2px;
-            font-weight: 300;
-            opacity: 0.9;
-        }
+        .story-section { margin: 20px 0 40px 0; text-align: left; position: relative; padding-left: 15px; border-left: 2px solid var(--theme-color); }
+        .story-title { font-size: 0.9em; color: var(--theme-color); letter-spacing: 4px; margin-bottom: 10px; font-weight: 300; }
+        .story-text { font-size: 1.05em; color: var(--text-main); line-height: 2; letter-spacing: 1.5px; font-weight: 300; opacity: 0.9; }
 
         .resonance-section {
             max-width: 900px;
@@ -689,6 +674,16 @@
                 「不是燃燒殆盡的火，而是慢慢回溫的火。<br>你沒有壞掉，你只是暫時熄火。」
             </div>
 
+            <section class="story-section">
+                <h3 class="story-title">✦ 具象氣味場景</h3>
+                <p class="story-text">
+                    你以為自己已經燃燒殆盡，只剩下冰冷的灰燼。<br>
+                    但在靈魂的最深處，那顆火種從未真正熄滅。<br>
+                    這個氣味不會殘酷地強迫你立刻站起來戰鬥，它先溫暖你，<br>
+                    等你感覺夠安全了，那股久違的生命力，自然會重新亮起微光。
+                </p>
+            </section>
+
             <div class="energy-theme">
                 ✦ 能量主題｜慾望轉化 ‧ 創造動能 ‧ 熱度復燃
             </div>
@@ -698,6 +693,7 @@
                 <p><strong>當下狀態：</strong>燃燒殆盡 (Burnout)、失去熱情、覺得做什麼事都提不起勁。<br>
                     <strong>內在需求：</strong>需要溫暖且不刺眼的推力，喚醒沉睡在身體裡的生命力。
                 </p>
+                <div class="concrete-pain-pdp">對應：長期倦怠、失去熱情與動力、燃燒殆盡症候群 (Burnout)</div>
                 <p>➔ 陪伴目標：重新點燃內在的火種，溫和地重啟生命動能。</p>
             </div>
 
@@ -731,21 +727,11 @@
                         10ML 隨身噴霧</div>
                     <div id="product-price" class="price" style="transition: all 0.3s ease;">NT$ 480</div>
                 </div>
-                <button class="add-to-cart">加入購物車</button>
+                <a href="https://myship.7-11.com.tw/general/detail/GM2603185944361" target="_blank" class="add-to-cart" style="text-decoration: none; display: inline-block; text-align: center; box-sizing: border-box;">前往專屬香氛庫選購</a>
             </div>
         </div>
     </section>
 
-    <section class="story-section fade-in-element">
-        <h3 class="story-title">✦ 氣味場景 ✦</h3>
-        <p class="story-text">
-            你以為自己已經燃燒殆盡，只剩下冰冷的灰燼。<br>
-            但在靈魂的最深處，那顆火種從未真正熄滅。<br><br>
-            這個氣味不會殘酷地強迫你立刻站起來戰鬥，<br>
-            它像是寒冬裡的一杯熱香料紅酒，或是營火旁遞來的一條毛毯。<br>
-            它先溫暖你，等你感覺夠安全了，<br>
-            那股久違的生命力，自然會重新亮起微光。
-        </p>
     </section>
 
     <section id="resonance" class="resonance-section fade-in-element">
