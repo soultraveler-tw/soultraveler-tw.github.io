@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靈魂狀態測試｜Soul Traveler</title>
     <style>
-        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #888899; --gold-accent: #DCA750; }
+        :root { --bg-color: #050A14; --text-main: #EAEAEA; --text-muted: #A8B0C8; --gold-accent: #DCA750; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: "PingFang TC", "Helvetica Neue", sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
 
         .smart-nav { width: 100%; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; box-sizing: border-box; border-bottom: 1px solid rgba(220, 167, 80, 0.15); }
         .brand-logo { color: var(--gold-accent); font-size: 1.1em; letter-spacing: 3px; text-decoration: none; }
@@ -198,7 +207,7 @@
 
         const res = mapping[winner];
         
-        document.getElementById('result-area').innerHTML = `
+       document.getElementById('result-area').innerHTML = `
             <div class="scent-card">
                 <div class="card-compass">✧ SOUL COMPASS ✧</div>
                 <div class="card-header">SOUL STATE</div>
@@ -212,8 +221,17 @@
                 <h3 style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 300;">${res.title}</h3>
                 <a href="${res.link}" class="explore-btn">Explore ${res.title} →</a>
             </div>
+
+            <div style="margin-top: 50px; padding-top: 40px; border-top: 1px dashed rgba(100, 181, 246, 0.2); text-align: center;">
+                <p style="font-size: 0.9em; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 20px; font-weight: 300;">
+                    覺得這個結果還無法完全貼近你嗎？
+                </p>
+                <a href="custom.html" style="color: var(--theme-color); font-size: 0.95em; letter-spacing: 2px; text-decoration: none; border-bottom: 1px solid rgba(100, 181, 246, 0.3); padding-bottom: 3px; transition: all 0.3s; display: inline-block;">
+                    進入專屬客製引導 ➔
+                </a>
+            </div>
             
-            <a href="test.html" class="retake-btn">
+            <a href="test.html" class="retake-btn" style="margin-top: 60px;">
                 <div class="retake-icon-text">⟲ 重新探索狀態</div>
                 <div class="retake-subtext">Retake the Compass</div>
             </a>
